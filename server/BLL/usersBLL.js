@@ -2,7 +2,7 @@ const User = require('../models/userModel.js');
 
 const getUsers = async ()=>{
     try{
-        return user.find({})
+        return User.find({})
     }catch(e){
         throw `Error: ${error}`;
     }
