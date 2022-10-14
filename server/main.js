@@ -14,7 +14,7 @@ app.use('/users', usersRouter);
 
 app.listen(8000, ()=>{
     console.log('Server is listen');
-})
+});
 
 
 
