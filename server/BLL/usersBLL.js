@@ -1,33 +1,33 @@
 const User = require('../models/userModel.js');
 
-const getUsers = async ()=>{
-    try{
+const getUsers = async () => {
+    try {
         return User.find({});
-    }catch(e){
+    } catch (e) {
         throw `Error: ${error}`;
     }
 };
 
-const getById = async (id)=>{
-    try{
+const getById = async (id) => {
+    try {
         return User.findById(id);
-    }catch(e){
+    } catch (e) {
         throw `Error ${e}`
     }
-}
+};
 
-const createUser = async (obj)=>{
+const createUser = async (obj) => {
     try {
         const user = new User(obj);
         await user.save();
         return 'Created'
-    }catch(e){
+    } catch (e) {
         throw `Error ${e}`
     }
-}
+};
 
 module.exports = {
     getUsers,
     createUser,
     getById
-}
+};
