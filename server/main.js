@@ -5,6 +5,7 @@ const usersRouter = require('./router/usersRouter');
 const app = express();
 
 require('./config/database');
+require('./BLL/membersBLL');
 
 // middleWares
 app.use(cors());

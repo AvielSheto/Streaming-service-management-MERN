@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const getMovies = async () => {
+const getMovies = () => {
     return axios.get('https://api.tvmaze.com/shows')
 }
 

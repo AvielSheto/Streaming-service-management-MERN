@@ -1,17 +1,19 @@
 const membersWS = require('../DAL/membersWs');
+const Member = require('../models/memberModel')
 
 const getMembers = async () => {
     let { data: members } = await membersWS.getMembers();
     members = members.map((member) => {
-        return {
+        const user = new Member({
             id: member.id,
             name: member.username,
             email: member.email,
             city: member.city
-        }
-    })
-    return members;
-}
+        });
+        user.save();
+    });
+};
 
+getMembers();
 module.exports = { getMembers }
 
