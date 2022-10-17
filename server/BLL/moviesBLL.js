@@ -3,9 +3,9 @@ const Move = require('../models/moveModel');
 
 const getMovies = async () => {
     let { data: movies } = await movieWS.getMovies();
+    Move.deleteMany();
     movies = movies.map((move) => {
         const show = new Move({
-            id: move.id,
             name: move.name,
             genres: move.genres,
             image: move.utl,

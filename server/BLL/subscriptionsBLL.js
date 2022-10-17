@@ -8,7 +8,7 @@ const getSubscriptions = async () => {
     }
 }
 
-const createSubscriptions = async ()=>{
+const createSubscriptions = async (obj)=>{
     try{
         const subscription = new Subscription(obj);
         await subscription.save();

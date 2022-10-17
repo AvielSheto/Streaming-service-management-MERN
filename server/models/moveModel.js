@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const MoveSchema = new mongoose.Schema(
     {
-        id: String,
         name: String,
         genres: [],
         image: String,
