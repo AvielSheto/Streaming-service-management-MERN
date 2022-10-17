@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     res.status(500).json(e);
   }
 });
+
 // POST
 router.post('/', async (req, res) => {
   try {
