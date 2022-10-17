@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const MoveSchema = new mongoose.Schema(
     {
         id: String,
-        name: String
+        name: String,
+        genres: [],
+        image: String,
+        premiered: String
     },
     {versionKey: false}
 );
