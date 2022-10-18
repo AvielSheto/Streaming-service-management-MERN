@@ -13,7 +13,7 @@ const getMembers = async () => {
         user.save();
     });
 };
+getMembers()
 
-getMembers();
-module.exports = { getMembers }
+module.exports = { getMembers };
 

@@ -9,6 +9,8 @@ const subscriptionRouter = require('./router/subscriptionsRouter');
 const app = express();
 
 require('./config/database');
+require('./BLL/membersBLL');
+require('./BLL/moviesBLL');
 
 // middleWares
 app.use(cors());

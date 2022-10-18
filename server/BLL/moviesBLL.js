@@ -3,7 +3,6 @@ const Move = require('../models/moveModel');
 
 const getMovies = async () => {
     let { data: movies } = await movieWS.getMovies();
-    Move.deleteMany();
     movies = movies.map((move) => {
         const show = new Move({
             name: move.name,
@@ -15,7 +14,6 @@ const getMovies = async () => {
     });
 };
 getMovies()
-
 module.exports = {getMovies};
 
 
