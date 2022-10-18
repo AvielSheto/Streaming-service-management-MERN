@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './_sign.scss'
 // mui
@@ -18,7 +20,19 @@ import Container from '@mui/material/Container';
 // import { auth } from "../../firebase";
 
 export default function SignIn() {
+  const [users, setUsers] = useState([]);
   const navigator = useNavigate()
+
+  useEffect(() => {
+    const fetchData = async ()=>{
+      const res = await axios.get('http://localhost:8000/users');
+      setUsers(res.data);
+    }
+    fetchData()
+  }, [])
+
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
