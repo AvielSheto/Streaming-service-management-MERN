@@ -13,8 +13,8 @@ const createSubscription = async (obj) => {
         const subscription = new Subscription(obj);
         await subscription.save();
         return 'Created';
-    } catch (error) {
-        throw `Error: ${error}`;
+    } catch (e) {
+        throw `Error: ${e}`;
     }
 };
 

@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const usersBLL = require("../BLL/usersBLL");
+const usersBLL = require('../BLL/usersBLL');
 
 // GET
 router.get('/', async (req, res) => {

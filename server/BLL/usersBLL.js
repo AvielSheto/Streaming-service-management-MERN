@@ -4,7 +4,7 @@ const getUsers = async () => {
     try {
         return User.find({});
     } catch (e) {
-        throw `Error: ${error}`;
+        throw `Error: ${e}`;
     }
 };
 

@@ -3,6 +3,7 @@ const router = express.Router();
 
 const subscriptionsBLL = require('../BLL/subscriptionsBLL');
 
+// GET
 router.get('/', async (req, res) => {
     try {
         const subscriptions = await subscriptionsBLL.getSubscriptions();
@@ -12,14 +13,16 @@ router.get('/', async (req, res) => {
     }
 })
 
+// POST
 router.post('/', async (req, res) => {
     try {
         const subscription = req.body;
         const status = await subscriptionsBLL.createSubscription(subscription);
-        res.status(200), json(status)
+        res.status(200).json(status)
     } catch (e) {
         res.status(500).json(e)
     }
 });
+
 
 module.exports = router;
