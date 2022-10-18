@@ -15,11 +15,14 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 // firebase
 // import { signInWithEmailAndPassword } from "firebase/auth";
 // import { auth } from "../../firebase";
 
 export default function SignIn() {
+  const [showAlert, setShowAlert] = useState(false);
   const [DBusers, setUsers] = useState([]);
   const navigator = useNavigate()
 
@@ -35,10 +38,14 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
-      const user = DBusers.filter(users => users.userName === data.get('email') && users.password === data.get('password'))
-     
-      // navigator('/loading')
-      console.log(user);
+      const user = DBusers.filter(users => users.userName === data.get('userName') && users.password === data.get('password'))
+      if (user.length === 1) {
+        navigator('/loading')
+        console.log(user);
+      } else {
+        setShowAlert(true)
+      }
+
     } catch (error) {
       console.log(error.message);
     }
@@ -59,15 +66,19 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          {showAlert && <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity="error">User name or password not correct</Alert>
+          </Stack>}
           <TextField
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="userName"
+            label="User name"
+            name="userName"
+            autoComplete="userName"
             autoFocus
           />
           <TextField
