@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 // bootstrap
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -15,13 +15,13 @@ export default function home() {
             <Navbar.Collapse>
               <Nav className="me-auto">
                 <Nav.Link>
-                  <Link to={'/products'} className='link' >Products</Link>
+                  <Link to={'/main/movies'} className='text-text-decoration-none' >Movies</Link>
                 </Nav.Link>
                 <Nav.Link>
-                  <Link to={'/customers'} className='link'>Costumers</Link>
+                  <Link to={'/main/subscriptions'} className='link'>Subscriptions</Link>
                 </Nav.Link>
                 <Nav.Link>
-                  <Link to={'/purchased'} className='link'>Purchases</Link>
+                  <Link to={'/main/manageusers'} className='link'>ManageUsers</Link>
                 </Nav.Link>
                 <NavDropdown style={{ color: "white" }} title="Account" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/signIn">Sign In</NavDropdown.Item>
@@ -33,6 +33,7 @@ export default function home() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
+        <Outlet/>
     </div>
   )
 }

@@ -17,14 +17,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-// firebase
-// import { signInWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../../firebase";
 
 export default function SignIn() {
   const [showAlert, setShowAlert] = useState(false);
   const [DBusers, setUsers] = useState([]);
-  const navigator = useNavigate()
+  const navigator = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,8 +37,7 @@ export default function SignIn() {
     try {
       const user = DBusers.filter(users => users.userName === data.get('userName') && users.password === data.get('password'))
       if (user.length === 1) {
-        navigator('/loading')
-        console.log(user);
+        navigator(`/loading/${user[0]._id}`)
       } else {
         setShowAlert(true)
       }
