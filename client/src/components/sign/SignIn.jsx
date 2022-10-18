@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './_sign.scss'
 // mui
 import * as React from 'react';
@@ -20,30 +20,25 @@ import Container from '@mui/material/Container';
 // import { auth } from "../../firebase";
 
 export default function SignIn() {
-  const [users, setUsers] = useState([]);
+  const [DBusers, setUsers] = useState([]);
   const navigator = useNavigate()
 
   useEffect(() => {
-    const fetchData = async ()=>{
+    const fetchData = async () => {
       const res = await axios.get('http://localhost:8000/users');
       setUsers(res.data);
     }
     fetchData()
   }, [])
 
-
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
-      // const user = await signInWithEmailAndPassword(auth,
-      //   data.get('email'),
-      //   data.get('password')
-      // )
-      navigator('/loading')
-      // console.log(user);
+      const user = DBusers.filter(users => users.userName === data.get('email') && users.password === data.get('password'))
+     
+      // navigator('/loading')
+      console.log(user);
     } catch (error) {
       console.log(error.message);
     }

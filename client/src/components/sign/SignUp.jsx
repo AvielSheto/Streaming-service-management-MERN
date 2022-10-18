@@ -17,7 +17,7 @@ export default function SignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    // const data = new FormData(event.currentTarget);
     try {
       // const user = await createUserWithEmailAndPassword(auth,
       //   data.get('email'),
