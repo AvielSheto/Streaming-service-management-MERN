@@ -33,6 +33,7 @@ export default function home() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
+        
         <Outlet/>
     </div>
   )
