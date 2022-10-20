@@ -1,14 +1,14 @@
 const movieWS = require('../DAL/moviesWS');
-const Move = require('../models/moveModel');
+const Movie = require('../models/movieModel');
 
 const getMovies = async () => {
     let { data: movies } = await movieWS.getMovies();
-    movies = movies.map((move) => {
-        const show = new Move({
-            name: move.name,
-            genres: move.genres,
-            image: move.utl,
-            premiered: move.premiered
+    movies = movies.map((movie) => {
+        const show = new Movie({
+            name: movie.name,
+            genres: movie.genres,
+            image: movie.utl,
+            premiered: movie.premiered
         })
         show.save();
     });

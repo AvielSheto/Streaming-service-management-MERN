@@ -10,6 +10,6 @@ const MoveSchema = new mongoose.Schema(
     {versionKey: false}
 );
 
-const Move = mongoose.model('move',MoveSchema);
+const Movie = mongoose.model('move',MoveSchema);
 
-module.exports = Move;
+module.exports = Movie;
