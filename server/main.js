@@ -22,7 +22,7 @@ app.use('/members', membersRouter);
 app.use('/subscriptions', subscriptionRouter);
 
 app.listen(8000, () => {
-    console.log('Server is listen');
+    console.log('Server is listen to port 8000');
 });
 
 
