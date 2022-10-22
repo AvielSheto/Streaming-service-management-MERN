@@ -4,32 +4,8 @@ const router = express.Router();
 
 const { registerUser, loginUser, getMe } = require('../controllers/userControllers')
 
-
 router.post('/', registerUser)
 router.post('/login', loginUser)
 router.get('/me', getMe)
-
-
-
-// GET
-// router.get('/', async (req, res) => {
-//   try {
-//     const users = await usersBLL.getUsers();
-//     res.status(200).json(users);
-//   } catch (e) {
-//     res.status(500).json(e);
-//   }
-// });
-
-// // POST
-// router.post('/', async (req, res) => {
-//   try {
-//     const user = req.body;
-//     const status = await usersBLL.createUser(user);
-//     res.status(200).json(status);
-//   } catch (e) {
-//     res.status(500).json(e);
-//   }
-// });
 
 module.exports = router;
