@@ -54,7 +54,11 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const getMe = asyncHandler(async (req, res) => {
-    res.json({ message: 'User data display' })
+    const { _id, username, } = await User.findById(req.user.id)
+    res.status(200).json({
+        id: _id,
+        username
+    })
 })
 
 // Generate jwt 
