@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+
+
 import axios from 'axios';
 import './_sign.scss'
+
 // mui
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -19,32 +23,33 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
 export default function SignIn() {
+  // const [DBusers, setUsers] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-  const [DBusers, setUsers] = useState([]);
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
+  const { username, password } = formData;
   const navigator = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get('http://localhost:8000/users');
-      setUsers(res.data);
-    }
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await axios.get('http://localhost:8000/users');
+  //     setUsers(res.data);
+  //   }
+  //   fetchData()
+  // }, [])
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    try {
-      const user = DBusers.filter(users => users.userName === data.get('userName') && users.password === data.get('password'))
-      if (user.length === 1) {
-        navigator(`/loading/${user[0]._id}`)
-      } else {
-        setShowAlert(true)
-      }
 
-    } catch (error) {
-      console.log(error.message);
+    if (password) {
+      
     }
+    setFormData({ username: data.get('userName'), password: data.get('password') })
   };
 
   return (

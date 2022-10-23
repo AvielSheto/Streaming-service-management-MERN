@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import { register, rest } from '../../features/auth/authSlice';
+import Loading from './Loading';
+// 
 import axios from 'axios';
 import * as React from 'react';
 // mui
@@ -14,32 +19,46 @@ import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
-export default function SignIn() {
+export default function Register() {
+  // const [DBusers, setUsers] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-  const [DBusers, setUsers] = useState([]);
-  const navigator = useNavigate()
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    password2: ''
+  });
+
+  const { username, password, password2 } = formData;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get('http://localhost:8000/users');
-      setUsers(res.data);
+    if (isError) {
+      toast.error(message)
     }
-    fetchData()
-  }, [])
+    if (isSuccess || user) {
+      navigate('/')
+    }
+    dispatch(rest())
+    if (isLoading) {
+      return <Loading />
+    }
+
+  }, [user, isError, isSuccess, message, navigate, dispatch])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    try {
-      // const user = await createUserWithEmailAndPassword(auth,
-      //   data.get('userName'),
-      //   data.get('password')
-      // );
-      navigator('/loading')
-      // console.log(user);
-
-    } catch (error) {
-      console.log(error.message);
+    setFormData({ username: data.get('userName'), password: data.get('password'), password2: data.get('password2') })
+    if (password !== password2) {
+      toast.error('password do not match')
+    } else {
+      const userData = {
+        username,
+        password
+      }
+      dispatch(register(userData))
     }
   };
 
@@ -84,6 +103,17 @@ export default function SignIn() {
                 label="Password"
                 type="password"
                 id="password"
+                autoComplete="new-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password2"
+                label="Password2"
+                type="password"
+                id="password2"
                 autoComplete="new-password"
               />
             </Grid>
