@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bp = require("body-parser");
 const dotenv = require('dotenv').config()
+const { errorHandler } = require('./middleware/errorMiddleware');
 
 // routers files
 const usersRouter = require('./router/usersRouter');
@@ -25,6 +26,7 @@ app.use(bp.urlencoded({ extended: true }));
 app.use('/api/users', usersRouter);
 app.use('/members', membersRouter);
 app.use('/subscriptions', subscriptionRouter);
+app.use(errorHandler);
 
 
 app.listen(8000, () => {
