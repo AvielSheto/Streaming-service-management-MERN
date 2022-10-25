@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-// import { FaUser } from 'react-icons/fa'
 import { register, reset } from '../../features/auth/authSlice'
 import Loading from '../sign/Loading'
+import { FaUser } from 'react-icons/fa'
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -63,7 +63,7 @@ function Register() {
     <>
       <section className='heading'>
         <h1>
-          Register
+        <FaUser /> Register
         </h1>
         <p>Please create an account</p>
       </section>
