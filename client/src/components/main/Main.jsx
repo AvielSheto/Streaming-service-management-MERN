@@ -1,12 +1,20 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom';
-// bootstrap
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-export default function home() {
+
+export default function Home() {
+  const navigate = useNavigate()
+  const { user } = useSelector((state) => state.auth)
+
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login')
+    }
+
+  }, [user, navigate])
   return (
     <div>
       <h1>main</h1>
@@ -14,8 +22,8 @@ export default function home() {
       <button>movies</button>
       <button>subscription</button>
       <button></button>
-      
-        <Outlet/>
+
+      <Outlet />
     </div>
   )
 }

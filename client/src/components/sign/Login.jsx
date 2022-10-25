@@ -9,15 +9,13 @@ import Loading from '../sign/Loading'
 
 
 function Login() {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     })
-
-
-
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
 
     const { username, password } = formData
 
@@ -25,15 +23,13 @@ function Login() {
         (state) => state.auth
     )
 
-
-
     useEffect(() => {
         if (isError) {
             toast.error(message)
         }
 
         if (isSuccess || user) {
-            navigate('/')
+            navigate('/main')
         }
         if (isLoading) {
             return <Loading />
