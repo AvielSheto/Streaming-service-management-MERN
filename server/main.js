@@ -4,6 +4,7 @@ const bp = require("body-parser");
 const dotenv = require('dotenv').config()
 const { errorHandler } = require('./middleware/errorMiddleware');
 
+
 // routers files
 const usersRouter = require('./router/usersRouter');
 const membersRouter = require('./router/membersRouter');
@@ -21,7 +22,6 @@ app.use(express.json());
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
-
 // routers
 app.use('/api/users', usersRouter);
 app.use('/members', membersRouter);
@@ -29,8 +29,8 @@ app.use('/subscriptions', subscriptionRouter);
 app.use(errorHandler);
 
 
-app.listen(8000, () => {
-    console.log('Server is listen to port 8000');
+app.listen(5000, () => {
+    console.log('Server is listen to port 5000');
 });
 
 
