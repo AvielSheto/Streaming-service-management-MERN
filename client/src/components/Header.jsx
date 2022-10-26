@@ -16,10 +16,10 @@ function Header() {
   
   return (
     <header className='header'>
-      <div className='logo'>
-        <Link to='/'>cinma</Link>
+      <div className='logo ps-2'>
+        <Link className='text-decoration-none display-5 ' to='/'>NETFLIX</Link>
       </div>
-      <ul>
+      <ul >
         {user ? (
           <li>
             <button className='btn' onClick={onLogout}>

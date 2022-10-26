@@ -1,10 +1,22 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { register, reset } from '../../features/auth/authSlice'
 import Loading from '../sign/Loading'
 import { FaUser } from 'react-icons/fa'
+// mui
+import LinkMui from '@mui/material/Link';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -41,7 +53,7 @@ function Register() {
     }))
   }
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     if (password !== password2) {
@@ -60,58 +72,82 @@ function Register() {
   }
 
   return (
-    <>
-      <section className='heading'>
-        <h1>
-        <FaUser /> Register
-        </h1>
-        <p>Please create an account</p>
-      </section>
-
-      <section className='form'>
-        <form onSubmit={onSubmit}>
-          <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              id='username'
-              name='username'
+    <Container maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 4,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="user name"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              onChange={onChange}
               value={username}
-              placeholder='Enter your name'
-              onChange={onChange}
             />
-          </div>
-
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              id='password'
-              name='password'
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              onChange={onChange}
               value={password}
-              placeholder='Enter password'
-              onChange={onChange}
+              autoComplete="current-password"
             />
-          </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              id='password2'
-              name='password2'
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password2"
+              label="Password 2"
+              type="password"
+              id="password2"
+              onChange={onChange}
               value={password2}
-              placeholder='Confirm password'
-              onChange={onChange}
+              autoComplete="current-password"
             />
-          </div>
-          <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
-              Submit
-            </button>
-          </div>
-        </form>
-      </section>
-    </>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign Up
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link to={'/signIn'}>Already have an account? Sign in</Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
   )
 }
 
