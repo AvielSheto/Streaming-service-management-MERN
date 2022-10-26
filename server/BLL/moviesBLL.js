@@ -3,6 +3,7 @@ const Movie = require('../models/movieModel');
 
 const getMovies = async () => {
     let { data: movies } = await movieWS.getMovies();
+    Movie.collection.drop();
     movies = movies.map((movie) => {
         const show = new Movie({
             name: movie.name,

@@ -1,14 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const memberBLL = require('../BLL/membersBLL');
+const { getMembers } = require('../controllers/memberControllers')
 
-router.get('/', async (req, res) => {
-    try {
-        const members = await memberBLL.getMembers();
-        res.status(200).json(members);
-    } catch (e) {
-        res.status(500).json(e)
-    }
-});
+router.get('/', getMembers)
 
 module.exports = router;

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+mongoose.Collection.dbName
+
 const MoveSchema = new mongoose.Schema(
     {
         name: String,
@@ -7,9 +9,9 @@ const MoveSchema = new mongoose.Schema(
         image: String,
         premiered: String
     },
-    {versionKey: false}
+    { versionKey: false }
 );
 
-const Movie = mongoose.model('move',MoveSchema);
+const Movie = mongoose.model('move', MoveSchema);
 
 module.exports = Movie;

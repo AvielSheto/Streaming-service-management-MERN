@@ -1,8 +1,10 @@
-const membersWS = require('../DAL/membersWs');
+const membersWS = require('../DAL/membersWS');
 const Member = require('../models/memberModel')
 
 const getMembers = async () => {
+
     let { data: members } = await membersWS.getMembers();
+    Member.collection.drop();
     members = members.map((member) => {
         const user = new Member({
             id: member.id,

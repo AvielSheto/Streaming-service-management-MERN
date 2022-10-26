@@ -13,8 +13,8 @@ const subscriptionRouter = require('./router/subscriptionsRouter');
 const app = express();
 
 require('./config/database');
-// require('./BLL/membersBLL');
-// require('./BLL/moviesBLL');
+require('./BLL/membersBLL');
+require('./BLL/moviesBLL');
 
 // middleWares
 app.use(cors());
@@ -24,7 +24,7 @@ app.use(bp.urlencoded({ extended: true }));
 
 // routers
 app.use('/api/users', usersRouter);
-app.use('/members', membersRouter);
+app.use('/api/members', membersRouter);
 app.use('/subscriptions', subscriptionRouter);
 app.use(errorHandler);
 
