@@ -4,9 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { register, reset } from '../../features/auth/authSlice'
 import Loading from '../sign/Loading'
-import { FaUser } from 'react-icons/fa'
 // mui
-import LinkMui from '@mui/material/Link';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -142,7 +140,7 @@ function Register() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to={'/signIn'}>Already have an account? Sign in</Link>
+              <Link to={'/login'}>Already have an account? Sign in</Link>
             </Grid>
           </Grid>
         </Box>

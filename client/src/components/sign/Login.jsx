@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -44,7 +43,6 @@ function Login() {
         }
         if (isLoading) {
             return <Loading />
-
         }
 
         dispatch(reset())
