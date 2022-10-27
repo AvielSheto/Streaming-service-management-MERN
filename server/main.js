@@ -4,10 +4,10 @@ const bp = require("body-parser");
 const dotenv = require('dotenv').config()
 const { errorHandler } = require('./middleware/errorMiddleware');
 
-
 // routers files
 const usersRouter = require('./router/usersRouter');
 const membersRouter = require('./router/membersRouter');
+const moviesRouter = require('./router/moviesRouter')
 const subscriptionRouter = require('./router/subscriptionsRouter');
 
 const app = express();
@@ -25,6 +25,7 @@ app.use(bp.urlencoded({ extended: true }));
 // routers
 app.use('/api/users', usersRouter);
 app.use('/api/members', membersRouter);
+app.use('/api/movies', moviesRouter);
 app.use('/subscriptions', subscriptionRouter);
 app.use(errorHandler);
 

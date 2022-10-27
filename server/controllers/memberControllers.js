@@ -1,4 +1,4 @@
-const asyncHandler = require ('express-async-handler')
+const asyncHandler = require('express-async-handler')
 const Member = require('../models/memberModel')
 
 // const { name, genres, image, premiered } = req.body
