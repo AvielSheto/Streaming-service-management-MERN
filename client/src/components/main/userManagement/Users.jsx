@@ -17,8 +17,6 @@ function Users() {
     getAllUsers()
 
   }, [])
-  console.log(users);
-
 
   return (
     <div>

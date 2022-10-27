@@ -7,7 +7,7 @@ import Header from "./components/Header"
 import Register from "./components/sign/Register";
 import Main from "./components/main/Main.jsx";
 import ManageUsers from "./components/main/userManagement/ManageUsers";
-import Movies from "./components/main/Movies";
+import Movies from "./components/main/movies/Movies";
 import Subscriptions from "./components/main/Subscriptions";
 import AddUser from "./components/main/userManagement/AddUser"
 import Users from "./components/main/userManagement/Users"
