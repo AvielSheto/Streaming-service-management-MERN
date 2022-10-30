@@ -8,7 +8,7 @@ const getMovies = async () => {
         const show = new Movie({
             name: movie.name,
             genres: movie.genres,
-            image: movie.utl,
+            image: movie.image.medium,
             premiered: movie.premiered
         })
         show.save();

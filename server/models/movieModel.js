@@ -12,6 +12,6 @@ const MoveSchema = new mongoose.Schema(
     { versionKey: false }
 );
 
-const Movie = mongoose.model('move', MoveSchema);
+const Movie = mongoose.model('movie', MoveSchema);
 
 module.exports = Movie;
