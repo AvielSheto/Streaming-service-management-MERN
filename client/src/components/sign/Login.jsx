@@ -41,9 +41,6 @@ function Login() {
         if (isSuccess || user) {
             navigate('/main/movies')
         }
-        if (isLoading) {
-            return <Loading />
-        }
 
         dispatch(reset())
     }, [user, isError, isSuccess, message, navigate, dispatch])
@@ -57,12 +54,14 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         const userData = {
             username,
             password
         }
         dispatch(login(userData))
+    }
+    if (isLoading) {
+        return <Loading />
     }
 
     return (

@@ -14,6 +14,8 @@ import Users from "./components/main/userManagement/Users"
 // toastify
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import AddMovie from "./components/main/movies/AddMovie";
+import AllMovies from "./components/main/movies/AllMovies";
 
 export default function App() {
   return (
@@ -25,11 +27,14 @@ export default function App() {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="main" element={<Main />} >
-            <Route path="movies" element={<Movies />} />
+            <Route path="movies" element={<Movies />} >
+              <Route path="allmovies" element={<AllMovies />} />
+              <Route path="addmovie" element={<AddMovie />} />
+            </Route>
             <Route path="subscription" element={<Subscriptions />} />
             <Route path="usermangement" element={<ManageUsers />} >
               <Route path="users" element={<Users />} />
-              <Route path="adduser" element={<AddUser/>} />
+              <Route path="adduser" element={<AddUser />} />
             </Route>
           </Route>
         </Routes>

@@ -9,7 +9,7 @@ function Home() {
 
   useEffect(() => {
     if (user) {
-      navigate('/main/movies')
+      navigate('/main')
     }
 
   }, [user, navigate]);

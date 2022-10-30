@@ -1,4 +1,4 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { FaSignInAlt, FaSignOutAlt, FaUser, BiUser} from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
@@ -8,9 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-
 function Header() {
-
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
@@ -47,11 +45,14 @@ function Header() {
             <Nav>
               <Nav >
                 {user ? (
-                  <Link>
+                  <Nav>
+                    <Navbar.Brand href="#home">
+                      <Nav.Link className='display-6 fs-5' href="/">{user.username} <FaUser/></Nav.Link>
+                    </Navbar.Brand>
                     <button className='btn' onClick={onLogout}>
                       <FaSignOutAlt /> Logout
                     </button>
-                  </Link>
+                  </Nav>
                 ) : (
                   <Nav >
                     <Nav.Link href="/login"><FaSignInAlt /> Login</Nav.Link>
@@ -59,13 +60,10 @@ function Header() {
                   </Nav>
                 )}
               </Nav>
-
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-
     </div>
   )
 }
