@@ -1,8 +1,7 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser, BiUser} from 'react-icons/fa'
+import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { logout, reset } from '../features/auth/authSlice'
-
+import { logout, reset } from '../../features/auth/authSlice'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -21,12 +20,12 @@ function Header() {
 
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="white" variant="white">
+      <Navbar className='p-0' collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand className='border-0' href="#home">
             <Link className='text-decoration-none display-6 ' to='/'>NETFLIX</Link>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#features">Features</Nav.Link>
@@ -46,12 +45,8 @@ function Header() {
               <Nav >
                 {user ? (
                   <Nav>
-                    <Navbar.Brand href="#home">
-                      <Nav.Link className='display-6 fs-5' href="/">{user.username} <FaUser/></Nav.Link>
-                    </Navbar.Brand>
-                    <button className='btn' onClick={onLogout}>
-                      <FaSignOutAlt /> Logout
-                    </button>
+                    <Nav.Link href="/login" onClick={onLogout}><FaSignOutAlt />  Logout</Nav.Link>
+                    <Nav.Link href="/">{user.username} <FaUser /></Nav.Link>
                   </Nav>
                 ) : (
                   <Nav >

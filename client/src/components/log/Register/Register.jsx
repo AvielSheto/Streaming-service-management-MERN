@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { register, reset } from '../../features/auth/authSlice'
-import Loading from '../sign/Loading'
+import { toast } from 'react-toastify';
+import { register, reset } from '../../../features/auth/authSlice';
+import Loading from '../../loading/Loading';
 // mui
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';

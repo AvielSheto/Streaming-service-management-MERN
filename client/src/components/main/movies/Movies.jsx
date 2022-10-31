@@ -1,12 +1,8 @@
 import React from 'react'
-import { useEffect } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, Outlet } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import TextField from '@mui/material/TextField';
 
 function Movies() {
-
   return (
     <div>
       <h1 className='display-6'>Movies</h1>
@@ -21,9 +17,6 @@ function Movies() {
             <Card.Body className='p-1 display-6 fs-5'>Add movie</Card.Body>
           </Card>
         </Link>
-        <Card>
-        <TextField id="outlined-basic" label="Find Movie: " variant="outlined" />
-        </Card>
       </div>
       <Outlet />
     </div>

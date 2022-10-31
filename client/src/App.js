@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Login from "./components/sign/Login";
-import Home from "./pages/Home";
-import Header from "./components/Header"
-import Register from "./components/sign/Register";
+import Login from "./components/log/login/Login";
+import Home from "./components/home/Home";
+import Header from "./components/header/Header"
+import Register from "./components/log/Register/Register";
 import Main from "./components/main/Main.jsx";
 import ManageUsers from "./components/main/userManagement/ManageUsers";
 import Movies from "./components/main/movies/Movies";

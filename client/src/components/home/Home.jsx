@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import '../home/_home.scss'
 
 function Home() {
   const navigate = useNavigate()
@@ -9,13 +10,13 @@ function Home() {
 
   useEffect(() => {
     if (user) {
-      navigate('/main')
+      navigate('/main/movies/allmovies')
     }
 
   }, [user, navigate]);
 
   return (
-    <div>Home</div>
+    <div className='home'>Home</div>
   )
 }
 

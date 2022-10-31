@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { login, reset } from '../../features/auth/authSlice'
-import Loading from '../sign/Loading'
+import { login, reset } from '../../../features/auth/authSlice'
+import Loading from '../../loading/Loading'
 // mui
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -39,7 +39,7 @@ function Login() {
         }
 
         if (isSuccess || user) {
-            navigate('/main/movies')
+            navigate('/main/movies/allmovies')
         }
 
         dispatch(reset())
