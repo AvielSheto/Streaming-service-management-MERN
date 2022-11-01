@@ -1,9 +1,9 @@
 .home {
-  background-image: url("https://cdn.arstechnica.net/wp-content/uploads/2022/07/netflix.jpg");
+  background-image: url("https://images.frandroid.com/wp-content/uploads/2022/10/netflix-octobre-contenus-2022.jpg");
+  background-color: rgba(252, 249, 249, 0.218);
+  background-blend-mode: screen;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
   background-attachment: fixed;
-  overflow-x: hidden;
-  color: rgb(240, 248, 255);
 }/*# sourceMappingURL=style.css.map */

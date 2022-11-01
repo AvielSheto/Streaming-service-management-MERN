@@ -113,7 +113,7 @@ function Login() {
                             </LinkMui>
                         </Grid>
                         <Grid item>
-                            <Link to={'/signUp'}>Don't have an account? Sign Up</Link>
+                            <Link to={'/register'}>Don't have an account? Sign Up</Link>
                         </Grid>
                     </Grid>
                 </Box>

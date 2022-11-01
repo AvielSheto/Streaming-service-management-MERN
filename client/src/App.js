@@ -8,7 +8,7 @@ import Register from "./components/log/Register/Register";
 import Main from "./components/main/Main.jsx";
 import ManageUsers from "./components/main/userManagement/ManageUsers";
 import Movies from "./components/main/movies/Movies";
-import Subscriptions from "./components/main/Subscriptions";
+import Subscriptions from "./components/main/subscription/Subscriptions";
 import AddUser from "./components/main/userManagement/AddUser"
 import Users from "./components/main/userManagement/Users"
 // toastify

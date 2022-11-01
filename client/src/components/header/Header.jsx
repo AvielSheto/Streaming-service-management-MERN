@@ -6,6 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+// mui 
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
 function Header() {
   const navigate = useNavigate()
@@ -20,10 +24,10 @@ function Header() {
 
   return (
     <div>
-      <Navbar className='p-0' collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar className='p-0' collapseOnSelect expand="lg" bg="black" variant="dark">
         <Container>
           <Navbar.Brand className='border-0' href="#home">
-            <Link className='text-decoration-none display-6 ' to='/'>NETFLIX</Link>
+            <Link className='text-decoration-none display-6 text-danger' to='/'>NETFLIX</Link>
           </Navbar.Brand>
           <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -46,7 +50,8 @@ function Header() {
                 {user ? (
                   <Nav>
                     <Nav.Link href="/login" onClick={onLogout}><FaSignOutAlt />  Logout</Nav.Link>
-                    <Nav.Link href="/">{user.username} <FaUser /></Nav.Link>
+                    <Nav.Link href="/">{user.username}</Nav.Link>
+                    <Avatar className='m-1' sx={{ bgcolor: deepOrange[500] }}>{user.username[0]}</Avatar>
                   </Nav>
                 ) : (
                   <Nav >

@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useEffect } from 'react';
 // Mui 
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Fab from '@mui/material/Fab';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -15,6 +13,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 function AllMovies() {
   const [movies, setMovies] = useState()
+  const [search, setSearch] = useState()
 
   const MOVIES_URL = 'http://localhost:5000/api/movies';
 
@@ -35,21 +34,26 @@ function AllMovies() {
     color: theme.palette.text.secondary,
   }));
 
-  // const handle
-
   return (
     <div>
-      <TextField id="outlined-basic" label="Find Movie: " variant="outlined" size="small" />
+      <TextField onChange={(e) => { setSearch(e.target.value) }} className='my-2' id="outlined-basic" label='Find Movie: ' variant="outlined" size="small" />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-          {movies?.map((movie) => {
+          {movies?.filter(filtered => {
+            if (search === undefined) {
+              return filtered
+            }
+            else{
+              return filtered?.name.toLowerCase().startsWith(search.toLowerCase())
+            }
+          }).map((movie) => {
             return (
-              <Grid item xs={2} sm={4} md={4} key={movie._id}>
+              <Grid item xs={2} sm={3} md={3} key={movie._id}>
                 <Item>
                   <div key={movie._id}>
-                    <h1 className='display-6 fs-4'>{movie.name}</h1>
-                    <h1 className='display-6 fs-5'>{movie.premiered}</h1>
-                    <p>{movie.genres}</p>
+                    <h1 className='display-6 fs-3'>{movie.name}</h1>
+                    <h1 className='display-6 fs-6 fw-normal float-start'><strong className='fs-5 fw-light'>premiered: </strong>{movie.premiered}</h1>
+                    <h1 className='display-6 fs-6 fw-normal float-start'><strong className='fs-5 fw-light'>genres: </strong>{movie.genres.join()}</h1>
                     <img src={movie.image} alt="show" />
                   </div>
                   <ButtonGroup className='my-2' variant="text" aria-label="text button group">
