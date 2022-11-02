@@ -23,10 +23,10 @@ function Header() {
 
   return (
     <div>
-      <Navbar className='p-0 fixed-top' collapseOnSelect expand="lg" bg="black" variant="dark">
+      <Navbar className='p-0' collapseOnSelect expand="lg" bg="black" variant="dark">
         <Container>
           <Navbar.Brand className='border-0' href="#home">
-            <Link className='text-decoration-none display-6 text-danger' to='/'>NETFLIX</Link>
+            <Link className='text-decoration-none display-6 text-danger' to='/'>NEXT</Link>
           </Navbar.Brand>
           <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

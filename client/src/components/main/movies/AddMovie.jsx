@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { createMovie } from '../../../features/movie/movieSlice'
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';

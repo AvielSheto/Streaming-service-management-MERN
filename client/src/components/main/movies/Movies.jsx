@@ -1,23 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
+// mui
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 function Movies() {
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div>
-      <h1 className='display-6'>Movies</h1>
-      <div className='d-flex'>
-        <Link className='text-decoration-none ms-2' to='/main/movies/allmovies'>
-          <Card>
-            <Card.Body className='p-1 display-6 fs-5'>All Movies</Card.Body>
-          </Card>
-        </Link>
-        <Link className='text-decoration-none mx-2' to='/main/movies/addmovie'>
-          <Card>
-            <Card.Body className='p-1 display-6 fs-5'>Add movie</Card.Body>
-          </Card>
-        </Link>
-      </div>
+      <Box sx={{ width: '100%' }}>
+        <Tabs
+          onChange={handleChange}
+          value={value}
+          aria-label="Tabs where each tab needs to be selected manually"
+        >
+          <Tab label="All Movies" />
+          {/* href="/main/movies/allmovies" */}
+          <Tab label="Add movie" />
+          {/* href="/main/movies/addmovie" */}
+        </Tabs>
+      </Box>
+
+
       <Outlet />
     </div>
   )

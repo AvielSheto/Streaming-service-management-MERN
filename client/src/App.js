@@ -13,6 +13,7 @@ import AddUser from "./components/main/userManagement/AddUser"
 import Users from "./components/main/userManagement/Users"
 import AddMovie from "./components/main/movies/AddMovie";
 import AllMovies from "./components/main/movies/AllMovies";
+import EditMovie from "./components/main/movies/EditMovie";
 // toastify
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -31,6 +32,7 @@ export default function App() {
               <Route path="allmovies" element={<AllMovies />} />
               <Route path="addmovie" element={<AddMovie />} />
             </Route>
+            <Route path="editmovie" element={<EditMovie />} />
             <Route path="subscription" element={<Subscriptions />} />
             <Route path="usermangement" element={<ManageUsers />} >
               <Route path="users" element={<Users />} />

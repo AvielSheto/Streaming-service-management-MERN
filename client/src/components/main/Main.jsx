@@ -2,9 +2,16 @@ import React from 'react'
 import { useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Card from 'react-bootstrap/Card';
+// mui
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
+import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 export default function Home() {
+  const [value, setValue] = React.useState(0);
   const navigate = useNavigate()
   const { user } = useSelector((state) => state.auth)
 
@@ -15,24 +22,21 @@ export default function Home() {
 
   }, [user, navigate])
   return (
-    <div className='pt-3'>
-      <h1 className='display-6'>main</h1>
-      <div className='d-flex'>
-        <Link className='text-decoration-none ms-2' to='/main/movies/allmovies'>
-          <Card>
-            <Card.Body className='p-1 display-6 fs-5'>Movies</Card.Body>
-          </Card>
-        </Link>
-        <Link className='text-decoration-none mx-2' to='/main/subscription'>
-          <Card>
-            <Card.Body className='p-1 display-6 fs-5'>Subscription</Card.Body>
-          </Card>
-        </Link>
-        <Link className='text-decoration-none' to='/main/usermangement/users'>
-          <Card>
-            <Card.Body className='p-1 display-6 fs-5'>User Management</Card.Body>
-          </Card>
-        </Link>
+    <div className='pt-2'>
+      <div className='d-flex justify-content-center'>
+        <Box sx={{ width: 500 }}>
+          <BottomNavigation
+            showLabels
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}>
+              
+            <BottomNavigationAction href='/main/movies/allmovies' label="Movies" icon={<MovieCreationOutlinedIcon />} />
+            <BottomNavigationAction href='/main/subscription' label="Subscription" icon={<SubscriptionsOutlinedIcon />} />
+            <BottomNavigationAction href='/main/usermangement/users' label="User Management" icon={<ManageAccountsOutlinedIcon />} />
+          </BottomNavigation>
+        </Box>
       </div>
       <Outlet />
     </div>

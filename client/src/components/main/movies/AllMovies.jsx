@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
+import "./_movies.scss"
 // Mui 
 import TextField from '@mui/material/TextField';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -28,7 +28,7 @@ function AllMovies() {
 
   return (
     <div className='d-flex justify-content-center'>
-      <div className='col-10 '>
+      <div className='col-11 col-md-10'>
         <TextField onChange={(e) => { setSearch(e.target.value) }} className='my-2' id="outlined-basic" label='Find Movie: ' variant="outlined" size="small" />
         <Row xs={2} md={4}>
           {movies?.filter(filtered => {
@@ -40,19 +40,18 @@ function AllMovies() {
             }
           }).map((movie) => {
             return (
-              <Col className='movie p-3'>
+              <Col className='movie p-2' >
                 <div key={movie._id}>
-                <DropdownButton title={<SettingsOutlinedIcon/>} className='float-end'>
-                  <Dropdown.Item eventKey="1">Edit</Dropdown.Item>
-                  <Dropdown.Item eventKey="2">Delete</Dropdown.Item>
-                </DropdownButton>
+                  <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>
+                    <Dropdown.Item eventKey="1" href='/main/editmovie'>Edit</Dropdown.Item>
+                    <Dropdown.Item eventKey="2">Delete</Dropdown.Item>
+                  </DropdownButton>
                   <h1 className='display-6 fs-3'>{movie.name}</h1>
                   <h1 className='display-6 fs-6 fw-normal float-start'><strong className='fs-5 fw-light'>premiered: </strong>{movie.premiered}</h1>
                   <h1 className='display-6 fs-6 fw-normal float-start'><strong className='fs-5 fw-light'>genres: </strong>{movie.genres.join()}</h1>
-                  <img src={movie.image} alt="show" />
+                  <img className='w-75' src={movie.image} alt="show" />
                 </div>
               </Col>
-
             )
           })}
         </Row>
