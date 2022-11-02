@@ -8,8 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 // mui 
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors';
 
 function Header() {
   const navigate = useNavigate()
@@ -24,7 +23,7 @@ function Header() {
 
   return (
     <div>
-      <Navbar className='p-0' collapseOnSelect expand="lg" bg="black" variant="dark">
+      <Navbar className='p-0 fixed-top' collapseOnSelect expand="lg" bg="black" variant="dark">
         <Container>
           <Navbar.Brand className='border-0' href="#home">
             <Link className='text-decoration-none display-6 text-danger' to='/'>NETFLIX</Link>

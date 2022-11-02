@@ -11,11 +11,11 @@ import Movies from "./components/main/movies/Movies";
 import Subscriptions from "./components/main/subscription/Subscriptions";
 import AddUser from "./components/main/userManagement/AddUser"
 import Users from "./components/main/userManagement/Users"
+import AddMovie from "./components/main/movies/AddMovie";
+import AllMovies from "./components/main/movies/AllMovies";
 // toastify
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import AddMovie from "./components/main/movies/AddMovie";
-import AllMovies from "./components/main/movies/AllMovies";
 
 export default function App() {
   return (

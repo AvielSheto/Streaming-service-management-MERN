@@ -8,16 +8,39 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import dayjs from 'dayjs';
+import Stack from '@mui/material/Stack';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
 
 function AddUser() {
+  const [value, setValue] = React.useState(dayjs('2022-04-07'));
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    userName: ''
+    userName: '',
+    sessionTime: '',
   })
 
-  const { firstName, lastName, userName, } = formData
+  const [state, setState] = React.useState({
+    gilad: false,
+    jason: false,
+    antoine: false,
+  });
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const { firstName, lastName, userName, sessionTime } = formData
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -28,10 +51,11 @@ function AddUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const movieData = {
+    const userData = {
       firstName,
       lastName,
-      userName
+      userName,
+      sessionTime
     }
   }
 
@@ -87,9 +111,83 @@ function AddUser() {
               autoComplete="userName"
             />
 
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Stack className='mt-3'>
+                <TimePicker
+                  ampmInClock
+                  views={['minutes', 'seconds']}
+                  inputFormat="mm:ss"
+                  mask="__:__"
+                  label="Minutes and seconds"
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </Stack>
+            </LocalizationProvider>
+            <h1 className='display-6 fs-2'>Permissions</h1>
+            <FormControl component="fieldset" variant="standard">
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Switch checked={state.gilad} onChange={handleChange} name="gilad" />
+                  }
+                  label="View Subscription"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch checked={state.jason} onChange={handleChange} name="jason" />
+                  }
+                  label="Create Subscription"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
+                  }
+                  label="Delete Subscription"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
+                  }
+                  label="Update Subscription"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
+                  }
+                  label="View Movie"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
+                  }
+                  label="Create Movie"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
+                  }
+                  label="Delete Movie"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
+                  }
+                  label="Update Movie"
+                />
 
 
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Add Movie</Button>
+
+              </FormGroup>
+            </FormControl>
+
+
+
+
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Add User</Button>
             <Grid container>
 
             </Grid>

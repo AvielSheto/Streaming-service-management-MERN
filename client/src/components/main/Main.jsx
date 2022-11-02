@@ -15,7 +15,7 @@ export default function Home() {
 
   }, [user, navigate])
   return (
-    <div>
+    <div className='pt-3'>
       <h1 className='display-6'>main</h1>
       <div className='d-flex'>
         <Link className='text-decoration-none ms-2' to='/main/movies/allmovies'>

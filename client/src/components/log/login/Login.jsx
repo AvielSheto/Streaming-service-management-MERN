@@ -17,6 +17,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import './_login.scss'
 
 function Login() {
     const navigate = useNavigate()
@@ -60,66 +61,68 @@ function Login() {
         }
         dispatch(login(userData))
     }
+
     if (isLoading) {
         return <Loading />
     }
 
     return (
-        <Container className='form' maxWidth="xs">
-            <Box
-                sx={{
-                    marginTop: 4,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}>
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign in
-                </Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="username"
-                        label="user name"
-                        name="username"
-                        autoComplete="username"
-                        autoFocus
-                        onChange={onChange}
-                        value={username}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        onChange={onChange}
-                        value={password}
-                        autoComplete="current-password"
-                    />
-                    <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Sign In</Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <LinkMui href="#" variant="body2">
-                                Forgot password?
-                            </LinkMui>
+        <div className='logIn d-flex align-items-center'>
+            <Container className='form p-5' maxWidth="xs">
+                <Box
+                    sx={{
+                        paddingY: '3rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}>
+                    <Avatar sx={{ m: 1, bgcolor: 'blueGrey' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="user name"
+                            name="username"
+                            autoComplete="username"
+                            autoFocus
+                            onChange={onChange}
+                            value={username}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            onChange={onChange}
+                            value={password}
+                            autoComplete="current-password"
+                        />
+                        <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Sign In</Button>
+                        <Grid container>
+                            <Grid item xs>
+                                <LinkMui href="#" variant="body2">
+                                    Forgot password?
+                                </LinkMui>
+                            </Grid>
+                            <Grid item>
+                                <Link to={'/register'}>Don't have an account? Sign Up</Link>
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                            <Link to={'/register'}>Don't have an account? Sign Up</Link>
-                        </Grid>
-                    </Grid>
+                    </Box>
                 </Box>
-            </Box>
-        </Container>
-
+            </Container>
+        </div>
     )
 }
 
