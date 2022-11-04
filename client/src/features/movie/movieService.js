@@ -6,8 +6,8 @@ const createMovie = async (movieData) => {
     return response.data;
 }
 
-const moviesService = {
+const movieService = {
     createMovie
 };
 
-export default moviesService;
+export default movieService;

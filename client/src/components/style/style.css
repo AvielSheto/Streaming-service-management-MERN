@@ -3,9 +3,14 @@
   background-color: rgba(0, 0, 0, 0.938);
   background-blend-mode: screen;
   background-repeat: no-repeat;
+  font-size: 1vw;
   background-size: cover;
   height: 100vh;
   background-attachment: fixed;
+}
+
+.home-main {
+  background-color: black;
 }
 
 .logIn {

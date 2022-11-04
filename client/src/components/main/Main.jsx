@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 export default function Home() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const navigate = useNavigate()
   const { user } = useSelector((state) => state.auth)
 
@@ -30,11 +30,17 @@ export default function Home() {
             value={value}
             onChange={(event, newValue) => {
               setValue(newValue);
+              if (newValue === 0) {
+                navigate('/main/movies/allmovies')
+              } else if (newValue === 1) {
+                navigate('/main/subscription/members')
+              } else {
+                navigate('/main/usermangement/users')
+              }
             }}>
-              
-            <BottomNavigationAction href='/main/movies/allmovies' label="Movies" icon={<MovieCreationOutlinedIcon />} />
-            <BottomNavigationAction href='/main/subscription' label="Subscription" icon={<SubscriptionsOutlinedIcon />} />
-            <BottomNavigationAction href='/main/usermangement/users' label="User Management" icon={<ManageAccountsOutlinedIcon />} />
+            <BottomNavigationAction label="Movies" icon={<MovieCreationOutlinedIcon />} />
+            <BottomNavigationAction label="Subscriptions" icon={<SubscriptionsOutlinedIcon />} />
+            <BottomNavigationAction label="User Management" icon={<ManageAccountsOutlinedIcon />} />
           </BottomNavigation>
         </Box>
       </div>

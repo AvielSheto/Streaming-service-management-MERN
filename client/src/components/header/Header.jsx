@@ -48,7 +48,7 @@ function Header() {
               <Nav >
                 {user ? (
                   <Nav>
-                    <Nav.Link href="/login" onClick={onLogout}><FaSignOutAlt />  Logout</Nav.Link>
+                    <Nav.Link href="/" onClick={onLogout}><FaSignOutAlt />  Logout</Nav.Link>
                     <Nav.Link href="/">{user.username}</Nav.Link>
                     <Avatar className='m-1' sx={{ bgcolor: deepOrange[500] }}>{user.username[0]}</Avatar>
                   </Nav>

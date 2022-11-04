@@ -29,9 +29,14 @@ function AddUser() {
   })
 
   const [state, setState] = React.useState({
-    gilad: false,
-    jason: false,
-    antoine: false,
+    viewSubscription: false,
+    createSubscription: false,
+    deleteSubscription: false,
+    updateSubscription: false,
+    viewMovie: false,
+    createMovie: false,
+    deleteMovie: false,
+    updateMovie: false,
   });
   const handleChange = (event) => {
     setState({
@@ -128,61 +133,67 @@ function AddUser() {
               </Stack>
             </LocalizationProvider>
             <h1 className='display-6 fs-2'>Permissions</h1>
-            <FormControl component="fieldset" variant="standard">
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Switch checked={state.gilad} onChange={handleChange} name="gilad" />
-                  }
-                  label="View Subscription"
-                />
-                <FormControlLabel
-                  control={
-                    <Switch checked={state.jason} onChange={handleChange} name="jason" />
-                  }
-                  label="Create Subscription"
-                />
-                <FormControlLabel
-                  control={
-                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
-                  }
-                  label="Delete Subscription"
-                />
-                <FormControlLabel
-                  control={
-                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
-                  }
-                  label="Update Subscription"
-                />
-                <FormControlLabel
-                  control={
-                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
-                  }
-                  label="View Movie"
-                />
-                <FormControlLabel
-                  control={
-                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
-                  }
-                  label="Create Movie"
-                />
-                <FormControlLabel
-                  control={
-                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
-                  }
-                  label="Delete Movie"
-                />
-                <FormControlLabel
-                  control={
-                    <Switch checked={state.antoine} onChange={handleChange} name="antoine" />
-                  }
-                  label="Update Movie"
-                />
+            <div>
+              <FormControl component="fieldset" variant="standard">
+                <FormGroup >
+                  <div className='d-flex'>
+                    <div className='d-flex flex-column'>
+                      <FormControlLabel
+                        control={
+                          <Switch checked={state.viewSubscription} onChange={handleChange} name="viewSubscription" />
+                        }
+                        label="View Subscription"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Switch checked={state.createSubscription} onChange={handleChange} name="createSubscription" />
+                        }
+                        label="Create Subscription"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Switch checked={state.deleteSubscription} onChange={handleChange} name="deleteSubscription" />
+                        }
+                        label="Delete Subscription"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Switch checked={state.updateSubscription} onChange={handleChange} name="updateSubscription" />
+                        }
+                        label="Update Subscription"
+                      />
+                    </div>
 
-
-
-              </FormGroup>
-            </FormControl>
+                    <div className='d-flex flex-column'>
+                      <FormControlLabel
+                        control={
+                          <Switch checked={state.viewMovie} onChange={handleChange} name="viewMovie" />
+                        }
+                        label="View Movie"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Switch checked={state.createMovie} onChange={handleChange} name="createMovie" />
+                        }
+                        label="Create Movie"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Switch checked={state.deleteMovie} onChange={handleChange} name="deleteMovie" />
+                        }
+                        label="Delete Movie"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Switch checked={state.updateMovie} onChange={handleChange} name="updateMovie" />
+                        }
+                        label="Update Movie"
+                      />
+                    </div>
+                  </div>
+                </FormGroup>
+              </FormControl>
+            </div>
 
 
 

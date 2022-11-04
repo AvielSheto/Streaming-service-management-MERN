@@ -17,6 +17,8 @@ import EditMovie from "./components/main/movies/EditMovie";
 // toastify
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Members from "./components/main/subscription/AllMembers";
+import AddMember from "./components/main/subscription/AddMember";
 
 export default function App() {
   return (
@@ -33,7 +35,10 @@ export default function App() {
               <Route path="addmovie" element={<AddMovie />} />
             </Route>
             <Route path="editmovie" element={<EditMovie />} />
-            <Route path="subscription" element={<Subscriptions />} />
+            <Route path="subscription" element={<Subscriptions />} >
+              <Route path="members" element={<Members />} />
+              <Route path="addmember" element={<AddMember />} />
+            </Route>
             <Route path="usermangement" element={<ManageUsers />} >
               <Route path="users" element={<Users />} />
               <Route path="adduser" element={<AddUser />} />

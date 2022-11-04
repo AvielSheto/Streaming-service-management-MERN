@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { createMovie } from '../../../features/movie/movieSlice'
+import { createMovie, reset } from '../../../features/movie/movieSlice'
+import { toast } from 'react-toastify'
+import Loading from '../../loading/Loading'
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -12,6 +14,8 @@ import Container from '@mui/material/Container';
 import Autocomplete from '@mui/material/Autocomplete';
 
 function AddMovie() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     genres: [],
@@ -20,6 +24,22 @@ function AddMovie() {
   })
 
   const { name, genres, image, premiered } = formData
+
+  const { movie, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.movie
+  )
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess || movie) {
+      navigate('/main/movies/allmovies')
+    }
+
+    dispatch(reset())
+  }, [movie, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -36,11 +56,20 @@ function AddMovie() {
       image,
       premiered
     }
+    dispatch(createMovie(movieData))
+
     console.log(movieData);
   }
 
   const addGenres = (value) => {
-    // console.log(value.InputProps.startAdornment[0].props.label);
+    genres.length = 0
+    {
+      value.InputProps.startAdornment?.map((genre) => {
+        return (
+          genres.push(genre.props.label)
+        )
+      })
+    }
   }
 
   const allGenres = [
@@ -57,83 +86,87 @@ function AddMovie() {
     { title: 'Mystery' },
   ];
 
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
-    <div>
-      <Container className='form' maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}>
-          <h1 className='display-3'>Add Movie</h1>
+    <Container maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 4,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+        <h1 className='display-3'>Add Movie</h1>
 
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="name"
-              label="Name"
-              type="text"
-              id="name"
-              onChange={onChange}
-              value={name}
-              autoComplete="name"
-            />
-            <Autocomplete
-              multiple
-              id="size-small-standard-multi"
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="name"
+            label="Name"
+            type="text"
+            id="name"
+            onChange={onChange}
+            value={name}
+            autoComplete="name"
+          />
+          <Autocomplete
+            multiple
+            id="size-small-standard-multi"
+            options={allGenres}
+            filterSelectedOptions
+            getOptionLabel={(option) => option.title}
+            renderInput={(params) => (
+              <TextField
+                required
+                onChange={addGenres({ ...params })}
+                id="genres"
+                value={genres}
+                name="genres"
+                {...params}
+                label="Genres"
 
-              options={allGenres}
-              getOptionLabel={(option) => option.title}
-              filterSelectedOptions
-              renderInput={(params) => (
-                <TextField
-                  onChange={addGenres(params)}
-                  required
-                  id="genres"
-                  value={genres}
-                  name="genres"
-                  {...params}
-                  label="Genres"
-                />
-              )}
-            />
+              />
+            )}
+          />
 
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="image"
-              label="Image URL"
-              type="text"
-              id="image"
-              onChange={onChange}
-              autoComplete="image"
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="premiered"
-              label="Premiered"
-              type="text"
-              id="premiered"
-              onChange={onChange}
-              value={premiered}
-              autoComplete="premiered"
-            />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Add Movie</Button>
-            <Grid container>
-
-            </Grid>
-          </Box>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="image"
+            label="Image URL"
+            type="text"
+            id="image"
+            onChange={onChange}
+            value={image}
+            autoComplete="image"
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="premiered"
+            label="Premiered"
+            type="text"
+            id="premiered"
+            onChange={onChange}
+            value={premiered}
+            autoComplete="premiered"
+          />
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Add Movie</Button>
+          <Grid container>
+          </Grid>
         </Box>
-      </Container>
-    </div>
+      </Box>
+    </Container>
   )
 }
 
 export default AddMovie
+
+

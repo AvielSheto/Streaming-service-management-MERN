@@ -25,38 +25,42 @@ function AllMovies() {
     getMovies()
   }, [])
 
-
   return (
-    <div className='d-flex justify-content-center'>
-      <div className='col-11 col-md-10'>
-        <TextField onChange={(e) => { setSearch(e.target.value) }} className='my-2' id="outlined-basic" label='Find Movie: ' variant="outlined" size="small" />
-        <Row xs={2} md={4}>
-          {movies?.filter(filtered => {
-            if (search === undefined) {
-              return filtered
-            }
-            else {
-              return filtered?.name.toLowerCase().startsWith(search.toLowerCase())
-            }
-          }).map((movie) => {
-            return (
-              <Col className='movie p-2' >
-                <div key={movie._id}>
-                  <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>
-                    <Dropdown.Item eventKey="1" href='/main/editmovie'>Edit</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">Delete</Dropdown.Item>
-                  </DropdownButton>
-                  <h1 className='display-6 fs-3'>{movie.name}</h1>
-                  <h1 className='display-6 fs-6 fw-normal float-start'><strong className='fs-5 fw-light'>premiered: </strong>{movie.premiered}</h1>
-                  <h1 className='display-6 fs-6 fw-normal float-start'><strong className='fs-5 fw-light'>genres: </strong>{movie.genres.join()}</h1>
-                  <img className='w-75' src={movie.image} alt="show" />
-                </div>
-              </Col>
-            )
-          })}
-        </Row>
+    <div className=''>
+      <div className='my-2'>
+        <TextField onChange={(e) => { setSearch(e.target.value) }} label='Find Movie: ' variant="outlined" size="small" />
       </div>
-    </div>)
+      <div className='d-flex justify-content-center'>
+        <div className='col-11 col-md-10'>
+          <Row xs={2} md={4}>
+            {movies?.filter(filtered => {
+              if (search === undefined) {
+                return filtered
+              }
+              else {
+                return filtered?.name.toLowerCase().startsWith(search.toLowerCase())
+              }
+            }).map((movie) => {
+              return (
+                <Col className='movie p-2'  key={movie._id}>
+                  <div>
+                    <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>
+                      <Dropdown.Item eventKey="1" href='/main/editmovie'>Edit</Dropdown.Item>
+                      <Dropdown.Item eventKey="2">Delete</Dropdown.Item>
+                    </DropdownButton>
+                    <h1 className='display-6 fs-3'>{movie.name}</h1>
+                    <h1 className='display-6 fs-6 fw-light float-start'><strong className='fs-5 fw-light'>premiered: </strong>{movie.premiered}</h1>
+                    <h1 className='display-6 fs-6 fw-light float-start'><strong className='fs-5 fw-light'>genres: </strong>{movie.genres.join()}</h1>
+                    <img className='w-75' src={movie.image} alt="show" />
+                  </div>
+                </Col>
+              )
+            })}
+          </Row>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default AllMovies
