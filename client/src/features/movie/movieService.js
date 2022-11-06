@@ -6,8 +6,14 @@ const createMovie = async (movieData) => {
     return response.data;
 }
 
+const deleteMovie = async (movieId)=>{
+    const response = await axios.delete(API_URL + movieId)
+    return response.data
+}
+
 const movieService = {
-    createMovie
+    createMovie,
+    deleteMovie
 };
 
 export default movieService;

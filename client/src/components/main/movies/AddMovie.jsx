@@ -41,6 +41,7 @@ function AddMovie() {
     dispatch(reset())
   }, [movie, isError, isSuccess, message, navigate, dispatch])
 
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -57,8 +58,6 @@ function AddMovie() {
       premiered
     }
     dispatch(createMovie(movieData))
-
-    console.log(movieData);
   }
 
   const addGenres = (value) => {

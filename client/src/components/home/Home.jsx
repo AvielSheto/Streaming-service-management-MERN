@@ -20,7 +20,6 @@ function Home() {
 
   return (
     <div>
-
       <div className='home d-flex flex-column justify-content-center align-items-center'>
         <div className='d-flex flex-column align-items-center col-10 col-md-6'>
           <h1 className='display-1 fw-normal text-white text-center'>Unlimited movies, TV shows, and more.</h1>
@@ -47,24 +46,11 @@ function Home() {
         </div>
       </div>
 
-
-      <div className='home-main d-flex flex-column justify-content-center pt-5'>
-
+      <div className='main-home d-flex flex-column justify-content-center py-5'>
         <h1 className='display-4 fw-normal text-white text-center'>Enjoy on your TV.</h1>
-
         <h1 className='display-6 fw-normal text-white text-center'>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</h1>
-
         <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="" />
-
-
-
-
-
       </div>
-
-
-
-
 
 
     </div>

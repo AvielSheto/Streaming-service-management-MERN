@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import "./_movies.scss"
+import { useDispatch } from 'react-redux';
+import { deleteMovie } from '../../../features/movie/movieSlice'
 // Mui 
 import TextField from '@mui/material/TextField';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -11,6 +13,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function AllMovies() {
+  const dispatch = useDispatch()
   const [movies, setMovies] = useState()
   const [search, setSearch] = useState()
 
@@ -42,11 +45,11 @@ function AllMovies() {
               }
             }).map((movie) => {
               return (
-                <Col className='movie p-2'  key={movie._id}>
+                <Col className='movie p-2' key={movie._id}>
                   <div>
                     <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>
                       <Dropdown.Item eventKey="1" href='/main/editmovie'>Edit</Dropdown.Item>
-                      <Dropdown.Item eventKey="2">Delete</Dropdown.Item>
+                      <Dropdown.Item onClick={() => dispatch(deleteMovie(movie._id))} eventKey="2">Delete</Dropdown.Item>
                     </DropdownButton>
                     <h1 className='display-6 fs-3'>{movie.name}</h1>
                     <h1 className='display-6 fs-6 fw-light float-start'><strong className='fs-5 fw-light'>premiered: </strong>{movie.premiered}</h1>
