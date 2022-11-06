@@ -1,17 +1,32 @@
 const mongoose = require('mongoose');
 
-mongoose.Collection.dbName
+// mongoose.Collection.dbName
 
 const MoveSchema = new mongoose.Schema(
     {
-        name: String,
-        genres: [],
-        image: String,
-        premiered: String
+        name: {
+            type: String,
+            required: [true, 'Please add name']
+        },
+        genres: {
+            type: [],
+            require: [true, "Please add genres"]
+        },
+
+        image: {
+            type: String,
+            require: [true, 'Please add genres']
+
+        },
+        premiered:{
+            type: String,
+            require: [true, 'Please add premiered']
+
+        } 
     },
     { versionKey: false }
 );
 
-const Movie = mongoose.model('movie', MoveSchema);
+const model = mongoose.model('movie', MoveSchema);
 
-module.exports = Movie;
+module.exports = model;

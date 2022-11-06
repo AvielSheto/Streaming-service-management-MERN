@@ -9,13 +9,14 @@ const getMovies = asyncHandler(async (req, res) => {
     res.status(200).json(movies)
 })
 
-// @desc    Get all Movies
-// @route   GET /api/movies
+// @desc    Create Movie
+// @route   POSt /api/movies
 // @access  Public
 const createMovie = asyncHandler(async (req, res) => {
-    const { name, genres, image, premiered } = req.bode
+    const { name, genres, image, premiered } = req.body
     if (!name || !genres || !image || !premiered) {
         res.status(400)
+        console.log(name);
         throw new Error('please add all field')
     }
 
@@ -41,7 +42,19 @@ const createMovie = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('INvalid movie data')
     }
-
 })
 
-module.exports = { getMovies, createMovie }
+const deleteMovie = asyncHandler(async (req, res) => {
+    const movie = await Movie.findById(res.params.id)
+    if (!movie) {
+        res.status(400)
+        throw new Error('Movie not fond')
+    }
+
+    await movie.remove()
+    res.status(200).json({ id: req.params.id })
+
+    // 
+})
+
+module.exports = { getMovies, createMovie, deleteMovie }
