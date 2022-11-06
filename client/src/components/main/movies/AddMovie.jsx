@@ -25,7 +25,7 @@ function AddMovie() {
 
   const { name, genres, image, premiered } = formData
 
-  const { movie, isLoading, isError, isSuccess, message } = useSelector(
+  const { movies, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.movie
   )
 
@@ -34,12 +34,12 @@ function AddMovie() {
       toast.error(message)
     }
 
-    if (isSuccess || movie) {
+    if (isSuccess) {
       navigate('/main/movies/allmovies')
     }
 
     dispatch(reset())
-  }, [movie, isError, isSuccess, message, navigate, dispatch])
+  }, [movies, isError, isSuccess, message, navigate, dispatch])
 
 
   const onChange = (e) => {

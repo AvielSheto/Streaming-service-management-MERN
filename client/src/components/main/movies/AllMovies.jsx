@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import "./_movies.scss"
-import { useDispatch } from 'react-redux';
-import { deleteMovie } from '../../../features/movie/movieSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteMovie, getMovies, reset } from '../../../features/movie/movieSlice'
+import Loading from '../../loading/Loading'
 // Mui 
 import TextField from '@mui/material/TextField';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -14,22 +14,28 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function AllMovies() {
   const dispatch = useDispatch()
-  const [movies, setMovies] = useState()
   const [search, setSearch] = useState()
 
-  const MOVIES_URL = 'http://localhost:5000/api/movies';
-
-  const getMovies = async () => {
-    const { data } = await axios.get(MOVIES_URL);
-    setMovies(data)
-  }
+  const { movies, isLoading, isError, message } = useSelector(
+    (state) => state.movie
+  )
 
   useEffect(() => {
-    getMovies()
-  }, [])
+    dispatch(getMovies())
+
+    if (isError) {
+      console.log(message)
+    }
+
+    dispatch(reset())
+  }, [isError, message, dispatch])
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
-    <div className=''>
+    <>
       <div className='my-2'>
         <TextField onChange={(e) => { setSearch(e.target.value) }} label='Find Movie: ' variant="outlined" size="small" />
       </div>
@@ -62,7 +68,7 @@ function AllMovies() {
           </Row>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
