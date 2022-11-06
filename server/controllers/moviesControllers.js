@@ -17,14 +17,14 @@ const createMovie = asyncHandler(async (req, res) => {
     if (!name || !genres || !image || !premiered) {
         res.status(400)
         console.log(name);
-        throw new Error('please add all field')
+        throw new Error('Please add all field')
     }
 
     // Check if movie exists
     const movieExists = await Movie.findOne({ name })
     if (movieExists) {
         res.status(400)
-        throw new Error('movie is already exists')
+        throw new Error('Movie is already exists')
     }
     // Create movie
     const movie = await Movie.create({
@@ -40,12 +40,16 @@ const createMovie = asyncHandler(async (req, res) => {
         })
     } else {
         res.status(400)
-        throw new Error('INvalid movie data')
+        throw new Error('Invalid movie data')
     }
 })
 
+// @desc    Delete Movie
+// @route   Delete /api/movies/:id
+// @access  Public
 const deleteMovie = asyncHandler(async (req, res) => {
-    const movie = await Movie.findById(res.params.id)
+    const movie = await Movie.findById(req.params.id)
+
     if (!movie) {
         res.status(400)
         throw new Error('Movie not fond')
@@ -53,8 +57,6 @@ const deleteMovie = asyncHandler(async (req, res) => {
 
     await movie.remove()
     res.status(200).json({ id: req.params.id })
-
-    // 
 })
 
 module.exports = { getMovies, createMovie, deleteMovie }
