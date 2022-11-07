@@ -20,18 +20,26 @@ function AllMovies() {
     (state) => state.movie
   )
 
+  console.log(search);
+
   useEffect(() => {
     dispatch(getMovies())
 
     if (isError) {
       console.log(message)
     }
-
-    dispatch(reset())
+    return () => {
+      dispatch(reset())
+    }
   }, [isError, message, dispatch])
 
   if (isLoading) {
     return <Loading />
+  }
+
+  const handleDelete = (movieId)=>{
+    dispatch(deleteMovie(movieId))
+    setSearch('')
   }
 
   return (
@@ -43,7 +51,7 @@ function AllMovies() {
         <div className='col-11 col-md-10'>
           <Row xs={2} md={4}>
             {movies?.filter(filtered => {
-              if (search === undefined) {
+              if (!search) {
                 return filtered
               }
               else {
@@ -55,7 +63,7 @@ function AllMovies() {
                   <div>
                     <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>
                       <Dropdown.Item eventKey="1" href='/main/editmovie'>Edit</Dropdown.Item>
-                      <Dropdown.Item onClick={() => dispatch(deleteMovie(movie._id))} eventKey="2">Delete</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleDelete(movie._id)} >Delete</Dropdown.Item>
                     </DropdownButton>
                     <h1 className='display-6 fs-3'>{movie.name}</h1>
                     <h1 className='display-6 fs-6 fw-light float-start'><strong className='fs-5 fw-light'>premiered: </strong>{movie.premiered}</h1>
