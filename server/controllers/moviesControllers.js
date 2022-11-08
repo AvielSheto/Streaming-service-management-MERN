@@ -9,6 +9,18 @@ const getMovies = asyncHandler(async (req, res) => {
     res.status(200).json(movies)
 })
 
+// @desc    Get Movie
+// @route    /api/movies/id
+// @access  Public
+const getMovie = asyncHandler(async (req, res) => {
+    const movie = await Movie.findById(req.params.id)
+    if (!movie) {
+        res.status(400)
+        throw new Error('Movie not found')
+    }
+    res.status(200).json(movie)
+})
+
 // @desc    Create Movie
 // @route   POSt /api/movies
 // @access  Public
@@ -44,7 +56,21 @@ const createMovie = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Delete Movie
+// @desc    Update movie
+// @route   PUT /api/movies/:id
+// @access  Public
+const updateMovie = asyncHandler(async (req, res) => {
+    const movie = await Movie.findById(req.params.id)
+    if (!movie) {
+        res.status(400)
+        throw new Error('Movie not found')
+    }
+
+    const updateMovie = await Movie.findByIdAndUpdate(req.params.id, req.body)
+    res.status(200).json(updateMovie);
+});
+
+// @desc    Delete movie
 // @route   Delete /api/movies/:id
 // @access  Public
 const deleteMovie = asyncHandler(async (req, res) => {
@@ -59,4 +85,6 @@ const deleteMovie = asyncHandler(async (req, res) => {
     res.status(200).json({ id: req.params.id })
 })
 
-module.exports = { getMovies, createMovie, deleteMovie }
+
+
+module.exports = { getMovies, getMovie, createMovie, deleteMovie, updateMovie }
