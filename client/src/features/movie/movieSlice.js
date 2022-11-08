@@ -9,10 +9,25 @@ const initialState = {
     message: '',
 }
 
-// Get movie
+// Get movies
 export const getMovies = createAsyncThunk('movie/getAll', async (_, thunkAPI) => {
     try {
-        return await movieService.getMovies()
+        return await movieService.getMovies();
+    } catch (error) {
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Get movie
+export const getMovie = createAsyncThunk('movie/getMovie', async (id, thunkAPI) => {
+    try {
+        return await movieService.getMovie(id);
     } catch (error) {
         const message =
             (error.response &&
@@ -29,6 +44,21 @@ export const createMovie = createAsyncThunk('movie/create', async (movieData, th
     try {
         // const token = thunkAPI.getState().auth.user.token
         return await movieService.createMovie(movieData)
+    } catch (error) {
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Update movie
+export const updateMovie = createAsyncThunk('movie/update', async (id, obj, thunkAPI) => {
+    try {
+        return await movieService.updateMovie(id, obj)
     } catch (error) {
         const message =
             (error.response &&
@@ -77,6 +107,19 @@ export const movieSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
             })
+            .addCase(getMovie.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getMovie.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.movies.push(action.payload)
+            })
+            .addCase(getMovie.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
             .addCase(createMovie.pending, (state) => {
                 state.isLoading = true
             })
@@ -86,6 +129,23 @@ export const movieSlice = createSlice({
                 state.movies.push(action.payload)
             })
             .addCase(createMovie.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateMovie.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateMovie.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.movies.map((movie)=>{
+                    if ( movie._id === action.payload.id) {
+                        movie = action.payload
+                    }
+                })
+            })
+            .addCase(updateMovie.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

@@ -22,10 +22,9 @@ function AddMovie() {
     image: '',
     premiered: ''
   })
-
   const { name, genres, image, premiered } = formData
 
-  const { movies, isLoading, isError, isSuccess, message } = useSelector(
+  const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.movie
   )
 
@@ -39,7 +38,7 @@ function AddMovie() {
     }
 
     dispatch(reset())
-  }, [movies, isError, isSuccess, message, navigate, dispatch])
+  }, [ isError, isSuccess, message, navigate, dispatch])
 
 
   const onChange = (e) => {
@@ -119,6 +118,9 @@ function AddMovie() {
             options={allGenres}
             filterSelectedOptions
             getOptionLabel={(option) => option.title}
+            isOptionEqualToValue={(option, value) =>
+              value === undefined || value === "" || option.id === value.id
+            }
             renderInput={(params) => (
               <TextField
                 required
@@ -128,9 +130,9 @@ function AddMovie() {
                 name="genres"
                 {...params}
                 label="Genres"
-
               />
             )}
+
           />
 
           <TextField

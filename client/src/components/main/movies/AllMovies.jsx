@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import "./_movies.scss"
+import React, { useState, useEffect } from 'react';
+import "./_movies.scss";
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteMovie, getMovies, reset } from '../../../features/movie/movieSlice'
-import Loading from '../../loading/Loading'
+import { deleteMovie, getMovies, reset } from '../../../features/movie/movieSlice';
+import { useNavigate } from 'react-router-dom';
+import Loading from '../../loading/Loading';
 // Mui 
 import TextField from '@mui/material/TextField';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -13,14 +14,13 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function AllMovies() {
-  const dispatch = useDispatch()
-  const [search, setSearch] = useState()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [search, setSearch] = useState();
 
   const { movies, isLoading, isError, message } = useSelector(
     (state) => state.movie
   )
-
-  console.log(search);
 
   useEffect(() => {
     dispatch(getMovies())
@@ -28,20 +28,25 @@ function AllMovies() {
     if (isError) {
       console.log(message)
     }
+    
     return () => {
       dispatch(reset())
     }
-  }, [isError, message, dispatch])
+  }, [isError, message, navigate, dispatch])
 
   if (isLoading) {
     return <Loading />
   }
 
-  const handleDelete = (movieId)=>{
+  const handleDelete = (movieId) => {
     dispatch(deleteMovie(movieId))
-    setSearch('')
+    setSearch('');
   }
 
+  const handleEdit = (movieId) => {
+    navigate(`/main/editmovie/${movieId}`);
+  }
+  
   return (
     <>
       <div className='my-2'>
@@ -49,7 +54,7 @@ function AllMovies() {
       </div>
       <div className='d-flex justify-content-center'>
         <div className='col-11 col-md-10'>
-          <Row xs={2} md={4}>
+          <Row xs={2} sm={3} md={4}>
             {movies?.filter(filtered => {
               if (!search) {
                 return filtered
@@ -62,8 +67,8 @@ function AllMovies() {
                 <Col className='movie p-2' key={movie._id}>
                   <div>
                     <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>
-                      <Dropdown.Item eventKey="1" href='/main/editmovie'>Edit</Dropdown.Item>
-                      <Dropdown.Item onClick={() => handleDelete(movie._id)} >Delete</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleEdit(movie._id)}>Edit</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleDelete(movie._id)}>Delete</Dropdown.Item>
                     </DropdownButton>
                     <h1 className='display-6 fs-3'>{movie.name}</h1>
                     <h1 className='display-6 fs-6 fw-light float-start'><strong className='fs-5 fw-light'>premiered: </strong>{movie.premiered}</h1>

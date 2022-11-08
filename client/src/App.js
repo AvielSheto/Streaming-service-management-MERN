@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+// components
 import Login from "./components/log/login/Login";
 import Home from "./components/home/Home";
 import Header from "./components/header/Header"
@@ -19,10 +19,11 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Members from "./components/main/subscription/AllMembers";
 import AddMember from "./components/main/subscription/AddMember";
+import Error from "./components/Error/Error";
 
 export default function App() {
   return (
-    <div>
+    <>
       <Router>
         <Header />
         <Routes>
@@ -34,7 +35,7 @@ export default function App() {
               <Route path="allmovies" element={<AllMovies />} />
               <Route path="addmovie" element={<AddMovie />} />
             </Route>
-            <Route path="editmovie" element={<EditMovie />} />
+            <Route path="editmovie/:id" element={<EditMovie />} />
             <Route path="subscription" element={<Subscriptions />} >
               <Route path="members" element={<Members />} />
               <Route path="addmember" element={<AddMember />} />
@@ -44,9 +45,10 @@ export default function App() {
               <Route path="adduser" element={<AddUser />} />
             </Route>
           </Route>
+          <Route path="*" element={<Error/>} />
         </Routes>
       </Router>
       <ToastContainer />
-    </div>
+    </>
   );
 }

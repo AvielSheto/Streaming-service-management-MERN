@@ -1,7 +1,9 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { getMovie, updateMovie, reset } from '../../../features/movie/movieSlice'
+import { toast } from 'react-toastify'
+import Loading from '../../loading/Loading'
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -11,14 +13,37 @@ import Container from '@mui/material/Container';
 import Autocomplete from '@mui/material/Autocomplete';
 
 function EditMovie() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { id } = useParams()
+    // const [img, setImg ] = useState('')
     const [formData, setFormData] = useState({
         name: '',
         genres: [],
         image: '',
         premiered: ''
     })
+    const { name, genres, image, premiered } = formData;
 
-    const { name, genres, image, premiered } = formData
+    const { movies, isLoading, isError, isSuccess, message } = useSelector(
+        (state) => state.movie
+    )
+
+    useEffect(() => {
+        dispatch(getMovie(id))
+        if (isError) {
+            toast.error(message)
+        }
+
+        // if (isSuccess) {
+        //     // navigate('/main/movies/allmovies')
+        //     console.log(isSuccess);
+        // }
+
+        if (movies.length === 1) {
+            setFormData(...movies)
+        }
+    }, [isError, isSuccess, message, navigate, dispatch])
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -36,10 +61,19 @@ function EditMovie() {
             premiered
         }
         console.log(movieData);
+
+        dispatch(updateMovie(id , movieData))
+        console.log(movies);
     }
 
     const addGenres = (value) => {
-        // console.log(value.InputProps.startAdornment[0].props.label);
+        // {
+        //     value.InputProps.startAdornment?.map((genre) => {
+        //         return (
+        //             genres.push(genre.props.label)
+        //         )
+        //     })
+        // }
     }
 
     const allGenres = [
@@ -55,6 +89,10 @@ function EditMovie() {
         { title: 'Music' },
         { title: 'Mystery' },
     ];
+
+    // if (isLoading) {
+    //     return <Loading />
+    // }
 
     return (
         <div>
@@ -76,7 +114,6 @@ function EditMovie() {
                             name="name"
                             label="Name"
                             type="text"
-                            id="name"
                             onChange={onChange}
                             value={name}
                             autoComplete="name"
@@ -86,11 +123,15 @@ function EditMovie() {
                             id="size-small-standard-multi"
 
                             options={allGenres}
-                            getOptionLabel={(option) => option.title}
+                            getOptionLabel={(genres) => genres}
+                            value={genres}
+                            isOptionEqualToValue={(option, value) =>
+                                value === undefined || value === "" || option.id === value.id
+                            }
                             filterSelectedOptions
                             renderInput={(params) => (
                                 <TextField
-                                    onChange={addGenres(params)}
+                                    onChange={addGenres({ ...params })}
                                     required
                                     id="genres"
                                     value={genres}
@@ -108,8 +149,8 @@ function EditMovie() {
                             name="image"
                             label="Image URL"
                             type="text"
-                            id="image"
                             onChange={onChange}
+                            value={image}
                             autoComplete="image"
                         />
                         <TextField
@@ -119,7 +160,6 @@ function EditMovie() {
                             name="premiered"
                             label="Premiered"
                             type="text"
-                            id="premiered"
                             onChange={onChange}
                             value={premiered}
                             autoComplete="premiered"
