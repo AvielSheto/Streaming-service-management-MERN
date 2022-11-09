@@ -1,5 +1,18 @@
 {
-    "users":[
-        {"id":"63541645fe9f3446470ff919","firstName":"Aviel", "lastName":"Sheto","createdDate":"29-9-2022","sessionTimeOut":50}
+    "users": [
+        {
+            "id": "63541645fe9f3446470ff919",
+            "firstName": "Aviel",
+            "lastName": "Sheto",
+            "createdDate": "29-9-2022",
+            "sessionTimeOut": 50
+        },
+        {
+            "id": "6357adfed6855476fda24fff",
+            "firstName": "Amir",
+            "lastName": "Nagat",
+            "createdDate": "30-9-2022",
+            "sessionTimeOut": 30
+        }
     ]
 }

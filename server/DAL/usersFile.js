@@ -1,7 +1,7 @@
 const jsonfile = require('jsonfile');
+const file = './data/users.json'
 
-const file = require('../data/users.json');
-
+// Get users
 const getUsers = () => {
     return jsonfile.readFile(file);
 };

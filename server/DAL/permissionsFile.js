@@ -1,15 +1,9 @@
-const jsonFile = require('jsonfile');
+const jsonfile = require('jsonfile');
+const file = './data/permissions.json'
 
-const file = require('../data/permissions.json');
-
-
-const getPermissions = () => {
-    return jsonFile.readFile(file);
+// Get all permissions
+const getAllPermissions = () => {
+    return jsonfile.readFile(file);
 };
 
-const setPermission = async (obj) => {
-    await jsonFile.writeFile(file, obj);
-    return 'Done'
-};
-
-module.exports = { getPermissions, setPermission };
+module.exports = { getAllPermissions };
