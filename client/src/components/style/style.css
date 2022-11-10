@@ -32,7 +32,7 @@
 
 .register {
   background-image: url("https://images.frandroid.com/wp-content/uploads/2022/10/netflix-octobre-contenus-2022.jpg");
-  background-color: rgba(252, 249, 249, 0.218);
+  background-color: rgb(0, 0, 0);
   background-blend-mode: screen;
   background-repeat: no-repeat;
   background-size: cover;

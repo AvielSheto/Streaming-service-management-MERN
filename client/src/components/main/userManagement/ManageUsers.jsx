@@ -19,8 +19,8 @@ export default function ManageUsers() {
   };
 
   return (
-    <div className=''>
-      <Box sx={{ width: '100%' }}>
+    <>
+      <Box className='ms-3'>
         <Tabs
           onChange={handleChange}
           value={value}
@@ -30,6 +30,6 @@ export default function ManageUsers() {
         </Tabs>
       </Box>
       <Outlet />
-    </div>
+    </>
   )
 }

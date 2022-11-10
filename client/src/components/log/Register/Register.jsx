@@ -70,7 +70,7 @@ function Register() {
     return <Loading />
   }
   return (
-    <div className='register d-flex align-items-center '>
+    <div className='register pt-4'>
       <Container className='form p-5' maxWidth="xs">
         <Box
           sx={{

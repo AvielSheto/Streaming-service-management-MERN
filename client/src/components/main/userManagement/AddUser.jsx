@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 // mui
 import Button from '@mui/material/Button';
@@ -20,15 +19,11 @@ import Switch from '@mui/material/Switch';
 
 
 function AddUser() {
-  const [value, setValue] = React.useState(dayjs('2022-04-07'));
+  const [session, setSession] = useState(dayjs('2022-04-07'));
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     userName: '',
-    sessionTime: '',
-  })
-
-  const [state, setState] = React.useState({
     viewSubscription: false,
     createSubscription: false,
     deleteSubscription: false,
@@ -37,15 +32,16 @@ function AddUser() {
     createMovie: false,
     deleteMovie: false,
     updateMovie: false,
-  });
+  })
+
   const handleChange = (event) => {
-    setState({
-      ...state,
+    setFormData({
+      ...formData,
       [event.target.name]: event.target.checked,
     });
   };
 
-  const { firstName, lastName, userName, sessionTime } = formData
+  const { firstName, lastName, userName, viewSubscription, createSubscription, deleteSubscription, updateSubscription, viewMovie, createMovie, deleteMovie, updateMovie } = formData
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -56,22 +52,30 @@ function AddUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const sessionTime = session.$m
     const userData = {
       firstName,
       lastName,
       userName,
-      sessionTime
+      sessionTime,
+      viewSubscription,
+      createSubscription,
+      deleteSubscription,
+      updateSubscription,
+      viewMovie,
+      createMovie,
+      deleteMovie,
+      updateMovie
     }
+    console.log(userData);
   }
-
-
 
   return (
     <div>
       <Container className='form' maxWidth="xs">
         <Box
           sx={{
-            marginTop: 4,
+            marginTop: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -83,25 +87,23 @@ function AddUser() {
               margin="normal"
               required
               fullWidth
-              name="firsName"
+              name="firstName"
               label="First Name"
               type="text"
-              id="firsName"
               onChange={onChange}
               value={firstName}
-              autoComplete="firsName"
+              autoComplete="firstName"
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="LastName"
-              label="First Name"
+              name="lastName"
+              label="Last Name"
               type="text"
-              id="LastName"
               onChange={onChange}
               value={lastName}
-              autoComplete="LastName"
+              autoComplete="lastName"
             />
             <TextField
               margin="normal"
@@ -110,29 +112,28 @@ function AddUser() {
               name="userName"
               label="User Name"
               type="text"
-              id="userName"
               onChange={onChange}
               value={userName}
               autoComplete="userName"
             />
-
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Stack className='mt-3'>
                 <TimePicker
                   ampmInClock
-                  views={['minutes', 'seconds']}
-                  inputFormat="mm:ss"
-                  mask="__:__"
-                  label="Minutes and seconds"
-                  value={value}
+                  views={["minutes"]}
+                  inputFormat="mm"
+                  mask="__"
+                  label="Session time out (Minutes)"
+                  value={session}
+                  name="sessionTime"
                   onChange={(newValue) => {
-                    setValue(newValue);
+                    setSession(newValue);
                   }}
                   renderInput={(params) => <TextField {...params} />}
                 />
               </Stack>
             </LocalizationProvider>
-            <h1 className='display-6 fs-2'>Permissions</h1>
+            <h1 className='display-6 fs-2 mt-1'>Permissions</h1>
             <div>
               <FormControl component="fieldset" variant="standard">
                 <FormGroup >
@@ -140,25 +141,25 @@ function AddUser() {
                     <div className='d-flex flex-column'>
                       <FormControlLabel
                         control={
-                          <Switch checked={state.viewSubscription} onChange={handleChange} name="viewSubscription" />
+                          <Switch checked={formData.viewSubscription} onChange={handleChange} name="viewSubscription" />
                         }
                         label="View Subscription"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={state.createSubscription} onChange={handleChange} name="createSubscription" />
+                          <Switch checked={formData.createSubscription} onChange={handleChange} name="createSubscription" />
                         }
                         label="Create Subscription"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={state.deleteSubscription} onChange={handleChange} name="deleteSubscription" />
+                          <Switch checked={formData.deleteSubscription} onChange={handleChange} name="deleteSubscription" />
                         }
                         label="Delete Subscription"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={state.updateSubscription} onChange={handleChange} name="updateSubscription" />
+                          <Switch checked={formData.updateSubscription} onChange={handleChange} name="updateSubscription" />
                         }
                         label="Update Subscription"
                       />
@@ -167,25 +168,25 @@ function AddUser() {
                     <div className='d-flex flex-column'>
                       <FormControlLabel
                         control={
-                          <Switch checked={state.viewMovie} onChange={handleChange} name="viewMovie" />
+                          <Switch checked={formData.viewMovie} onChange={handleChange} name="viewMovie" />
                         }
                         label="View Movie"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={state.createMovie} onChange={handleChange} name="createMovie" />
+                          <Switch checked={formData.createMovie} onChange={handleChange} name="createMovie" />
                         }
                         label="Create Movie"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={state.deleteMovie} onChange={handleChange} name="deleteMovie" />
+                          <Switch checked={formData.deleteMovie} onChange={handleChange} name="deleteMovie" />
                         }
                         label="Delete Movie"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={state.updateMovie} onChange={handleChange} name="updateMovie" />
+                          <Switch checked={formData.updateMovie} onChange={handleChange} name="updateMovie" />
                         }
                         label="Update Movie"
                       />
@@ -194,9 +195,6 @@ function AddUser() {
                 </FormGroup>
               </FormControl>
             </div>
-
-
-
 
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Add User</Button>
             <Grid container>

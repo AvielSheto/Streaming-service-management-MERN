@@ -118,9 +118,9 @@ function AddMovie() {
             options={allGenres}
             filterSelectedOptions
             getOptionLabel={(option) => option.title}
-            isOptionEqualToValue={(option, value) =>
-              value === undefined || value === "" || option.id === value.id
-            }
+            // isOptionEqualToValue={(option, value) =>
+            //   value === undefined || value === "" || option.id === value.id
+            // }
             renderInput={(params) => (
               <TextField
                 required

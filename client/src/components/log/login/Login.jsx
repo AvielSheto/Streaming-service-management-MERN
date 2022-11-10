@@ -67,7 +67,7 @@ function Login() {
     }
 
     return (
-        <div className='logIn d-flex align-items-center'>
+        <div className='logIn pt-4'>
             <Container className='form p-5' maxWidth="xs">
                 <Box
                     sx={{

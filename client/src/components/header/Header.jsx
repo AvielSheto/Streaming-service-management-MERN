@@ -23,7 +23,7 @@ function Header() {
 
   return (
     <div>
-      <Navbar className='p-0' collapseOnSelect expand="lg" bg="black" variant="dark">
+      <Navbar className='p-0' collapseOnSelect expand="md" bg="black" variant="dark">
         <Container>
           <Navbar.Brand className='border-0' href="#home">
             <Link className='text-decoration-none display-6 text-danger' to='/'>NEXT</Link>
