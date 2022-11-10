@@ -1,18 +1,20 @@
 const usersFile = require('../DAL/usersFile');
 
-// Get users
+// Get all users
 const getUsers = async () => {
     const { users } = await usersFile.getUsers()
     return users;
 }
 
+// Get user  
 const getUser = async (id) => {
     const { users } = await usersFile.getUsers();
     const user = users.find((per) => per.id === id);
     return user;
 }
 
-const addUser = async (obj) => {
+// Create
+const createUser = async (obj) => {
     const users = await usersFile.getUsers();
     users.push(obj);
     const data = { users };
@@ -20,4 +22,4 @@ const addUser = async (obj) => {
     return result;
 }
 
-module.exports = { getUsers, getUser, addUser }
+module.exports = { getUsers, getUser, createUser }
