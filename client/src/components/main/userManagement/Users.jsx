@@ -25,7 +25,7 @@ function Users() {
   }
 
   const handleDelete = async (id) => {
-    const {data} = await axios.post('');
+    // const {data} = await axios.post('');
   }
 
   const handleEdit = (id) => {
@@ -59,11 +59,13 @@ function Users() {
                   <td>{user.lastName}</td>
                   <td>{user.createdDate}</td>
                   <td>
-                    <ul>
-                      {permissions?.find((per) => per.id === user.id).permissions?.map((permission, index) => {
-                        return <li key={index}>{permission}</li>
-                      })}
-                    </ul>
+                      {/* {permissions?.find((per) => per.id === user.id)?.map((permission, index) => {
+                        return (
+                          <div key={index}>
+                          <p>viewSubscription{permission.viewSubscription}</p>
+                          </div>
+                        )
+                      })} */}
                   </td>
                   <td className='text-center'>
                     <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>

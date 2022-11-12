@@ -16,6 +16,7 @@ import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import axios from 'axios';
 
 
 function AddUser() {
@@ -24,6 +25,10 @@ function AddUser() {
     firstName: '',
     lastName: '',
     userName: '',
+
+  })
+
+  const [state, setState] = useState({
     viewSubscription: false,
     createSubscription: false,
     deleteSubscription: false,
@@ -35,13 +40,13 @@ function AddUser() {
   })
 
   const handleChange = (event) => {
-    setFormData({
-      ...formData,
+    setState({
+      ...state,
       [event.target.name]: event.target.checked,
     });
   };
 
-  const { firstName, lastName, userName, viewSubscription, createSubscription, deleteSubscription, updateSubscription, viewMovie, createMovie, deleteMovie, updateMovie } = formData
+  const { firstName, lastName, userName } = formData
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -58,16 +63,20 @@ function AddUser() {
       lastName,
       userName,
       sessionTime,
-      viewSubscription,
-      createSubscription,
-      deleteSubscription,
-      updateSubscription,
-      viewMovie,
-      createMovie,
-      deleteMovie,
-      updateMovie
     }
+    createUser(userData)
     console.log(userData);
+    console.log(state);
+  }
+
+  const createUser = async (obj) =>{
+    const {data} = await axios.post('http://localhost:5000/users/', obj)
+    console.log(data);
+  }
+
+  const createPermissions = async (obj) =>{
+    const {data} = await axios.post('http://localhost:5000/permissions/ ,obj')
+
   }
 
   return (
@@ -141,25 +150,25 @@ function AddUser() {
                     <div className='d-flex flex-column'>
                       <FormControlLabel
                         control={
-                          <Switch checked={formData.viewSubscription} onChange={handleChange} name="viewSubscription" />
+                          <Switch checked={state.viewSubscription} onChange={handleChange} name="viewSubscription" />
                         }
                         label="View Subscription"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={formData.createSubscription} onChange={handleChange} name="createSubscription" />
+                          <Switch checked={state.createSubscription} onChange={handleChange} name="createSubscription" />
                         }
                         label="Create Subscription"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={formData.deleteSubscription} onChange={handleChange} name="deleteSubscription" />
+                          <Switch checked={state.deleteSubscription} onChange={handleChange} name="deleteSubscription" />
                         }
                         label="Delete Subscription"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={formData.updateSubscription} onChange={handleChange} name="updateSubscription" />
+                          <Switch checked={state.updateSubscription} onChange={handleChange} name="updateSubscription" />
                         }
                         label="Update Subscription"
                       />
@@ -168,25 +177,25 @@ function AddUser() {
                     <div className='d-flex flex-column'>
                       <FormControlLabel
                         control={
-                          <Switch checked={formData.viewMovie} onChange={handleChange} name="viewMovie" />
+                          <Switch checked={state.viewMovie} onChange={handleChange} name="viewMovie" />
                         }
                         label="View Movie"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={formData.createMovie} onChange={handleChange} name="createMovie" />
+                          <Switch checked={state.createMovie} onChange={handleChange} name="createMovie" />
                         }
                         label="Create Movie"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={formData.deleteMovie} onChange={handleChange} name="deleteMovie" />
+                          <Switch checked={state.deleteMovie} onChange={handleChange} name="deleteMovie" />
                         }
                         label="Delete Movie"
                       />
                       <FormControlLabel
                         control={
-                          <Switch checked={formData.updateMovie} onChange={handleChange} name="updateMovie" />
+                          <Switch checked={state.updateMovie} onChange={handleChange} name="updateMovie" />
                         }
                         label="Update Movie"
                       />

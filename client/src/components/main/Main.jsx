@@ -14,14 +14,14 @@ import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlin
 export default function Home() {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
-  const [management, setManagement] = useState(false);
+  const [management, setManagement] = useState(true);
   const { user } = useSelector((state) => state.auth);
 
   const getPermissions = async () => {
     const { data } = await axios.get('http://localhost:5000/permissions/' + user._id);
-    if (data.permissions.includes('users management')) {
-      setManagement(true)
-    }
+    // if (data.permissions.userManagement === true) {
+    //   setManagement(true)
+    // }
   }
 
   useEffect(() => {
