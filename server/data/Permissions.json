@@ -3,22 +3,28 @@
         {
             "id": "63541645fe9f3446470ff919",
             "permissions": [
-                "view Subscriptions",
-                "create Subscriptions",
-                "delete Subscriptions",
-                "view movies",
-                "create movies",
-                "delete movies",
-                "users management"
-            ]
+                {"viewSubscription": false},
+                {"createSubscription": false},
+                {"deleteSubscription": false},
+                {"updateSubscription": false},
+                {"viewMovie": false},
+                {"createMovie": false},
+                {"deleteMovie": false},
+                {"updateMovie": false}
+              ]
         },
         {
             "id": "6357adfed6855476fda24fff",
             "permissions": [
-                "view movies",
-                "create movies",
-                "delete movies"
-            ]
+                {"viewSubscription": false},
+                {"createSubscription": false},
+                {"deleteSubscription": false},
+                {"updateSubscription": false},
+                {"viewMovie": false},
+                {"createMovie": false},
+                {"deleteMovie": false},
+                {"updateMovie": false}
+              ]
         }
     ]
 }

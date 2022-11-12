@@ -15,7 +15,7 @@ const getUser = async (id) => {
 
 // Create
 const createUser = async (obj) => {
-    const users = await usersFile.getUsers();
+    const users = await getUsers();
     users.push(obj);
     const data = { users };
     const result = await usersFile.setUser(data);
