@@ -13,4 +13,13 @@ const getPermission = async (id) => {
     return permission
 }
 
-module.exports = { getAllPermissions, getPermission }
+// Create permission
+const createPermission = async (obj) => {
+    const permissions = await getAllPermissions()
+    permissions.push(obj);
+    const data = { permissions };
+    const result = await permissionsFile.createPermission(data);
+    return result;
+}
+
+module.exports = { getAllPermissions, getPermission, createPermission }

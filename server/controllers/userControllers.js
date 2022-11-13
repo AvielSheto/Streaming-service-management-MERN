@@ -40,6 +40,33 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error('INvalid user data')
     }
 })
+
+// @desc    Create user
+// @route   POST /api/users/create
+// @access  Public
+const createUser = asyncHandler(async (req, res) => {
+    const { username } = req.body
+    const userExists = await User.findOne({ username })
+    if (userExists) {
+        res.status(400)
+        throw new Error('User is already exists')
+    }
+    // Create User 
+    const user = await User.create({
+        username
+    })
+    if (user) {
+        res.status(201).json({
+            _id: user.id,
+            username: user.username,
+            token: generateToken(user._id)
+        })
+    } else {
+        res.status(400)
+        throw new Error('INvalid user data')
+    }
+})
+
 // @desc    Authenticate a user
 // @route   POST /api/users/login
 // @access  Public
@@ -57,13 +84,17 @@ const loginUser = asyncHandler(async (req, res) => {
         throw new Error('INvalid credentials')
     }
 })
+
 // @desc    Get user data
 // @route   GET /api/users/me
-// @access  Private
+// @access  Public
 const getMe = asyncHandler(async (req, res) => {
     res.status(200).json(req.user)
 })
 
+// @desc    Get users data
+// @route   GET /api/users
+// @access  Public
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({})
     res.status(200).json(users)
@@ -76,4 +107,4 @@ const generateToken = (id) => {
     })
 }
 
-module.exports = { registerUser, loginUser, getMe, getUsers }
+module.exports = { registerUser, loginUser, getMe, getUsers, createUser }
