@@ -1,6 +1,12 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { createUser, reset } from '../../../features/auth/authSlice';
+import Loading from '../../loading/Loading';
+
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -16,18 +22,17 @@ import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import axios from 'axios';
-
 
 function AddUser() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [session, setSession] = useState(dayjs('2022-04-07'));
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     userName: '',
-
   })
-
   const [state, setState] = useState({
     viewSubscription: false,
     createSubscription: false,
@@ -38,6 +43,23 @@ function AddUser() {
     deleteMovie: false,
     updateMovie: false,
   })
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess) {
+      navigate('/main/usermangement/users')
+    }
+
+    dispatch(reset())
+  }, [isError, isSuccess, message, dispatch])
+
 
   const handleChange = (event) => {
     setState({
@@ -55,28 +77,40 @@ function AddUser() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const sessionTime = session.$m
+    const createdDate = new Date();
+    const data = await dispatch(createUser({ username: userName }));
+    const id = data.payload._id
+
     const userData = {
+      id,
       firstName,
       lastName,
-      userName,
-      sessionTime,
+      createdDate,
+      sessionTime
     }
-    createUser(userData)
-    console.log(userData);
-    console.log(state);
+
+    if (id) {
+      setUser(userData)
+      createPermissions({ id: id, permissions: state })
+    }
+
   }
 
-  const createUser = async (obj) =>{
-    const {data} = await axios.post('http://localhost:5000/users/', obj)
+  const createPermissions = async (obj) => {
+    const { data } = await axios.post('http://localhost:5000/permissions/', obj)
     console.log(data);
   }
 
-  const createPermissions = async (obj) =>{
-    const {data} = await axios.post('http://localhost:5000/permissions/ ,obj')
+  const setUser = async (obj) => {
+    const { data } = await axios.post('http://localhost:5000/users/', obj)
+    console.log(data);
+  }
 
+  if (isLoading) {
+    return <Loading />
   }
 
   return (

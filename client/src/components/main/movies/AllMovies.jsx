@@ -86,7 +86,6 @@ function AllMovies() {
           <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
             <SearchIcon />
           </IconButton>
-
         </Paper>
 
       </div>
@@ -108,15 +107,15 @@ function AllMovies() {
                       component="img"
                       alt="green iguana"
                       image={movie.image}
-                      height="200"
+                      // height="350"
                     />
-                    <CardContent sx={{ height: 140 }}>
+                    <CardContent sx={{ height: 130 }}>
                       <h1 className='display-6 fs-5 fw-normal'>{movie.name}</h1>
                       <h1 className='display-6 fs-6 fw-light'><strong className='fs-6 fw-normal'>premiered: </strong>{movie.premiered}</h1>
                       <h1 className='display-6 fs-6 fw-light'><strong className=''>genres: </strong>{movie.genres.join()}</h1>
                     </CardContent>
                     <CardActions>
-                      <Box sx={{ height: 25, transform: 'translateZ(0px)', flexGrow: 1 }}>
+                      <Box sx={{ height: 40, transform: 'translateZ(0px)', flexGrow: 1 }}>
                         <SpeedDial
                           ariaLabel="SpeedDial basic example"
                           sx={{ position: 'absolute', bottom: 2, right: 2 }}

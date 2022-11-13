@@ -59,13 +59,13 @@ function Users() {
                   <td>{user.lastName}</td>
                   <td>{user.createdDate}</td>
                   <td>
-                      {/* {permissions?.find((per) => per.id === user.id)?.map((permission, index) => {
+                    <ul>
+                      {/* {permissions?.filter((per) => per.id === user.id).permissions?.map((permission, index) => {
                         return (
-                          <div key={index}>
-                          <p>viewSubscription{permission.viewSubscription}</p>
-                          </div>
+                          <li key={index}>{permission.createMovie}</li>
                         )
                       })} */}
+                    </ul>
                   </td>
                   <td className='text-center'>
                     <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>

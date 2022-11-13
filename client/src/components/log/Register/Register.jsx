@@ -69,6 +69,7 @@ function Register() {
   if (isLoading) {
     return <Loading />
   }
+  
   return (
     <div className='register pt-4'>
       <Container className='form p-5' maxWidth="xs">

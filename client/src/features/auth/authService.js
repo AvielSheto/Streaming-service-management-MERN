@@ -10,6 +10,12 @@ const register = async (userData) => {
   return response.data
 }
 
+// Create user
+const createUser = async(userData) =>{
+  const response = await axios.post('http://localhost:5000/api/users/create', userData)
+  return response.data
+}
+
 // Login user
 const login = async (userData) => {
   const response = await axios.post(API_URL + 'login', userData)
@@ -27,6 +33,7 @@ const logout = ()=>{
 
 const authService = {
   register,
+  createUser,
   login,
   logout,
 }
