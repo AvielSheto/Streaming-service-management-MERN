@@ -37,6 +37,8 @@ function Users() {
     getPermission();
   }, []);
 
+  console.log(permissions[0].permissions);
+
   return (
     <div className='d-flex justify-content-center'>
       <div className='col-10 '>
@@ -59,13 +61,11 @@ function Users() {
                   <td>{user.lastName}</td>
                   <td>{user.createdDate}</td>
                   <td>
-                    <ul>
-                      {/* {permissions?.filter((per) => per.id === user.id).permissions?.map((permission, index) => {
-                        return (
-                          <li key={index}>{permission.createMovie}</li>
-                        )
-                      })} */}
-                    </ul>
+                    <pre>
+                      <code>
+                        {JSON.stringify(permissions?.filter((per) => per.id === user.id)[0].permissions, null, 2)}
+                      </code>
+                    </pre>
                   </td>
                   <td className='text-center'>
                     <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>
