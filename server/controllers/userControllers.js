@@ -14,10 +14,10 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     // check if user exists
-    const userExists = await User.findOne({ username })
-    if (userExists) {
+    const user = await User.findOne({ username })
+    if (!user) {
         res.status(400)
-        throw new Error('User is already exists')
+        throw new Error('User is not exists')
     }
 
     // Hash password
@@ -25,10 +25,9 @@ const registerUser = asyncHandler(async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt)
 
     // Create User 
-    const user = await User.create({
-        username,
-        password: hashedPassword
-    })
+    const updateUser = await User.findByIdAndUpdate(user._id, { user, password: hashedPassword })
+    res.status(200).json(updateUser)
+
     if (user) {
         res.status(201).json({
             _id: user.id,
@@ -92,6 +91,18 @@ const getMe = asyncHandler(async (req, res) => {
     res.status(200).json(req.user)
 })
 
+// @desc    Get user data
+// @route   GET /api/user
+// @access  Public
+const getUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id)
+    if (!user) {
+        res.status(400)
+        throw new Error('User not found')
+    }
+    res.status(200).json(user)
+})
+
 // @desc    Get users data
 // @route   GET /api/users
 // @access  Public
@@ -107,4 +118,4 @@ const generateToken = (id) => {
     })
 }
 
-module.exports = { registerUser, loginUser, getMe, getUsers, createUser }
+module.exports = { registerUser, loginUser, getMe, getUsers, getUser, createUser }

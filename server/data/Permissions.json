@@ -1,1 +1,29 @@
-{"permissions":[{"id":"637123093db35827b897fc68","permissions":{"createSubscription":false,"deleteSubscription":false,"updateSubscription":false,"viewMovie":false,"createMovie":false,"deleteMovie":false,"updateMovie":false}},{"id":"6371463692356e3cf797215d","permissions":{"viewSubscription":true,"createSubscription":true,"deleteSubscription":true,"updateSubscription":true,"viewMovie":false,"createMovie":false,"deleteMovie":false,"updateMovie":false}}]}
+{
+    "permissions": [
+        {
+            "id": "637143feb9130b998033a4e1",
+            "permissions": {
+                "createSubscription": false,
+                "deleteSubscription": false,
+                "updateSubscription": false,
+                "viewMovie": false,
+                "createMovie": false,
+                "deleteMovie": false,
+                "updateMovie": false,
+                "userManagement": true
+            }
+        },
+        {
+            "id": "63728fed5842eee719c7ce25",
+            "permissions": {
+                "createSubscription": false,
+                "deleteSubscription": false,
+                "updateSubscription": false,
+                "viewMovie": false,
+                "createMovie": false,
+                "deleteMovie": false,
+                "updateMovie": false
+            }
+        }
+    ]
+}

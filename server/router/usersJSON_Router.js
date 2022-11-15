@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-const usersBLL = require('../BLL/usersJSON_BLL');
+const usersBLL = require('../BLL/usersBLL');
 
 // GET
 // Get all users
