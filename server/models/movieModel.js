@@ -9,7 +9,7 @@ const MoveSchema = new mongoose.Schema(
             required: [true, 'Please add name']
         },
         genres: {
-            type: [],
+            type: [String],
             require: [true, "Please add genres"]
         },
 

@@ -63,11 +63,12 @@ const updateMovie = asyncHandler(async (req, res) => {
     const movie = await Movie.findById(req.params.id)
     if (!movie) {
         res.status(400)
-        throw new Error('Movie not found')
+        throw new Error('Movie id not found')
     }
 
     const updateMovie = await Movie.findByIdAndUpdate(req.params.id, req.body)
     res.status(200).json(updateMovie);
+    
 });
 
 // @desc    Delete movie

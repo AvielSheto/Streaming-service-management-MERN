@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const subscriptionSchema = new mongoose.Schema(
     {
         membersID: String,
-        movies: [],
+        movies: [Object],
     },
     {versionKey: false}
 )
