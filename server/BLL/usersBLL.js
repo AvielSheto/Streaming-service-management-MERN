@@ -13,7 +13,7 @@ const getUser = async (id) => {
     return user;
 }
 
-// Create
+// Create user
 const createUser = async (obj) => {
     const users = await getUsers();
     users.push(obj);
@@ -22,4 +22,15 @@ const createUser = async (obj) => {
     return result;
 }
 
-module.exports = { getUsers, getUser, createUser }
+// Delete user
+const deleteUser = async (id) => {
+    const { users } = await usersFile.setUser(data);
+    const index = users.findIndex((user) => user.id === +id)
+    if (index !== -1) {
+        users.splice(index, 1);
+        return 'Deleted!'
+    }
+    return "Users wasn't found"
+}
+
+module.exports = { getUsers, getUser, createUser, deleteUser }

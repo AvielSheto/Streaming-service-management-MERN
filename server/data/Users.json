@@ -1,18 +1,1 @@
-{
-    "users": [
-        {
-            "id": "637143feb9130b998033a4e1",
-            "firstName": "Aviel",
-            "lastName": "Sheto",
-            "createdDate": "29-9-2022",
-            "sessionTimeOut": 80
-        },
-        {
-            "id": "63728fed5842eee719c7ce25",
-            "firstName": "Roni",
-            "lastName": "Bensimon",
-            "createdDate": "2022-11-14T18:58:53.185Z",
-            "sessionTimeOut": 55
-        }
-    ]
-}
+{"users":[{"id":"637143feb9130b998033a4e1","firstName":"Aviel","lastName":"Sheto","createdDate":"29-9-2022","sessionTimeOut":80},{"id":"63728fed5842eee719c7ce25","firstName":"Roni","lastName":"Bensimon","createdDate":"2022-11-14T18:58:53.185Z","sessionTimeOut":55},{"id":"6375246d4cc581b75d6ea753","firstName":"Amir","lastName":"Nagat","createdDate":"2022-11-16T17:57:01.631Z","sessionTimeOut":56}]}
