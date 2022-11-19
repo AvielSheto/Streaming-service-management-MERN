@@ -23,16 +23,26 @@ router.get('/:id', async (req, res) => {
 })
 
 // POST
-router.post('/', async (req,res)=>{
+router.post('/', async (req, res) => {
     try {
         const permission = req.body;
         const status = await permissionsBLL.createPermission(permission);
         res.status(201).json(status);
     } catch (e) {
-        res.status(500).json(e)        
+        res.status(500).json(e)
     }
 })
 
+// PUT
+router.put('/:id', async (req, res) => {
+    try {
+        const permission = req.body;
+        const status = await permissionsBLL.updatePermission(permission)
+        res.status(201).json(status)
+    } catch (e) {
+        res.status(500).json(e)
+    }
+})
 
 
 module.exports = router;

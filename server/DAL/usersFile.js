@@ -12,12 +12,4 @@ const setUser = async (obj) => {
     return 'Done'
 };
 
-// Delete user
-// const deleteUser = async (id)=>{
-//     await jsonfile.writeFile(file, obj);
-//     return 'Done'
-// }
-
-
-
 module.exports = { getUsers, setUser };

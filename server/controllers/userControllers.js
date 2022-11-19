@@ -61,7 +61,7 @@ const createUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id)
         })
     } else {
-        res.status(400)
+        res.status(400);
         throw new Error('INvalid user data')
     }
 })
@@ -70,8 +70,8 @@ const createUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-    const { username, password } = req.body
-    const user = await User.findOne({ username })
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
     if (user && (await bcrypt.compare(password, user.password))) {
         res.json({
             _id: user.id,
@@ -91,6 +91,14 @@ const getMe = asyncHandler(async (req, res) => {
     res.status(200).json(req.user)
 })
 
+// @desc    Get users data
+// @route   GET /api/users
+// @access  Public
+const getUsers = asyncHandler(async (req, res) => {
+    const users = await User.find({})
+    res.status(200).json(users)
+})
+
 // @desc    Get user data
 // @route   GET /api/user
 // @access  Public
@@ -100,15 +108,21 @@ const getUser = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('User not found')
     }
-    res.status(200).json(user)
+    res.status(200).json(user);
 })
 
-// @desc    Get users data
-// @route   GET /api/users
+// @desc    Update user
+// @route   Put /api/users
 // @access  Public
-const getUsers = asyncHandler(async (req, res) => {
-    const users = await User.find({})
-    res.status(200).json(users)
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        res.status(400)
+        throw new Error('User not found')
+    }
+    user.username = req.body.userName;
+    const updated = await User.findByIdAndUpdate(req.params.id, user);
+    res.status(200).json(updated);
 })
 
 // Generate jwt 
@@ -118,4 +132,4 @@ const generateToken = (id) => {
     })
 }
 
-module.exports = { registerUser, loginUser, getMe, getUsers, getUser, createUser }
+module.exports = { registerUser, loginUser, getMe, getUsers, getUser, createUser, updateUser }

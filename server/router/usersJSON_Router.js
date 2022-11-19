@@ -25,14 +25,25 @@ router.get('/:id', async (req, res) => {
 
 // POST
 // Create user
-router.post('/', async (req, res)=>{
+router.post('/', async (req, res) => {
     try {
         const user = req.body;
         const status = await usersBLL.createUser(user)
         res.status(201).json(status)
-        
     } catch (e) {
-        res.status(500).json(e)        
+        res.status(500).json(e)
+    }
+})
+
+// PUT
+// Update user 
+router.put('/:id', async (req, res) => {
+    try {
+        const user = req.body;
+        const status = await usersBLL.updateUser(user)
+        res.status(201).json(status)
+    } catch (e) {
+        res.status(500).json(e)
     }
 })
 

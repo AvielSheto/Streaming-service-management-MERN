@@ -7,9 +7,9 @@ const getAllPermissions = () => {
 };
 
 // Create permissions 
-const createPermission = async (obj)=>{
+const setPermission = async (obj)=>{
     await jsonfile.writeFile(file,obj)
     return 'Done'
 }
 
-module.exports = { getAllPermissions, createPermission };
+module.exports = { getAllPermissions, setPermission };
