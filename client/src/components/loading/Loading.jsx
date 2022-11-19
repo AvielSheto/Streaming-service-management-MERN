@@ -14,7 +14,7 @@ export default function Loading() {
                     flexDirection: 'column',
                     alignItems: 'center',
                 }}>
-                <div class="loading"> </div>
+                <div className='loading'> </div>
             </Box>
         </Container>
     )

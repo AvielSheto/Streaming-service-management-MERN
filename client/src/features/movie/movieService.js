@@ -2,14 +2,13 @@ import axios from 'axios'
 const API_URL = 'http://localhost:5000/api/movies/'
 
 // Get movies
-const getMovies = async ()=>{
+const getMovies = async () => {
+    // const config = {
+    //     headers: {
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    // }
     const response = await axios.get(API_URL)
-    return response.data
-}
-
-// Get Movie
-const getMovie = async (movieId)=>{
-    const response = await axios.get(API_URL + movieId);
     return response.data
 }
 
@@ -20,24 +19,21 @@ const createMovie = async (movieData) => {
 }
 
 // Update movie 
-const updateMovie = async (id, obj)=>{
+const updateMovie = async (id, obj) => {
+    console.log(obj);
+
     const response = await axios.put(API_URL + id, obj);
     return response.data;
 }
 
 // Delete Movie
-const deleteMovie = async (movieId)=>{
+const deleteMovie = async (movieId) => {
     const response = await axios.delete(API_URL + movieId);
     return response.data
 }
 
-// const updateMovie = async (movieId)=>{
-//     const 
-// }
-
 const movieService = {
     getMovies,
-    getMovie,
     createMovie,
     updateMovie,
     deleteMovie,

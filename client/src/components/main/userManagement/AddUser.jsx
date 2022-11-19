@@ -54,7 +54,7 @@ function AddUser() {
     }
 
     if (isSuccess) {
-      navigate('/main/usermangement/users')
+      navigate('/main/usermanagement/managementnav/users')
     }
 
     dispatch(reset())
@@ -79,7 +79,7 @@ function AddUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const sessionTime = session.$m
+    const sessionTimeOut = session.$m
     const createdDate = new Date();
     const data = await dispatch(createUser({ username: userName }));
     const id = data.payload._id
@@ -89,14 +89,13 @@ function AddUser() {
       firstName,
       lastName,
       createdDate,
-      sessionTime
+      sessionTimeOut
     }
 
     if (id) {
       setUser(userData)
       createPermissions({ id: id, permissions: state })
     }
-
   }
 
   const createPermissions = async (obj) => {
@@ -168,7 +167,7 @@ function AddUser() {
                   mask="__"
                   label="Session time out (Minutes)"
                   value={session}
-                  name="sessionTime"
+                  name="sessionTimeOut"
                   onChange={(newValue) => {
                     setSession(newValue);
                   }}

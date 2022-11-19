@@ -35,16 +35,16 @@ function Login() {
     )
 
     useEffect(() => {
-        if (isError) {
-            toast.error(message)
-        }
+        // if (isError) {
+        //     toast.error(message)
+        // }
 
         if (isSuccess || user) {
             navigate('/main/movies/allmovies')
         }
 
         dispatch(reset())
-    }, [user, isError, isSuccess, message, navigate, dispatch])
+    }, [user, isError, isSuccess, message, dispatch])
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -67,7 +67,7 @@ function Login() {
     }
 
     return (
-        <div className='logIn pt-4'>
+        <div className='logIn pt-sm-5'>
             <Container className='form p-5' maxWidth="xs">
                 <Box
                     sx={{

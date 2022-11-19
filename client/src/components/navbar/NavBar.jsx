@@ -23,23 +23,23 @@ function Header() {
 
   return (
     <div>
-      <Navbar className='p-0' collapseOnSelect expand="md" bg="black" variant="dark">
+      <Navbar collapseOnSelect expand="md" bg="black" variant="dark">
         <Container>
-          <Navbar.Brand className='border-0' href="#home">
+          <Navbar.Brand className='border-0' >
             <Link className='text-decoration-none display-6 text-danger' to='/'>NEXT</Link>
           </Navbar.Brand>
           <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+              <Nav.Link >Features</Nav.Link>
+              <NavDropdown title="Dropdown">
+                <NavDropdown.Item >Action</NavDropdown.Item>
+                <NavDropdown.Item >
                   Another action
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Item >Something</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
+                <NavDropdown.Item >
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>

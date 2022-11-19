@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getMovie, updateMovie, reset } from '../../../features/movie/movieSlice'
+import { updateMovie } from '../../../features/movie/movieSlice'
+import { getMovie, reset } from '../../../features/movieEdit/movieEditSlice'
 import { toast } from 'react-toastify'
 import Loading from '../../loading/Loading'
 // mui
@@ -16,7 +17,6 @@ function EditMovie() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams()
-    // const [img, setImg ] = useState('')
     const [formData, setFormData] = useState({
         name: '',
         genres: [],
@@ -25,25 +25,45 @@ function EditMovie() {
     })
     const { name, genres, image, premiered } = formData;
 
-    const { movies, isLoading, isError, isSuccess, message } = useSelector(
+    const { isLoading, isError, message, isSuccess } = useSelector(
         (state) => state.movie
     )
 
+    const { movieEdit, isMovieEditLoading, isMovieEditError, isMovieEditSuccess, editMessage } = useSelector(
+        (state) => state.movieEdit
+    )
+
+    // Get movie id to edit
     useEffect(() => {
         dispatch(getMovie(id))
+
+        if (isMovieEditError) {
+            toast.error(editMessage)
+        }
+
+        if (isMovieEditSuccess) {
+            setFormData(movieEdit)
+        }
+
+    }, [isMovieEditError, editMessage, isMovieEditSuccess, dispatch])
+
+    // Update movie in movies
+    useEffect(() => {
+        console.log("movie Edit run");
         if (isError) {
             toast.error(message)
         }
 
-        // if (isSuccess) {
-        //     // navigate('/main/movies/allmovies')
-        //     console.log(isSuccess);
-        // }
-
-        if (movies.length === 1) {
-            setFormData(...movies)
+        if (isSuccess) {
+            navigate('/main/movies/allmovies')
         }
-    }, [isError, isSuccess, message, navigate, dispatch])
+
+        return () => {
+            dispatch(reset())
+        }
+
+    }, [isError, isError, message, isSuccess, navigate])
+
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -60,10 +80,7 @@ function EditMovie() {
             image,
             premiered
         }
-        console.log(movieData);
-
-        dispatch(updateMovie(id , movieData))
-        console.log(movies);
+        dispatch(updateMovie({ id: id, obj: movieData }))
     }
 
     const addGenres = (value) => {
@@ -90,9 +107,9 @@ function EditMovie() {
         { title: 'Mystery' },
     ];
 
-    // if (isLoading) {
-    //     return <Loading />
-    // }
+    if (isMovieEditLoading || isLoading) {
+        return <Loading />
+    }
 
     return (
         <div>

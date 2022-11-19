@@ -39,7 +39,7 @@ function Register() {
     }
 
     if (isSuccess || user) {
-      navigate('/main')
+      navigate('/main/movies/allmovies')
     }
 
     dispatch(reset())
@@ -71,7 +71,7 @@ function Register() {
   }
   
   return (
-    <div className='register pt-4'>
+    <div className='register pt-5'>
       <Container className='form p-5' maxWidth="xs">
         <Box
           sx={{

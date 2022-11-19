@@ -14,35 +14,34 @@ function Users() {
   const [permissions, setPermissions] = useState();
   const navigate = useNavigate();
 
-  const getAllUsers = async () => {
-    const { data } = await axios.get('http://localhost:5000/users/');
+  const getUsers = async () => {
+    const { data } = await axios.get('http://localhost:5000/users/')
     setUsers(data);
   }
 
-  const getPermission = async () => {
+  const getPermissions = async () => {
     const { data } = await axios.get('http://localhost:5000/permissions/');
     setPermissions(data);
   }
 
   const handleDelete = async (id) => {
-    // const {data} = await axios.post('');
+    const { data } = await axios.post(`http://localhost:5000/api/movies/${id}`);
   }
 
   const handleEdit = (id) => {
-    navigate(`/main/editmovie/${id}`);
+    navigate(`/main/usermanagement/edituser/${id}`);
   }
 
   useEffect(() => {
-    getAllUsers();
-    getPermission();
+    getUsers();
+    getPermissions();
   }, []);
 
-  console.log(permissions[0].permissions);
 
   return (
     <div className='d-flex justify-content-center'>
       <div className='col-10 '>
-        <h1>users</h1>
+        <h1 className='ps-2'>Users</h1>
         <Table striped bordered hover size="md">
           <thead>
             <tr>
@@ -63,9 +62,20 @@ function Users() {
                   <td>
                     <pre>
                       <code>
-                        {JSON.stringify(permissions?.filter((per) => per.id === user.id)[0].permissions, null, 2)}
+                        {(permissions?.filter((per) => per.id === user.id).permissions?.map((item) => {
+                          return (
+                            <>
+                              <h1>dfd</h1>
+                            </>
+                          )
+                          // return(
+                          //   // <h1>dfd</h1>
+                          // )
+                        }))}
                       </code>
                     </pre>
+
+
                   </td>
                   <td className='text-center'>
                     <DropdownButton title={<SettingsOutlinedIcon />} className='float-end m-0'>
