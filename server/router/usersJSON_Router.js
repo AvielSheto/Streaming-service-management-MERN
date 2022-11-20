@@ -6,10 +6,10 @@ const usersBLL = require('../BLL/usersBLL');
 // Get all users
 router.get('/', async (req, res) => {
     try {
-        const users = await usersBLL.getUsers()
-        res.status(200).json(users)
+        const users = await usersBLL.getUsers();
+        res.status(200).json(users);
     } catch (e) {
-        res.status(500).json(e)
+        res.status(500).json(e);
     }
 })
 
@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
         const user = await usersBLL.getUser(req.params.id);
         res.status(200).json(user);
     } catch (e) {
-        res.status(500).json(e)
+        res.status(500).json(e);
     }
 })
 
@@ -28,10 +28,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const user = req.body;
-        const status = await usersBLL.createUser(user)
-        res.status(201).json(status)
+        const status = await usersBLL.createUser(user);
+        res.status(201).json(status);
     } catch (e) {
-        res.status(500).json(e)
+        res.status(500).json(e);
     }
 })
 
@@ -40,10 +40,21 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const user = req.body;
-        const status = await usersBLL.updateUser(user)
-        res.status(201).json(status)
+        const status = await usersBLL.updateUser(user);
+        res.status(201).json(status);
     } catch (e) {
-        res.status(500).json(e)
+        res.status(500).json(e);
+    }
+})
+
+// DELETE
+// Delete user
+router.delete('/:id', async (req, res)=>{
+    try {
+        const status = await usersBLL.deleteUser(req.params.id);
+        res.status(200).json(status)
+    } catch (e) {
+        res.status(500).json(e);
     }
 })
 

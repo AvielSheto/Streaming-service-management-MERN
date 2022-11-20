@@ -1,32 +1,32 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
-const asyncHandler = require('express-async-handler')
-const User = require('../models/userModel')
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const asyncHandler = require('express-async-handler');
+const User = require('../models/userModel');
 
 // @desc    Register new user
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, password } = req.body
+    const { username, password } = req.body;
     if (!username || !password) {
-        res.status(400)
+        res.status(400);
         throw new Error('Please add all field');
     }
 
     // check if user exists
-    const user = await User.findOne({ username })
+    const user = await User.findOne({ username });
     if (!user) {
-        res.status(400)
-        throw new Error('User is not exists')
+        res.status(400);
+        throw new Error('User is not exists');
     }
 
     // Hash password
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     // Create User 
-    const updateUser = await User.findByIdAndUpdate(user._id, { user, password: hashedPassword })
-    res.status(200).json(updateUser)
+    const updateUser = await User.findByIdAndUpdate(user._id, { user, password: hashedPassword });
+    res.status(200).json(updateUser);
 
     if (user) {
         res.status(201).json({
@@ -35,8 +35,8 @@ const registerUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id)
         })
     } else {
-        res.status(400)
-        throw new Error('INvalid user data')
+        res.status(400);
+        throw new Error('INvalid user data');
     }
 })
 
@@ -45,10 +45,10 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access  Public
 const createUser = asyncHandler(async (req, res) => {
     const { username } = req.body
-    const userExists = await User.findOne({ username })
+    const userExists = await User.findOne({ username });
     if (userExists) {
-        res.status(400)
-        throw new Error('User is already exists')
+        res.status(400);
+        throw new Error('User is already exists');
     }
     // Create User 
     const user = await User.create({
@@ -62,7 +62,7 @@ const createUser = asyncHandler(async (req, res) => {
         })
     } else {
         res.status(400);
-        throw new Error('INvalid user data')
+        throw new Error('INvalid user data');
     }
 })
 
@@ -80,7 +80,7 @@ const loginUser = asyncHandler(async (req, res) => {
         })
     } else {
         res.status(400)
-        throw new Error('INvalid credentials')
+        throw new Error('INvalid credentials');
     }
 })
 
@@ -88,42 +88,50 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Public
 const getMe = asyncHandler(async (req, res) => {
-    res.status(200).json(req.user)
+    res.status(200).json(req.user);
 })
 
 // @desc    Get users data
 // @route   GET /api/users
 // @access  Public
 const getUsers = asyncHandler(async (req, res) => {
-    const users = await User.find({})
-    res.status(200).json(users)
+    const users = await User.find({});
+    res.status(200).json(users);
 })
 
 // @desc    Get user data
 // @route   GET /api/user
 // @access  Public
 const getUser = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.params.id);
     if (!user) {
-        res.status(400)
-        throw new Error('User not found')
+        res.status(400);
+        throw new Error('User not found');
     }
     res.status(200).json(user);
 })
 
 // @desc    Update user
-// @route   Put /api/users
+// @route   PUT /api/users
 // @access  Public
 const updateUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (!user) {
-        res.status(400)
-        throw new Error('User not found')
+        res.status(400);
+        throw new Error('User not found');
     }
     user.username = req.body.userName;
     const updated = await User.findByIdAndUpdate(req.params.id, user);
     res.status(200).json(updated);
-})
+});
+
+// @desc    Delete user
+// @route   DELETE /api/users
+// @access  Public
+const deleteUser = asyncHandler(async(req, res)=>{
+    const user = await User.findByIdAndDelete(req.params.id);
+    res.status(200).json(user);
+});
 
 // Generate jwt 
 const generateToken = (id) => {
@@ -132,4 +140,4 @@ const generateToken = (id) => {
     })
 }
 
-module.exports = { registerUser, loginUser, getMe, getUsers, getUser, createUser, updateUser }
+module.exports = { registerUser, loginUser, getMe, getUsers, getUser, createUser, updateUser, deleteUser }

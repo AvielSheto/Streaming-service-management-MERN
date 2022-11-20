@@ -44,5 +44,15 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+// DELETE
+// Delete user
+router.delete('/:id', async (req, res)=>{
+    try {
+        const status = await permissionsBLL.deletePermission(req.params.id);
+        res.status(200).json(status)
+    } catch (e) {
+        res.status(500).json(e);
+    }
+})
 
 module.exports = router;
