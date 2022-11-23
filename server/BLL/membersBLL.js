@@ -2,7 +2,6 @@ const membersWS = require('../DAL/membersWS');
 const Member = require('../models/memberModel')
 
 const getMembers = async () => {
-
     let { data: members } = await membersWS.getMembers();
     Member.collection.drop();
     members = members.map((member) => {
@@ -10,7 +9,7 @@ const getMembers = async () => {
             id: member.id,
             name: member.username,
             email: member.email,
-            city: member.city
+            city: member.address.city
         });
         user.save();
     });
@@ -18,4 +17,3 @@ const getMembers = async () => {
 getMembers()
 
 module.exports = { getMembers };
-

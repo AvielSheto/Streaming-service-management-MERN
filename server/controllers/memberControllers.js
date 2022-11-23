@@ -1,11 +1,91 @@
-const asyncHandler = require('express-async-handler')
-const Member = require('../models/memberModel')
+const asyncHandler = require('express-async-handler');
+const Member = require('../models/memberModel');
 
-// const { name, genres, image, premiered } = req.body
-
+// @desc    Get all Members
+// @route   GET /api/members
+// @access  Public
 const getMembers = asyncHandler(async (req, res) => {
-    const members = await Member.find({})
-    res.status(200).json(members)
+    const members = await Member.find({});
+    res.status(200).json(members);
+});
+
+// @desc    Get member
+// @route    /api/members/id
+// @access  Public
+const getMember = asyncHandler(async (req, res) => {
+    const member = await Member.findById(req.params.id);
+    console.log(req.params.id);
+    if (!member) {
+        res.status(400);
+        throw new Error('Member not found');
+    }
+    res.status(200).json(member);
 })
 
-module.exports = { getMembers }
+// @desc    Create member
+// @route   POSt /api/Members
+// @access  Public
+const createMember = asyncHandler(async (req, res) => {
+    const { name, email, city } = req.body;
+    if (!name || !email || !city) {
+        res.status(400);
+        console.log(name);
+        throw new Error('Please add all field');
+    }
+
+    // Check if member exists
+    const memberExists = await Member.findOne({ email });
+    if (memberExists) {
+        res.status(400);
+        throw new Error('Email is already in used');
+    }
+    // Create member
+    const member = await Member.create({
+        name,
+        email,
+        city,
+    });
+    if (member) {
+        res.status(201).json({
+            _id: member.id,
+            name: member.name,
+            name: member.email,
+            name: member.city,
+        })
+    } else {
+        res.status(400);
+        throw new Error('Invalid member data');
+    }
+});
+
+// @desc    Update member
+// @route   PUT /api/members/:id
+// @access  Public
+const updateMember = asyncHandler(async (req, res) => {
+    const member = await Member.findById(req.params.id);
+    if (!member) {
+        res.status(400);
+        throw new Error('Member id not found');
+    }
+
+    const updateMember = await Movie.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json(updateMember);
+
+});
+
+// @desc    Delete member
+// @route   Delete /api/members/:id
+// @access  Public
+const deleteMember = asyncHandler(async (req, res) => {
+    const member = await Member.findById(req.params.id);
+
+    if (!member) {
+        res.status(400);
+        throw new Error('Member not fond');
+    }
+
+    await member.remove();
+    res.status(200).json({ id: req.params.id });
+})
+
+module.exports = { getMembers, getMember, createMember, updateMember, deleteMember }
