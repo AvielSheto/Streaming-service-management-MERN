@@ -10,7 +10,7 @@ const getMembers = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get member
-// @route    /api/members/id
+// @route   GET /api/members/id
 // @access  Public
 const getMember = asyncHandler(async (req, res) => {
     const member = await Member.findById(req.params.id);
@@ -23,7 +23,7 @@ const getMember = asyncHandler(async (req, res) => {
 })
 
 // @desc    Create member
-// @route   POSt /api/Members
+// @route   POST /api/Members
 // @access  Public
 const createMember = asyncHandler(async (req, res) => {
     const { name, email, city } = req.body;
@@ -74,7 +74,7 @@ const updateMember = asyncHandler(async (req, res) => {
 });
 
 // @desc    Delete member
-// @route   Delete /api/members/:id
+// @route   DELETE /api/members/:id
 // @access  Public
 const deleteMember = asyncHandler(async (req, res) => {
     const member = await Member.findById(req.params.id);
