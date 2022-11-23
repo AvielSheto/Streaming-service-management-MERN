@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { createUser, reset } from '../../../features/auth/authSlice';
+import { createUser, login, reset } from '../../../features/auth/authSlice';
 import Loading from '../../loading/Loading';
 
 // mui
@@ -27,7 +27,7 @@ function AddUser() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [session, setSession] = useState(dayjs('2022-04-07'));
+  const [session, setSession] = useState();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -44,7 +44,7 @@ function AddUser() {
     updateMovie: false,
   })
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   )
 
@@ -79,7 +79,6 @@ function AddUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const sessionTimeOut = session.$m
     const createdDate = new Date();
     const data = await dispatch(createUser({ username: userName }));
     const id = data.payload._id
@@ -89,7 +88,7 @@ function AddUser() {
       firstName,
       lastName,
       createdDate,
-      sessionTimeOut
+      sessionTimeOut: session
     }
 
     if (id) {
@@ -100,12 +99,10 @@ function AddUser() {
 
   const createPermissions = async (obj) => {
     const { data } = await axios.post('http://localhost:5000/permissions/', obj)
-    console.log(data);
   }
 
   const setUser = async (obj) => {
     const { data } = await axios.post('http://localhost:5000/users/', obj)
-    console.log(data);
   }
 
   if (isLoading) {
@@ -158,23 +155,18 @@ function AddUser() {
               value={userName}
               autoComplete="userName"
             />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <Stack className='mt-3'>
-                <TimePicker
-                  ampmInClock
-                  views={["minutes"]}
-                  inputFormat="mm"
-                  mask="__"
-                  label="Session time out (Minutes)"
-                  value={session}
-                  name="sessionTimeOut"
-                  onChange={(newValue) => {
-                    setSession(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </Stack>
-            </LocalizationProvider>
+
+            <TextField
+              className='col-12 mt-3'
+              label="Session time"
+              type="number"
+              onChange={(e) => { setSession(e.target.value) }}
+              value={session}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            
             <h1 className='display-6 fs-2 mt-1'>Permissions</h1>
             <div>
               <FormControl component="fieldset" variant="standard">

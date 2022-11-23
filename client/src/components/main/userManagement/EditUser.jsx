@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../loading/Loading';
-import { getUser, reset as editReset } from '../../../features/user/userSlice';
-import { updateUser, reset } from '../../../features/editUser/editUserSlice';
+// import { getUser, reset as editReset } from '../../../features/user/userSlice';
+import { getUser, reset  } from '../../../features/editUser/editUserSlice';
+import { updateUser } from '../../../features/user/userSlice';
 
 // mui
 import Button from '@mui/material/Button';
@@ -38,52 +39,46 @@ function EditUser() {
         createMovie: false,
         deleteMovie: false,
         updateMovie: false,
-    })
+    });
+
     const { firstName, lastName, userName, sessionTimeOut, createdDate } = formData;
 
-    const { user, isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.user
-    )
-
-    const { isEditError, isEditSuccess, isEditLoading, editMessage } = useSelector(
+    // Get user data 
+    const { userEdit, isEditError, isEditSuccess, isEditLoading, editMessage } = useSelector(
         (state) => state.userEdit
     )
-
     useEffect(() => {
         dispatch(getUser(id))
-
-        if (isError) {
-            toast.error(message)
-        }
-
-        if (isSuccess) {
-            setState(user?.permissions)
-            setFormData(user)
-        }
-
-        return () => {
-            dispatch(reset())
-        }
-
-
-    }, [isError, isSuccess, message]);
-
-
-    // Get user data 
-    useEffect(() => {
         if (isEditError) {
             toast.error(editMessage)
         }
 
         if (isEditSuccess) {
+            setFormData(userEdit)
+            if (userEdit?.permissions) {
+                setState(userEdit?.permissions)
+            }
+        }
+    }, [isEditError, isEditSuccess, editMessage, dispatch]);
+    
+    // Update user
+    const { isLoading, isError, isSuccess, message } = useSelector(
+        (state) => state.user
+    )
+    useEffect(() => {
+        if (isError) {
+            toast.error(message)
+        }
+
+        if (isSuccess) {
             navigate('/main/usermanagement/managementnav/users')
         }
-
+        
         return () => {
-            dispatch(editReset())
+            dispatch(reset())
         }
 
-    }, [isEditError, isEditSuccess, isEditLoading, editMessage, navigate, dispatch]);
+    }, [isError, isSuccess, message, dispatch, navigate]);
 
 
     const handleChange = (event) => {
@@ -112,7 +107,6 @@ function EditUser() {
             permissions: state
         }
         dispatch(updateUser(userData))
-        console.log(userData.permissions);
     }
 
     if (isLoading || isEditLoading) {

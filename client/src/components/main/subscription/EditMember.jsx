@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { getMember } from '../../../features/memberEdit/memberEditSlice';
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -11,9 +12,10 @@ import Container from '@mui/material/Container';
 import { createMember, reset } from '../../../features/member/memberSlice';
 import Loading from '../../loading/Loading';
 
-function AddMember() {
+function EditMember() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,11 +24,15 @@ function AddMember() {
 
   const { name, email, city, } = formData;
 
-  const { isLoading, isError, isSuccess, message } = useSelector(
+  const { memberEdit, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.member
   )
+  console.log(id);
 
   useEffect(() => {
+    dispatch(getMember(id));
+    console.log(memberEdit);
+
     if (isError) {
       toast.error(message)
     }
@@ -72,7 +78,7 @@ function AddMember() {
             flexDirection: 'column',
             alignItems: 'center',
           }}>
-          <h1 className='display-3'>Add Member</h1>
+          <h1 className='display-3'>Edit Member</h1>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -118,4 +124,4 @@ function AddMember() {
   )
 }
 
-export default AddMember
+export default EditMember

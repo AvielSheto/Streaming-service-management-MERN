@@ -20,8 +20,6 @@ const createMovie = async (movieData) => {
 
 // Update movie 
 const updateMovie = async (id, obj) => {
-    console.log(obj);
-
     const response = await axios.put(API_URL + id, obj);
     return response.data;
 }

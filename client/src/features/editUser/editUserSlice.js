@@ -2,16 +2,17 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import editUserService from './editUserService';
 
 const initialState = {
+    userEdit: {},
     isEditError: false,
     isEditSuccess: false,
     isEditLoading: false,
     editMessage: '',
 }
 
-// Update user
-export const updateUser = createAsyncThunk('user/update', async (obj, thunkAPI) => {
+// Get user 
+export const getUser = createAsyncThunk('user/getUser', async (id, thunkAPI) => {
     try {
-        return editUserService.updateUser(obj);
+        return await editUserService.getUser(id);
     } catch (error) {
         const message =
             (error.response &&
@@ -21,13 +22,14 @@ export const updateUser = createAsyncThunk('user/update', async (obj, thunkAPI) 
             error.toString();
         return thunkAPI.rejectWithValue(message);
     }
-})
+});
 
 export const editUserSlice = createSlice({
     name: 'userEdit',
     initialState,
     reducers: {
         reset: (state) => {
+            state.userEdit = {};
             state.isEditLoading = false;
             state.isEditSuccess = false;
             state.isEditError = false;
@@ -36,17 +38,16 @@ export const editUserSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            // Update movie
-            .addCase(updateUser.pending, (state) => {
+            // Get user
+            .addCase(getUser.pending, (state) => {
                 state.isEditLoading = true;
             })
-            .addCase(updateUser.fulfilled, (state, action) => {
+            .addCase(getUser.fulfilled, (state, action) => {
                 state.isEditLoading = false;
                 state.isEditSuccess = true;
-                state.editUser = action.payload;
-
+                state.userEdit = (action.payload);
             })
-            .addCase(updateUser.rejected, (state, action) => {
+            .addCase(getUser.rejected, (state, action) => {
                 state.isEditLoading = false;
                 state.isEditError = true;
                 state.editMessage = action.payload;

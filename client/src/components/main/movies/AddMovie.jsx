@@ -1,10 +1,9 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { createMovie, reset } from '../../../features/movie/movieSlice'
-import { toast } from 'react-toastify'
-import Loading from '../../loading/Loading'
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createMovie, reset } from '../../../features/movie/movieSlice';
+import { toast } from 'react-toastify';
+import Loading from '../../loading/Loading';
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -21,8 +20,8 @@ function AddMovie() {
     genres: [],
     image: '',
     premiered: ''
-  })
-  const { name, genres, image, premiered } = formData
+  });
+  const { name, genres, image, premiered } = formData;
 
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.movie
@@ -30,15 +29,15 @@ function AddMovie() {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message);
     }
 
     if (isSuccess) {
-      navigate('/main/movies/allmovies')
+      navigate('/main/movies/allmovies');
     }
 
     dispatch(reset())
-  }, [ isError, isSuccess, message, navigate, dispatch])
+  }, [ isError, isSuccess, message, navigate, dispatch]);
 
 
   const onChange = (e) => {
@@ -49,14 +48,14 @@ function AddMovie() {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const movieData = {
       name,
       genres,
       image,
       premiered
     }
-    dispatch(createMovie(movieData))
+    dispatch(createMovie(movieData));
   }
 
   const addGenres = (value) => {

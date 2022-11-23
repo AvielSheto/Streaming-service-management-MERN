@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Movie from './Movie';
 import Loading from '../../loading/Loading';
 import "./_movies.scss";
-import { useDispatch, useSelector } from 'react-redux';
 import { getMovies, reset } from '../../../features/movie/movieSlice';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 // Mui 
 import Paper from '@mui/material/Paper';
@@ -24,17 +24,21 @@ function AllMovies() {
   )
 
   const restSearch = (obj) => {
-    setSearch(obj)
+    setSearch(obj);
   }
 
   useEffect(() => {
-    dispatch(getMovies())
+    dispatch(getMovies());
 
     if (isError) {
-      toast.error(message)
+      toast.error(message);
+    }
+    
+    return () => {
+      dispatch(reset())
     }
 
-  }, [isError, message, navigate, dispatch])
+  }, [isError, message, navigate, dispatch]);
 
   if (isLoading) {
     return <Loading />

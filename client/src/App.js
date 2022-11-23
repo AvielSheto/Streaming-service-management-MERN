@@ -22,6 +22,7 @@ import AddMember from "./components/main/subscription/AddMember";
 import Error from "./components/Error/Error";
 import EditUser from "./components/main/userManagement/EditUser";
 import ManagementNav from "./components/main/userManagement/ManagementNav";
+import EditMember from "./components/main/subscription/EditMember";
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
               <Route path="members" element={<Members />} />
               <Route path="addmember" element={<AddMember />} />
             </Route>
+            <Route path="editmember/:id" element={<EditMember />} />
             <Route path="usermanagement" element={<ManageUsers />} >
               <Route path="managementnav" element={<ManagementNav />} >
                 <Route path="users" element={<Users />} />

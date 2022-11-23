@@ -1,19 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import movieService from "./movieService";
+import memberService from "./memberService";
 
 const initialState = {
-    movies: [],
+    members: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: '',
 }
 
-// Get movies
-export const getMovies = createAsyncThunk('movie/getAll', async (_, thunkAPI) => {
+// Get members
+export const getMembers = createAsyncThunk('member/getAll', async (_, thunkAPI) => {
     try {
-        // const token = thunkAPI.getState().auth.user.token
-        return await movieService.getMovies();
+        return await memberService.getMembers();
     } catch (error) {
         const message =
             (error.response &&
@@ -25,11 +24,11 @@ export const getMovies = createAsyncThunk('movie/getAll', async (_, thunkAPI) =>
     }
 })
 
-// Create new movie
-export const createMovie = createAsyncThunk('movie/create', async (movieData, thunkAPI) => {
+// Create new member
+export const createMember = createAsyncThunk('member/create', async (member, thunkAPI) => {
     try {
         // const token = thunkAPI.getState().auth.user.token
-        return await movieService.createMovie(movieData)
+        return await memberService.createMember(member)
     } catch (error) {
         const message =
             (error.response &&
@@ -41,112 +40,112 @@ export const createMovie = createAsyncThunk('movie/create', async (movieData, th
     }
 })
 
-// Update movie
-export const updateMovie = createAsyncThunk('movie/update', async (movieData, thunkAPI) => {
+// Update member
+export const updateMember = createAsyncThunk('member/update', async (memberData, thunkAPI) => {
     try {
-        const id = movieData.id;
-        const obj = movieData.obj;
-        return await movieService.updateMovie(id, obj);
+        const id = memberData.id;
+        const obj = memberData.obj;
+        return await memberService.updateMember(id, obj)
     } catch (error) {
         const message =
             (error.response &&
                 error.response.data &&
                 error.response.data.message) ||
             error.message ||
-            error.toString();
-        return thunkAPI.rejectWithValue(message);
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
     }
 });
 
-// Delete Movie
-export const deleteMovie = createAsyncThunk('movie/delete', async (id, thunkAPI) => {
+// Delete member
+export const deleteMember = createAsyncThunk('member/delete', async (id, thunkAPI) => {
     try {
-        return await movieService.deleteMovie(id);
+        return await memberService.deleteMember(id)
     } catch (error) {
         const message =
             (error.response &&
                 error.response.data &&
                 error.response.data.message) ||
             error.message ||
-            error.toString();
+            error.toString()
         return thunkAPI.rejectWithValue(message)
     }
-})
+});
 
-// Movie slice 
-export const movieSlice = createSlice({
-    name: 'movie',
+// Member slice 
+export const memberSlice = createSlice({
+    name: 'member',
     initialState,
     reducers: {
         reset: (state) => {
-            state.movies = []
+            state.members = []
             state.isLoading = false
             state.isSuccess = false
             state.isError = false
             state.message = ''
-          },
+        },
     },
     extraReducers: (builder) => {
         builder
-            // Get movies
-            .addCase(getMovies.pending, (state) => {
+            // Get members
+            .addCase(getMembers.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(getMovies.fulfilled, (state, action) => {
+            .addCase(getMembers.fulfilled, (state, action) => {
                 state.isLoading = false
                 // state.isSuccess = true
-                state.movies = action.payload
+                state.members = action.payload
             })
-            .addCase(getMovies.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.message = action.payload
-            })
-            
-            // Create movie
-            .addCase(createMovie.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(createMovie.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.isSuccess = true
-                state.movies.push(action.payload)
-            })
-            .addCase(createMovie.rejected, (state, action) => {
+            .addCase(getMembers.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
 
-            // Update movie
-            .addCase(updateMovie.pending, (state) => {
+            // Create member
+            .addCase(createMember.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(updateMovie.fulfilled, (state, action) => {
+            .addCase(createMember.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.movies.map((movie) => {
-                    if (movie._id === action.payload.id) {
-                        movie = action.payload
+                state.members.push(action.payload)
+            })
+            .addCase(createMember.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+
+             // Update member
+             .addCase(updateMember.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateMember.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.members.map((member) => {
+                    if (member._id === action.payload.id) {
+                        member = action.payload
                     }
                 })
             })
-            .addCase(updateMovie.rejected, (state, action) => {
+            .addCase(updateMember.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
 
-            // Delete movie
-            .addCase(deleteMovie.pending, (state) => {
+            // Delete member
+            .addCase(deleteMember.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(deleteMovie.fulfilled, (state, action) => {
+            .addCase(deleteMember.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.movies = state.movies.filter((movie) => movie._id !== action.payload.id)
+                state.members = state.members.filter((member) => member._id !== action.payload.id)
             })
-            .addCase(deleteMovie.rejected, (state, action) => {
+            .addCase(deleteMember.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
@@ -154,5 +153,5 @@ export const movieSlice = createSlice({
     }
 })
 
-export const { reset } = movieSlice.actions
-export default movieSlice.reducer
+export const { reset } = memberSlice.actions
+export default memberSlice.reducer

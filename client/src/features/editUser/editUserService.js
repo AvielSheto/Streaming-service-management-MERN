@@ -1,26 +1,31 @@
 import axios from 'axios';
-const API_URL_USERS_JSON = 'http://localhost:5000/users/'
-const API_URL_PERMISSIONS_JSON = 'http://localhost:5000/permissions/'
-const API_URL_USERS_DB = 'http://localhost:5000/api/users/'
+// const API_URL_USERS_JSON = 'http://localhost:5000/users/'
+// const API_URL_PERMISSIONS_JSON = 'http://localhost:5000/permissions/'
+// const API_URL_USERS_DB = 'http://localhost:5000/api/users/'
 
-// Update user
-const updateUser = async (obj) => {
-    const { id, firstName, lastName, userName, createdDate, sessionTimeOut, permissions } = obj;
+// Get User 
+const getUser = async (id) => {
+    // Get data from database
+    const { data: userDataDB } = await axios.get(`http://localhost:5000/api/users/${id}`);
+    const userName = userDataDB.username;
 
-    // Update user full name data
-    const { data: usersRes } = await axios.put(API_URL_USERS_JSON + obj.id, { id, firstName, lastName, userName, createdDate, sessionTimeOut });
+    // Get data from users json file 
+    const { data: jsonUserData } = await axios.get(`http://localhost:5000/users/${id}`);
+    const firstName = jsonUserData.firstName;
+    const lastName = jsonUserData.lastName;
+    const sessionTimeOut = jsonUserData.sessionTimeOut;
+    const createdDate = jsonUserData.createdDate;
 
-    // Update user permissions
-    const { data: permissionsRes } = await axios.put(API_URL_PERMISSIONS_JSON + id, { id, permissions });
+    // Get user permissions
+    const { data: userPermissions } = await axios.get(`http://localhost:5000/permissions/${id}`);
+    const permissions = userPermissions.permissions;
 
-    // Update username in DB
-    const { data: userNameRes } = await axios.put(API_URL_USERS_DB + id, { userName });
-
-    return { usersRes, permissionsRes, userNameRes };
+    return { firstName, lastName, userName, sessionTimeOut, createdDate, permissions };
 }
 
+
 const userEditService = {
-    updateUser,
+    getUser
 }
 
 export default userEditService;

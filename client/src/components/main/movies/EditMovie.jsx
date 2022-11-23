@@ -49,7 +49,6 @@ function EditMovie() {
 
     // Update movie in movies
     useEffect(() => {
-        console.log("movie Edit run");
         if (isError) {
             toast.error(message)
         }

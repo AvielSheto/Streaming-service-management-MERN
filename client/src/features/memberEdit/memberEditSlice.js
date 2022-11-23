@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import movieEditService from "./movieEditService";
+import memberEditService from './memberEditService'
 
 const initialState = {
-    movieEdit: {},
+    memberEdit: {},
     isMovieEditError: false,
     isMovieEditSuccess: false,
     isMovieEditLoading: false,
@@ -10,9 +10,9 @@ const initialState = {
 }
 
 // Get movie
-export const getMovie = createAsyncThunk('movie/getMovie', async (id, thunkAPI) => {
+export const getMember = createAsyncThunk('movie/getMovie', async (id, thunkAPI) => {
     try {
-        return await movieEditService.getMovie(id);
+        return await memberEditService.getMember(id);
     } catch (error) {
         const message =
             (error.response &&
@@ -25,24 +25,24 @@ export const getMovie = createAsyncThunk('movie/getMovie', async (id, thunkAPI) 
 })
 
 // Movie slice 
-export const movieEditSlice = createSlice({
-    name: 'movie',
+export const memberEditSlice = createSlice({
+    name: 'member',
     initialState,
     reducers: {
         reset: (state) => initialState,
     },
     extraReducers: (builder) => {
         builder
-            // Get movie
-            .addCase(getMovie.pending, (state) => {
+            // Get member
+            .addCase(getMember.pending, (state) => {
                 state.isMovieEditLoading = true
             })
-            .addCase(getMovie.fulfilled, (state, action) => {
+            .addCase(getMember.fulfilled, (state, action) => {
                 state.isMovieEditLoading = false
                 state.isMovieEditSuccess = true
-                state.movieEdit = (action.payload)
+                state.memberEdit = (action.payload)
             })
-            .addCase(getMovie.rejected, (state, action) => {
+            .addCase(getMember.rejected, (state, action) => {
                 state.isMovieEditLoading = false
                 state.isMovieEditError = true
                 state.message = action.payload
@@ -50,5 +50,5 @@ export const movieEditSlice = createSlice({
     }
 })
 
-export const { reset } = movieEditSlice.actions
-export default movieEditSlice.reducer
+export const { reset } = memberEditSlice.actions
+export default memberEditSlice.reducer

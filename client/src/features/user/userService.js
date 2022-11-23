@@ -1,28 +1,48 @@
 import axios from 'axios';
+const API_URL_USERS_JSON = 'http://localhost:5000/users/'
+const API_URL_PERMISSIONS_JSON = 'http://localhost:5000/permissions/'
+const API_URL_USERS_DB = 'http://localhost:5000/api/users/'
 
-// Get User 
-const getUser = async (userId) => {
-    // Get data from database
-    const { data: userDataDB } = await axios.get(`http://localhost:5000/api/users/${userId}`);
-    const userName = userDataDB.username;
-
-    // Get data from users json file 
-    const { data: jsonUserData } = await axios.get(`http://localhost:5000/users/${userId}`);
-    const firstName = jsonUserData.firstName;
-    const lastName = jsonUserData.lastName;
-    const sessionTimeOut = jsonUserData.sessionTimeOut;
-    const createdDate = jsonUserData.createdDate;
-    
-    // Get user permissions
-    const { data: userPermissions } = await axios.get(`http://localhost:5000/permissions/${userId}`);
-    const permissions = userPermissions.permissions;
-
-    return { firstName, lastName, userName, sessionTimeOut, createdDate, permissions };
+// Get users
+const getUsers = async () => {
+    const { data } = await axios.get('http://localhost:5000/users/')
+    return data
 }
 
+// Update user
+const updateUser = async (obj) => {
+    const { id, firstName, lastName, userName, createdDate, sessionTimeOut, permissions } = obj;
+
+    // Update user full name data
+    const { data: usersRes } = await axios.put(API_URL_USERS_JSON + obj.id, { id, firstName, lastName, userName, createdDate, sessionTimeOut });
+
+    // Update user permissions
+    const { data: permissionsRes } = await axios.put(API_URL_PERMISSIONS_JSON + id, { id, permissions });
+
+    // Update username in DB
+    const { data: userNameRes } = await axios.put(API_URL_USERS_DB + id, { userName });
+
+    return { usersRes, permissionsRes, userNameRes };
+}
+
+// Delete user
+const deleteUser = async (id) => {
+    // Delete user full name data
+    const { data: usersRes } = await axios.delete(API_URL_USERS_JSON + id);
+
+    // Delete user permissions
+    const { data: permissionsRes } = await axios.delete(API_URL_PERMISSIONS_JSON + id);
+
+    // Delete username in DB
+    const userNameRes = await axios.delete(API_URL_USERS_DB + id);
+
+    return userNameRes.data
+}
 
 const userService = {
-    getUser,
+    getUsers,
+    deleteUser,
+    updateUser
 }
 
 export default userService;

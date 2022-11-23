@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { deleteMovie } from '../../../features/movie/movieSlice'
 // Mui 
 import Box from '@mui/material/Box';
@@ -15,9 +16,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 // bootstrap
 import Col from 'react-bootstrap/Col';
-import { useState } from 'react';
-import EditMovie from './EditMovie';
-
 
 function Movie(props) {
     const navigate = useNavigate()
@@ -42,7 +40,7 @@ function Movie(props) {
 
     return (
         <>
-            <Col key={props.movie._id}>
+            <Col>
                 <Card className='m-1' >
                     <CardMedia
                         component="img"
