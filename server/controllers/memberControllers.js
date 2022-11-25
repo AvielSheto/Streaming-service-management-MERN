@@ -14,7 +14,6 @@ const getMembers = asyncHandler(async (req, res) => {
 // @access  Public
 const getMember = asyncHandler(async (req, res) => {
     const member = await Member.findById(req.params.id);
-    console.log(req.params.id);
     if (!member) {
         res.status(400);
         throw new Error('Member not found');
@@ -29,7 +28,6 @@ const createMember = asyncHandler(async (req, res) => {
     const { name, email, city } = req.body;
     if (!name || !email || !city) {
         res.status(400);
-        console.log(name);
         throw new Error('Please add all field');
     }
 
@@ -49,8 +47,8 @@ const createMember = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: member.id,
             name: member.name,
-            name: member.email,
-            name: member.city,
+            email: member.email,
+            city: member.city,
         })
     } else {
         res.status(400);
@@ -67,10 +65,8 @@ const updateMember = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Member id not found');
     }
-
-    const updateMember = await Movie.findByIdAndUpdate(req.params.id, req.body);
+    const updateMember = await Member.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).json(updateMember);
-
 });
 
 // @desc    Delete member

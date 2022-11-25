@@ -28,8 +28,8 @@ app.use('/api/users', usersDB_Router);
 app.use('/users', usersJSON_Router);
 app.use('/api/members', membersRouter);
 app.use('/api/movies', moviesRouter);
-app.use('/subscriptions', subscriptionRouter);
 app.use('/permissions', permissionsRouter);
+app.use('/subscriptions', subscriptionRouter);
 
 app.use(errorHandler);
 

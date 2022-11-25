@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const subscriptionSchema = new mongoose.Schema(
     {
-        membersID: String,
-        movies: [Object],
+        memberId: String,
+        movie: Object,
     },
-    {versionKey: false}
+    { timestamps: true },
+    { versionKey: false }
 )
 
 const Subscription = mongoose.model('subscription', subscriptionSchema);

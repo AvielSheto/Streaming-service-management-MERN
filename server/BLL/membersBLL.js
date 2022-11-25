@@ -7,9 +7,11 @@ const getMembers = async () => {
     members = members.map((member) => {
         const user = new Member({
             id: member.id,
+            memberId: member.id,
             name: member.username,
             email: member.email,
             city: member.address.city
+            
         });
         user.save();
     });
