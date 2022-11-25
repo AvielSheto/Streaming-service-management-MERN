@@ -13,6 +13,16 @@ router.get('/', async (req, res) => {
     }
 })
 
+// GET by id
+router.get('/:id', async (req, res) => {
+    try {
+        const subscription = await subscriptionsBLL.getSubscription(req.params.id);
+        res.status(200).json(subscription);
+    } catch (e) {
+        res.status(500).json(e)
+    }
+})
+
 // POST
 router.post('/', async (req, res) => {
     try {

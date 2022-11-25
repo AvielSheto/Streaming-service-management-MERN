@@ -1,5 +1,6 @@
 const Subscription = require('../models/subscriptionModel');
 
+// Get subscriptions
 const getSubscriptions = async () => {
     try {
         return Subscription.find({})
@@ -8,6 +9,16 @@ const getSubscriptions = async () => {
     }
 };
 
+// Get subscription by id
+const getSubscription = async (id) => {
+    try {
+        return Subscription.findOne({ id });
+    } catch (e) {
+        throw `Error: ${e}`;
+    }
+}
+
+// Create subscription
 const createSubscription = async (obj) => {
     try {
         const subscription = new Subscription(obj);
@@ -21,5 +32,6 @@ const createSubscription = async (obj) => {
 
 module.exports = {
     getSubscriptions,
-    createSubscription
+    getSubscription,
+    createSubscription,
 };
