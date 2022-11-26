@@ -10,9 +10,9 @@ const getSubscriptions = async () => {
 };
 
 // Get subscription by id
-const getSubscription = async (id) => {
+const getSubscription = async (memberId) => {
     try {
-        return Subscription.findOne({ id });
+        return Subscription.find({ memberId });
     } catch (e) {
         throw `Error: ${e}`;
     }
