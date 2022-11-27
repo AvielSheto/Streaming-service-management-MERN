@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-// mongoose.Collection.dbName
-
 const MoveSchema = new mongoose.Schema(
     {
         name: {
