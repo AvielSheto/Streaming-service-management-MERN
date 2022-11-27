@@ -14,20 +14,7 @@
         }
     },
     {
-        "id": "637b720beb6cac74e82379e7",
-        "permissions": {
-            "viewSubscription": true,
-            "createSubscription": true,
-            "deleteSubscription": true,
-            "updateSubscription": true,
-            "viewMovie": false,
-            "createMovie": false,
-            "deleteMovie": false,
-            "updateMovie": false
-        }
-    },
-    {
-        "id": "637b7795f962d28b357a72a7",
+        "id": "6383b0a422167874e892dbaf",
         "permissions": {
             "viewSubscription": false,
             "createSubscription": false,
@@ -37,6 +24,19 @@
             "createMovie": true,
             "deleteMovie": true,
             "updateMovie": true
+        }
+    },
+    {
+        "id": "6383b0f676fed74857846885",
+        "permissions": {
+            "viewSubscription": true,
+            "createSubscription": true,
+            "deleteSubscription": true,
+            "updateSubscription": true,
+            "viewMovie": false,
+            "createMovie": false,
+            "deleteMovie": false,
+            "updateMovie": false
         }
     }
 ]
