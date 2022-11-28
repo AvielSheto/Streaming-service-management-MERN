@@ -1,6 +1,6 @@
-﻿# MERN-final
+﻿# NEXT cinema store management MERN-APP
 front end: 
-React app using redux, routing, 
+React app using redux-toolkit, routing, 
 style and mobile responsiveness with :
 Tailwind 
 bootstraps 
