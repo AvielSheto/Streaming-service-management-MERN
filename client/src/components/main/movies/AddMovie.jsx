@@ -27,13 +27,14 @@ function AddMovie() {
     (state) => state.movie
   )
 
+  // Add movie
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
 
     if (isSuccess) {
-      navigate('/main/movies/allmovies');
+      navigate('/main/moviesnav/movies');
     }
 
     dispatch(reset())

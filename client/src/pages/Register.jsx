@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
-import { register, reset } from '../../../features/auth/authSlice';
-import Loading from '../../loading/Loading';
+import { register, reset } from '../features/auth/authSlice';
+import Loading from '../components/loading/Loading';
 // mui
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import "./_register.scss"
+import "../style/_register.scss"
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ function Register() {
     }
 
     if (isSuccess || user) {
-      navigate('/main/movies/allmovies')
+      navigate('/login')
     }
 
     dispatch(reset())
@@ -71,11 +71,10 @@ function Register() {
   }
   
   return (
-    <div className='register pt-5'>
-      <Container className='form p-5' maxWidth="xs">
+    <div className='register'>
+      <Container className='form p-5 mt-3' maxWidth="xs">
         <Box
           sx={{
-            marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

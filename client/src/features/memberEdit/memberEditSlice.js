@@ -6,7 +6,7 @@ const initialState = {
     isMovieEditError: false,
     isMovieEditSuccess: false,
     isMovieEditLoading: false,
-    message: '',
+    idEditMessage: '',
 }
 
 // Get movie
@@ -45,7 +45,7 @@ export const memberEditSlice = createSlice({
             .addCase(getMember.rejected, (state, action) => {
                 state.isMovieEditLoading = false
                 state.isMovieEditError = true
-                state.message = action.payload
+                state.idEditMessage = action.payload
             })
     }
 })

@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getMembers, reset } from '../features/member/memberSlice';
 import { toast } from 'react-toastify'
-import { getMembers, reset } from '../../../features/member/memberSlice';
-
-import Loading from '../../loading/Loading';
-import Member from './Member';
+import Loading from '../components/loading/Loading';
+import Member from '../components/main/subscription/Member';
+// Scss
+import '../style/_subscriptions.scss'
 // bootstrap
 import Row from 'react-bootstrap/Row';
 
-
-function Members() {
+function Subscriptions() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ function Members() {
       dispatch(reset())
     }
 
-  }, [isError, message, navigate, dispatch]);
+  }, [ navigate, dispatch]);
 
   if (isLoading) {
     return <Loading />
@@ -37,9 +37,9 @@ function Members() {
 
   return (
     <>
-      <div className='d-flex justify-content-center'>
-        <div className='col-11 col-md-11'>
-          <Row xs={2} md={3} lg={4}>
+      <div className='d-flex justify-content-center subscriptions'>
+        <div className='col-11 col-md-10'>
+          <Row xs={1} md={2} >
             {members?.map((member) => {
               return (
                 <Member key={member._id} member={member} />
@@ -52,4 +52,4 @@ function Members() {
   )
 }
 
-export default Members
+export default Subscriptions

@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { login, reset } from '../../../features/auth/authSlice'
-import Loading from '../../loading/Loading'
+import { login, reset } from '../features/auth/authSlice'
+import Loading from '../components/loading/Loading'
 // mui
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,7 +17,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import './_login.scss'
+import '../style/_login.scss'
 
 function Login() {
     const navigate = useNavigate()
@@ -35,12 +35,12 @@ function Login() {
     )
 
     useEffect(() => {
-        // if (isError) {
-        //     toast.error(message)
-        // }
+        if (isError) {
+            toast.error(message)
+        }
 
         if (isSuccess || user) {
-            navigate('/main/movies/allmovies')
+            navigate('/main/moviesnav/movies')
         }
 
         dispatch(reset())
@@ -67,8 +67,8 @@ function Login() {
     }
 
     return (
-        <div className='logIn pt-sm-5'>
-            <Container className='form p-5' maxWidth="xs">
+        <div className='logIn'>
+            <Container className='form p-5 mt-3' maxWidth="xs">
                 <Box
                     sx={{
                         paddingY: '3rem',

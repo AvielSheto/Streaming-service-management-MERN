@@ -32,7 +32,7 @@ function AddMember() {
     }
 
     if (isSuccess) {
-      navigate('/main/subscription/members')
+      navigate('/main/subscriptionsnav/subscriptions')
     }
 
     return () => {

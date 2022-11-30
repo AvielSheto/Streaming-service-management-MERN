@@ -1,5 +1,5 @@
 import React from 'react';
-import './_loading.scss';
+import '../../style/_loading.scss';
 // mui
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';

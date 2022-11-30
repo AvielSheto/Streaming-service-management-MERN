@@ -18,15 +18,15 @@ function Header() {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
-    navigate('/')
+    navigate('/main')
   }
 
   return (
     <div>
-      <Navbar collapseOnSelect expand="md" bg="black" variant="dark">
+      <Navbar className='py-1' collapseOnSelect expand="md" bg="black" variant="dark">
         <Container>
           <Navbar.Brand className='border-0' >
-            <Link className='text-decoration-none display-6 text-danger' to='/'>NEXT</Link>
+            <Link className='text-decoration-none display-6 text-danger' to='/main/moviesnav/movies'>NEXT</Link>
           </Navbar.Brand>
           <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -48,7 +48,7 @@ function Header() {
               <Nav >
                 {user ? (
                   <Nav>
-                    <Nav.Link href="/" onClick={onLogout}><FaSignOutAlt />  Logout</Nav.Link>
+                    <Nav.Link href="/" onClick={onLogout}>Logout</Nav.Link>
                     <Nav.Link href="/">{user.username}</Nav.Link>
                     <Avatar className='m-1' sx={{ bgcolor: deepOrange[500] }}>{user.username[0]}</Avatar>
                   </Nav>

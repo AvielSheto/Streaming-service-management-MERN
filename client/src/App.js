@@ -1,28 +1,30 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// components
-import Login from "./components/log/login/Login";
-import Home from "./components/home/Home";
+// pages
+import Login from "./pages/Login";
+import Subscriptions from "./pages/Subscriptions";
+import ManageUsers from "./pages/ManageUsers";
+import Register from "../src/pages/Register";
+import MoviesNav from "./pages/MoviesNav";
+import Home from "./pages/Home";
+import Error from "./pages/Error";
+// Components
+import Movies from "./components/main/movies/Movies"
 import Navbar from "./components/navbar/NavBar"
-import Register from "./components/log/Register/Register";
 import Main from "./components/main/Main.jsx";
-import ManageUsers from "./components/main/userManagement/ManageUsers";
-import Movies from "./components/main/movies/Movies";
-import Subscriptions from "./components/main/subscription/Subscriptions";
-import AddUser from "./components/main/userManagement/AddUser"
-import Users from "./components/main/userManagement/Users"
+import SubscriptionsNav from "./components/main/subscription/SubscriptionsNav";
+import AddUser from "./components/main/userManagement/AddUser";
+import Users from "./components/main/userManagement/Users";
 import AddMovie from "./components/main/movies/AddMovie";
-import AllMovies from "./components/main/movies/AllMovies";
 import EditMovie from "./components/main/movies/EditMovie";
-// toastify
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import Members from "./components/main/subscription/AllMembers";
 import AddMember from "./components/main/subscription/AddMember";
-import Error from "./components/Error/Error";
 import EditUser from "./components/main/userManagement/EditUser";
 import ManagementNav from "./components/main/userManagement/ManagementNav";
 import EditMember from "./components/main/subscription/EditMember";
+import EditSubscriptions from "./components/main/subscription/EditSubscriptions";
+// Toastify
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function App() {
   return (
@@ -34,16 +36,16 @@ export default function App() {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="main" element={<Main />} >
-            <Route path="movies" element={<Movies />} >
-              <Route path="allmovies" element={<AllMovies />} />
+            <Route path="moviesnav" element={<MoviesNav />} >
+              <Route path="movies" element={<Movies />} />
               <Route path="addmovie" element={<AddMovie />} />
             </Route>
             <Route path="editmovie/:id" element={<EditMovie />} />
-            <Route path="subscription" element={<Subscriptions />} >
-              <Route path="members" element={<Members />} />
+            <Route path="subscriptionsnav" element={<SubscriptionsNav />} >
+              <Route path="subscriptions" element={<Subscriptions />} />
               <Route path="addmember" element={<AddMember />} />
+              <Route path="editsubscriptions" element={<EditSubscriptions />} />
             </Route>
-            <Route path="editmember/:id" element={<EditMember />} />
             <Route path="usermanagement" element={<ManageUsers />} >
               <Route path="managementnav" element={<ManagementNav />} >
                 <Route path="users" element={<Users />} />
@@ -51,6 +53,7 @@ export default function App() {
               </Route>
               <Route path="edituser/:id" element={<EditUser />} />
             </Route>
+            <Route path="editmember/:id" element={<EditMember />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

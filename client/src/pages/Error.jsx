@@ -1,5 +1,4 @@
-import React from 'react'
-import "./_error.scss"
+import "../style/_error.scss"
 
 function Error() {
     return (

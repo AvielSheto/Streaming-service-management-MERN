@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios'
-
+import '../../style/_main.scss'
 // mui
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -16,6 +16,8 @@ export default function Home() {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
   const [management, setManagement] = useState(false);
+  const [subscriptions, setSubscriptions] = useState(false);
+  const [movies, setMovies] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
   const getPermissions = async () => {
@@ -23,17 +25,28 @@ export default function Home() {
     if (data.permissions.userManagement === true) {
       setManagement(true)
     }
+    if (data.permissions.viewSubscription === true) {
+      setSubscriptions(true)
+      navigate('/main/subscriptionsnav/subscriptions')
+    }
+    if (data.permissions.viewMovie === true) {
+      setMovies(true)
+      navigate('/main/moviesnav/movies')
+    }
   }
+  useEffect(() => {
+    getPermissions()
+
+  }, []);
 
   useEffect(() => {
     if (!user) {
       navigate('/login')
     }
-    getPermissions()
   }, [user, navigate]);
 
   return (
-    <div className='pt-2'>
+    <div className='pt-1'>
       <div className='d-flex justify-content-center'>
         <Box sx={{ width: 500 }}>
           <BottomNavigation
@@ -42,21 +55,21 @@ export default function Home() {
             onChange={(event, newValue) => {
               setValue(newValue);
               if (newValue === 0) {
-                navigate('/main/movies/allmovies')
+                navigate('/main/moviesnav/movies')
               } else if (newValue === 1) {
-                navigate('/main/subscription/members')
+                navigate('/main/subscriptionsnav/subscriptions')
               } else {
                 navigate('/main/usermanagement/managementnav/users')
               }
             }}>
-            <BottomNavigationAction label="Movies" icon={<MovieCreationOutlinedIcon />} />
-            <BottomNavigationAction label="Subscriptions" icon={<SubscriptionsOutlinedIcon />} />
+            {movies && <BottomNavigationAction label="Movies" icon={<MovieCreationOutlinedIcon />} />}
+            {subscriptions && <BottomNavigationAction label="Subscriptions" icon={<SubscriptionsOutlinedIcon />} />}
             {management && <BottomNavigationAction label="User Management" icon={<ManageAccountsOutlinedIcon />} />}
           </BottomNavigation>
         </Box>
       </div>
       <div className='d-flex justify-content-center'>
-        <hr className='col-11 text-center' />
+        <hr className='col-11 col-md-10 text-center m-1' />
       </div>
       <Outlet />
     </div>

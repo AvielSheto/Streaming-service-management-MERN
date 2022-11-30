@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import '../home/_home.scss'
+import '../style/_home.scss'
 // mui 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -13,7 +13,7 @@ function Home() {
 
   useEffect(() => {
     if (user) {
-      navigate('/main/movies/allmovies')
+      navigate('/main/moviesnav/movies')
     }
 
   }, [user, navigate]);

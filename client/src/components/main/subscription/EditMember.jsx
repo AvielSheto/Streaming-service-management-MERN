@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { getMember } from '../../../features/memberEdit/memberEditSlice';
+import { getMember, reset } from '../../../features/memberEdit/memberEditSlice';
+import { updateMember } from '../../../features/member/memberSlice'
+
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { createMember, reset } from '../../../features/member/memberSlice';
 import Loading from '../../loading/Loading';
 
 function EditMember() {
@@ -24,17 +25,32 @@ function EditMember() {
 
   const { name, email, city, } = formData;
 
-  const { memberEdit, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.member
+  const { memberEdit, isMovieEditLoading, isMovieEditError, isMovieEditSuccess, idEditMessage } = useSelector(
+    (state) => state.memberEdit
   )
-  console.log(id);
 
+  // Get member
   useEffect(() => {
     dispatch(getMember(id));
-    console.log(memberEdit);
 
+    if (isMovieEditError) {
+      toast.error(idEditMessage)
+    }
+
+    if (isMovieEditSuccess) {
+      setFormData(memberEdit)
+    }
+
+  }, [isMovieEditError, isMovieEditSuccess, idEditMessage, dispatch]);
+
+
+  // Update member
+  const { isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.member
+  )
+  useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message);
     }
 
     if (isSuccess) {
@@ -44,8 +60,8 @@ function EditMember() {
     return () => {
       dispatch(reset())
     }
+  }, [isError, message, isSuccess, navigate]);
 
-  }, [isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -61,15 +77,15 @@ function EditMember() {
       email,
       city,
     }
-    dispatch(createMember(memberData))
+    dispatch(updateMember({ id: id, obj: memberData }))
   }
 
-  if (isLoading) {
+  if (isMovieEditLoading || isLoading) {
     return <Loading />
   }
 
   return (
-    <div>
+    <div className='mb-2'>
       <Container className='form' maxWidth="xs">
         <Box
           sx={{
@@ -78,7 +94,7 @@ function EditMember() {
             flexDirection: 'column',
             alignItems: 'center',
           }}>
-          <h1 className='display-3'>Edit Member</h1>
+          <h1 className='display-3'>Edit member</h1>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -114,7 +130,7 @@ function EditMember() {
               value={city}
               autoComplete="city"
             />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Add Member</Button>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Edit Member</Button>
             <Grid container>
             </Grid>
           </Box>

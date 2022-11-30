@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import {  Outlet, useNavigate } from 'react-router-dom';
 // mui
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';

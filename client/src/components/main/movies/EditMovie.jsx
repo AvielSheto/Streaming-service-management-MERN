@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { updateMovie } from '../../../features/movie/movieSlice'
 import { getMovie, reset } from '../../../features/movieEdit/movieEditSlice'
+import { updateMovie } from '../../../features/movie/movieSlice'
 import { toast } from 'react-toastify'
 import Loading from '../../loading/Loading'
 // mui
@@ -25,15 +25,12 @@ function EditMovie() {
     })
     const { name, genres, image, premiered } = formData;
 
-    const { isLoading, isError, message, isSuccess } = useSelector(
-        (state) => state.movie
-    )
 
     const { movieEdit, isMovieEditLoading, isMovieEditError, isMovieEditSuccess, editMessage } = useSelector(
         (state) => state.movieEdit
     )
 
-    // Get movie id to edit
+    // Get movie
     useEffect(() => {
         dispatch(getMovie(id))
 
@@ -47,7 +44,11 @@ function EditMovie() {
 
     }, [isMovieEditError, editMessage, isMovieEditSuccess, dispatch])
 
-    // Update movie in movies
+
+    // Update movie
+    const { isLoading, isError, message, isSuccess } = useSelector(
+        (state) => state.movie
+    )
     useEffect(() => {
         if (isError) {
             toast.error(message)
@@ -60,8 +61,7 @@ function EditMovie() {
         return () => {
             dispatch(reset())
         }
-
-    }, [isError, isError, message, isSuccess, navigate])
+    }, [isError, message, isSuccess, navigate]);
 
 
     const onChange = (e) => {

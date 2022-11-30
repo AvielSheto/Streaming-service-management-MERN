@@ -5,6 +5,8 @@ import movieEditReducer from '../features/movieEdit/movieEditSlice'
 import userReducer from '../features/user/userSlice'
 import userEditReducer from '../features/editUser/editUserSlice'
 import memberReducer from '../features/member/memberSlice'
+import memberEditReducer from '../features/memberEdit/memberEditSlice'
+import subscriptionReducer from '../features/subscription/subscriptionSlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +15,8 @@ export const store = configureStore({
     movieEdit: movieEditReducer,
     user: userReducer,
     userEdit: userEditReducer,
-    member: memberReducer
+    member: memberReducer,
+    memberEdit: memberEditReducer,
+    subscription: subscriptionReducer
   },
 })
