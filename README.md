@@ -3,9 +3,8 @@ Streaming service management MERN-APP
 
 ### Back end 🧱
 #### Technology stack 🧰
-- Node.js
-- Express
-- MongoDB
+- Node & Express.
+- MongoDB & Mongoose.
 
 ### Front end 🏠
 #### Technology stack 🧰
