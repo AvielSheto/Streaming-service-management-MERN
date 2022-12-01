@@ -13,9 +13,9 @@ Cinema store management MERN-APP
 - CSS3
 - React
 - Redux-toolkit
-#### Style and mobile responsiveness 🎨📱 
+#### design and mobile responsiveness 🎨📱 
 - Tailwind 
-- Bootstraps 
+- Bootstrap
 - MUI
 
 ## Auth overview 🔐
