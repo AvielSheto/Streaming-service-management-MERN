@@ -3,15 +3,16 @@ Cinema store management MERN-APP
 
 ### Back end 🧱
 #### Technology stack 🧰
-Development:
-Node, Express, and MongoDB.
+- Node.js
+- Express
+- MongoDB
 
-### front end 🏠
+### Front end 🏠
 #### Technology stack 🧰
 - HTML5
 - CSS3
 - React
-- redux-toolkit
+- Redux-toolkit
 #### Style and mobile responsiveness 🎨📱 
 - Tailwind 
 - Bootstraps 
@@ -21,7 +22,7 @@ Node, Express, and MongoDB.
 ### Controllers:
 - Signup
 - Login
-- logout
+- Logout
 
 The services of auth created with jwt and guard decorator for our next protected routes actions.
 
