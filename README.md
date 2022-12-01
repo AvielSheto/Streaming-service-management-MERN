@@ -1,5 +1,5 @@
 ﻿# NEXT 
-Cinema store management MERN-APP
+Streaming service management MERN-APP
 
 ### Back end 🧱
 #### Technology stack 🧰
