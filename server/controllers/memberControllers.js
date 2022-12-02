@@ -13,7 +13,8 @@ const getMembers = asyncHandler(async (req, res) => {
 // @route   GET /api/members/id
 // @access  Public
 const getMember = asyncHandler(async (req, res) => {
-    const member = await Member.findById(req.params.id);
+    const memberId = req.params.id
+    const member = await Member.find({ memberId });
     if (!member) {
         res.status(400);
         throw new Error('Member not found');

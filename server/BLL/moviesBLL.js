@@ -14,7 +14,7 @@ const getMovies = async () => {
         show.save();
     });
 };
-getMovies()
+
 module.exports = {getMovies};
 
 

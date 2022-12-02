@@ -14,8 +14,6 @@ const permissionsRouter = require('./router/permissionsRouter')
 
 const app = express();
 require('./config/database');
-require('./BLL/membersBLL');
-require('./BLL/moviesBLL');
 
 // middleWares
 app.use(cors());
@@ -36,7 +34,3 @@ app.use(errorHandler);
 app.listen(5000, () => {
     console.log('Server is listen to port 5000');
 });
-
-
-
-

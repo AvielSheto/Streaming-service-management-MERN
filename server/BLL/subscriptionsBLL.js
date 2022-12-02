@@ -1,9 +1,11 @@
 const Subscription = require('../models/subscriptionModel');
 
+
 // Get subscriptions
 const getSubscriptions = async () => {
     try {
-        return Subscription.find({})
+
+        return Subscription.find({});
     } catch (error) {
         throw `Error: ${error}`;
     }
@@ -12,7 +14,7 @@ const getSubscriptions = async () => {
 // Get subscription by id
 const getSubscription = async (memberId) => {
     try {
-        return Subscription.find({ memberId });
+        return Subscription.findOne({ memberId });
     } catch (e) {
         throw `Error: ${e}`;
     }
