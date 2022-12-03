@@ -30,7 +30,7 @@ function Movie(props) {
         if (action === 'History') {
             setShowHistory(!showHistory)
         }
-    }
+    };
 
     const actions = [
         { icon: <EditIcon />, name: 'Edit' },
@@ -39,6 +39,7 @@ function Movie(props) {
 
     ];
 
+    // console.log(props.movie);
     return (
         <>
             <div className="py-2 from-green-50 to-cyan-100">
@@ -51,7 +52,7 @@ function Movie(props) {
                                 <p className="text-gray-600">premiered: {props.movie.premiered}</p>
                                 <p className="text-gray-600">genres: {props.movie.genres.join()}</p>
                             </div>
-                            <Box sx={{ height: 100, width: '100%', transform: 'translateZ(0px)', flexGrow: 1}}>
+                            {/* <Box sx={{ height: 100, width: '100%', transform: 'translateZ(0px)', flexGrow: 1}}>
                                 <SpeedDial
                                     ariaLabel="SpeedDial basic example"
                                     sx={{ position: 'absolute', bottom: -20, right: 2 }}
@@ -65,7 +66,7 @@ function Movie(props) {
                                             id={props.movie.id} />
                                     ))}
                                 </SpeedDial>
-                            </Box>
+                            </Box> */}
                         </div>
                     </div>
 

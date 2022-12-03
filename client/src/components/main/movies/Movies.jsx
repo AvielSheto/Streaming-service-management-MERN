@@ -39,7 +39,7 @@ function Movies() {
 
   }, [dispatch, navigate]);
 
-
+  console.log(movies);
   // Get subscriptions
   const { subscriptions, isSubscriptionLoading, isSubscriptionError, subscriptionMessage, isSubscriptionSuccess } = useSelector(
     (state) => state.subscription
