@@ -20,7 +20,7 @@ import AddMember from "./components/main/subscription/AddMember";
 import EditUser from "./components/main/userManagement/EditUser";
 import ManagementNav from "./components/main/userManagement/ManagementNav";
 import EditMember from "./components/main/subscription/EditMember";
-import EditSubscriptions from "./components/main/subscription/EditSubscriptions";
+import AddSubscriptions from "./components/main/subscription/AddSubscriptions";
 // Toastify
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -43,7 +43,7 @@ export default function App() {
             <Route path="subscriptionsnav" element={<SubscriptionsNav />} >
               <Route path="subscriptions" element={<Subscriptions />} />
               <Route path="addmember" element={<AddMember />} />
-              <Route path="editsubscriptions" element={<EditSubscriptions />} />
+              <Route path="addSubscriptions" element={<AddSubscriptions />} />
             </Route>
             <Route path="usermanagement" element={<ManageUsers />} >
               <Route path="managementnav" element={<ManagementNav />} >

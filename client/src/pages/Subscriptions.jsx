@@ -29,7 +29,7 @@ function Subscriptions() {
       dispatch(reset())
     }
 
-  }, [ navigate, dispatch]);
+  }, [isError, message, navigate, dispatch]);
 
   if (isLoading) {
     return <Loading />

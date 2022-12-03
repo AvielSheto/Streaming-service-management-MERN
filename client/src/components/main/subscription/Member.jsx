@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteMember } from '../../../features/member/memberSlice';
-import EditSubscriptions from './EditSubscriptions';
+import AddSubscriptions from './AddSubscriptions';
 // Mui 
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
@@ -62,7 +62,7 @@ function Member(props) {
                         </SpeedDial>
                     </Box>
                 </CardActions>
-                <EditSubscriptions member={props.member.memberId}/>
+                <AddSubscriptions member={props.member.memberId} />
             </Card>
         </Col >
     )

@@ -70,9 +70,6 @@ function EditSubscriptions(props) {
             toast.error(subscriptionMessage);
         }
 
-        // return () => {
-        //     dispatch(subReset())
-        // }
 
     }, [isSubscriptionError, subscriptionMessage, isSubscriptionSuccess]);
 

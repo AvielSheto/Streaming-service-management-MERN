@@ -1,0 +1,16 @@
+[
+    {
+        "id": "638b2cd1eac5dc7d929e3ca6",
+        "permissions": {
+            "viewSubscription": true,
+            "createSubscription": true,
+            "deleteSubscription": true,
+            "updateSubscription": true,
+            "viewMovie": true,
+            "createMovie": true,
+            "deleteMovie": true,
+            "updateMovie": true,
+            "userManagement": true
+        }
+    }
+]

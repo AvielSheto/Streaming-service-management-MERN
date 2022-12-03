@@ -5,10 +5,10 @@ import { logout, reset } from '../../features/auth/authSlice'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 // mui 
 import Avatar from '@mui/material/Avatar';
 import { deepOrange } from '@mui/material/colors';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Header() {
   const navigate = useNavigate()
@@ -31,31 +31,25 @@ function Header() {
           <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link >Features</Nav.Link>
-              <NavDropdown title="Dropdown">
-                <NavDropdown.Item >Action</NavDropdown.Item>
-                <NavDropdown.Item >
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item >Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item >
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
             </Nav>
             <Nav>
               <Nav >
                 {user ? (
                   <Nav>
-                    <Nav.Link href="/" onClick={onLogout}>Logout</Nav.Link>
+                    <Nav.Link href="/" onClick={onLogout}>
+                      <div className='d-flex align-items-center'><LogoutIcon className='me-2'/>Logout</div>
+                    </Nav.Link>
                     <Nav.Link href="/">{user.username}</Nav.Link>
                     <Avatar className='m-1' sx={{ bgcolor: deepOrange[500] }}>{user.username[0]}</Avatar>
                   </Nav>
                 ) : (
                   <Nav >
-                    <Nav.Link href="/login"><FaSignInAlt /> Login</Nav.Link>
-                    <Nav.Link href="/register"><FaUser /> Register</Nav.Link>
+                    <Nav.Link href="/login">
+                      <div className='d-flex align-items-center'><FaSignInAlt className='me-2'/>Login</div>
+                    </Nav.Link>
+                    <Nav.Link href="/register">
+                      <div className='d-flex align-items-center'> <FaUser className='me-2'/>Register</div>
+                    </Nav.Link>
                   </Nav>
                 )}
               </Nav>

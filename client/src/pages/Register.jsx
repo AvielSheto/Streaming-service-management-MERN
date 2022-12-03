@@ -72,7 +72,7 @@ function Register() {
   
   return (
     <div className='register'>
-      <Container className='form p-5 mt-3' maxWidth="xs">
+      <Container className='form p-5 mt-0 mt-md-3' maxWidth="xs">
         <Box
           sx={{
             display: 'flex',

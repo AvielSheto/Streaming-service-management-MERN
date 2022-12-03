@@ -1,14 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getMember } from '../../../features/memberEdit/memberEditSlice'
-import { CardContent } from '@mui/material';
-// mui
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 function MovieSubscription(props) {
   const dispatch = useDispatch();
@@ -33,7 +25,6 @@ function MovieSubscription(props) {
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Subscriptions History</h3>
           </div>
-
           {users?.map((user, index) => {
             return (
               <div key={index} className="flow-root">
