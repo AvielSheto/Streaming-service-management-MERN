@@ -84,13 +84,6 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Get user data
-// @route   GET /api/users/me
-// @access  Public
-const getMe = asyncHandler(async (req, res) => {
-    res.status(200).json(req.user);
-})
-
 // @desc    Get users data
 // @route   GET /api/users
 // @access  Public
@@ -140,4 +133,4 @@ const generateToken = (id) => {
     });
 };
 
-module.exports = { registerUser, loginUser, getMe, getUsers, getUser, createUser, updateUser, deleteUser }
+module.exports = { registerUser, loginUser, getUsers, getUser, createUser, updateUser, deleteUser }

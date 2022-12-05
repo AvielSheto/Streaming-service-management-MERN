@@ -12,8 +12,8 @@ const initialState = {
 // Get movies
 export const getMovies = createAsyncThunk('movie/getAll', async (_, thunkAPI) => {
     try {
-        // const token = thunkAPI.getState().auth.user.token
-        return await movieService.getMovies();
+        const token = thunkAPI.getState().auth.user.token
+        return await movieService.getMovies(token);
     } catch (error) {
         const message =
             (error.response &&

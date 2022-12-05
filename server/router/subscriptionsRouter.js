@@ -1,38 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const subscriptionsBLL = require('../BLL/subscriptionsBLL');
+const { getSubscriptions, getSubscription, createSubscription } = require('../controllers/subscriptionsControllers')
 
-// GET
-router.get('/', async (req, res) => {
-    try {
-        const subscriptions = await subscriptionsBLL.getSubscriptions();
-        res.status(200).json(subscriptions);
-    } catch (e) {
-        res.status(500).json(e)
-    }
-})
-
-// GET by id
-router.get('/:id', async (req, res) => {
-    try {
-        const subscription = await subscriptionsBLL.getSubscription(req.params.id);
-        res.status(200).json(subscription);
-    } catch (e) {
-        res.status(500).json(e)
-    }
-})
-
-// POST
-router.post('/', async (req, res) => {
-    try {
-        const subscription = req.body;
-        const status = await subscriptionsBLL.createSubscription(subscription);
-        res.status(200).json(status)
-    } catch (e) {
-        res.status(500).json(e)
-    }
-});
-
+router.get('/', getSubscriptions)
+router.get('/:id', getSubscription)
+router.post('/', createSubscription);
 
 module.exports = router;
