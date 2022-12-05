@@ -1,16 +1,1 @@
-[
-    {
-        "id": "638b2cd1eac5dc7d929e3ca6",
-        "permissions": {
-            "viewSubscription": true,
-            "createSubscription": true,
-            "deleteSubscription": true,
-            "updateSubscription": true,
-            "viewMovie": true,
-            "createMovie": true,
-            "deleteMovie": true,
-            "updateMovie": true,
-            "userManagement": true
-        }
-    }
-]
+[{"id":"638b2cd1eac5dc7d929e3ca6","permissions":{"viewSubscription":true,"createSubscription":true,"deleteSubscription":true,"updateSubscription":true,"viewMovie":true,"createMovie":true,"deleteMovie":true,"updateMovie":true,"userManagement":true}},{"id":"638e5869973544d2d0a44547","permissions":{"viewSubscription":true,"createSubscription":true,"deleteSubscription":true,"updateSubscription":true,"viewMovie":false,"createMovie":false,"deleteMovie":false,"updateMovie":false}},{"id":"638e5883401bc8912358f03b","permissions":{"viewSubscription":false,"createSubscription":false,"deleteSubscription":false,"updateSubscription":false,"viewMovie":true,"createMovie":true,"deleteMovie":true,"updateMovie":true}},{"id":"638e5a55d57f4076eb0b18a4","permissions":{"viewSubscription":false,"createSubscription":false,"deleteSubscription":false,"updateSubscription":false,"viewMovie":true,"createMovie":true,"deleteMovie":true,"updateMovie":true}}]

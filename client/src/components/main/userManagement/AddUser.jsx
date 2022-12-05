@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { createUser, login, reset } from '../../../features/auth/authSlice';
+import { createUser, reset } from '../../../features/auth/authSlice';
 import Loading from '../../loading/Loading';
 
 // mui
@@ -13,11 +13,6 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-// import dayjs from 'dayjs';
-// import Stack from '@mui/material/Stack';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -98,11 +93,11 @@ function AddUser() {
   }
 
   const createPermissions = async (obj) => {
-    const { data } = await axios.post('http://localhost:5000/permissions/', obj)
+    await axios.post('http://localhost:5000/permissions/', obj)
   }
 
   const setUser = async (obj) => {
-    const { data } = await axios.post('http://localhost:5000/users/', obj)
+    await axios.post('http://localhost:5000/users/', obj)
   }
 
   if (isLoading) {
@@ -166,7 +161,7 @@ function AddUser() {
                 shrink: true,
               }}
             />
-            
+
             <h1 className='display-6 fs-2 mt-1'>Permissions</h1>
             <div>
               <FormControl component="fieldset" variant="standard">

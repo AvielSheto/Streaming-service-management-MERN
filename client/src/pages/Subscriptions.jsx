@@ -5,22 +5,22 @@ import { getMembers, reset } from '../features/member/memberSlice';
 import { toast } from 'react-toastify'
 import Loading from '../components/loading/Loading';
 import Member from '../components/main/subscription/Member';
-// Scss
-import '../style/_subscriptions.scss'
 // bootstrap
 import Row from 'react-bootstrap/Row';
+// Scss
+import '../style/_subscriptions.scss'
 
 function Subscriptions() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const { members, isLoading, isError, message } = useSelector(
     (state) => state.member
-  )
-
-  useEffect(() => {
-    dispatch(getMembers());
-
+    )
+    
+    useEffect(() => {
+      dispatch(getMembers());
+      
     if (isError) {
       toast.error(message);
     }

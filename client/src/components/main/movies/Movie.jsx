@@ -55,7 +55,7 @@ function Movie(props) {
                             <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
                                 <SpeedDial
                                     ariaLabel="SpeedDial basic example"
-                                    sx={{ position: 'absolute', bottom: 5, right: 5 }}
+                                    sx={{ position: 'absolute', bottom: 5, right: 10 }}
                                     icon={<SpeedDialIcon />}>
                                     {actions.map((action) => (
                                         <SpeedDialAction

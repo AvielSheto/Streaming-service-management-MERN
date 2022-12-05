@@ -1,7 +1,4 @@
 import axios from 'axios';
-// const API_URL_USERS_JSON = 'http://localhost:5000/users/'
-// const API_URL_PERMISSIONS_JSON = 'http://localhost:5000/permissions/'
-// const API_URL_USERS_DB = 'http://localhost:5000/api/users/'
 
 // Get User 
 const getUser = async (id) => {
@@ -22,7 +19,6 @@ const getUser = async (id) => {
 
     return { firstName, lastName, userName, sessionTimeOut, createdDate, permissions };
 }
-
 
 const userEditService = {
     getUser

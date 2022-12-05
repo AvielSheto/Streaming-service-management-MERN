@@ -34,9 +34,9 @@ const deleteUser = async (id) => {
     const { data: permissionsRes } = await axios.delete(API_URL_PERMISSIONS_JSON + id);
 
     // Delete username in DB
-    const userNameRes = await axios.delete(API_URL_USERS_DB + id);
+    const { data: userNameDB } = await axios.delete(API_URL_USERS_DB + id);
 
-    return userNameRes.data
+    return { usersRes, permissionsRes, userNameDB }
 }
 
 const userService = {
