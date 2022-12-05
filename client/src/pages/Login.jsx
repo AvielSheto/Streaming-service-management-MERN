@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
@@ -68,7 +67,7 @@ function Login() {
 
     return (
         <div className='logIn'>
-            <Container className='form p-5 mt-0 mt-sm-3' maxWidth="xs">
+            <Container className='form p-5 mt-sm-3' maxWidth="xs">
                 <Box
                     sx={{
                         paddingY: '3rem',

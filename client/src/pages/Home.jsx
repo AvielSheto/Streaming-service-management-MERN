@@ -1,10 +1,10 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
+
 import '../style/_home.scss'
 // mui 
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 function Home() {
@@ -26,22 +26,8 @@ function Home() {
           <h3 className='display-6 fw-normal text-white text-center'>Watch anywhere. Cancel anytime.</h3>
           <h6 className='display-6 fs-4 fw-normal text-white text-center'>Ready to watch? Enter your email to create or restart your membership.</h6>
           <div className='d-flex flex-column align-items-center col-6'>
-            <TextField
-              className='bg-light'
-              variant="filled"
-              margin="normal"
-              required
-              size='small'
-              fullWidth
-              name="email"
-              label="Email"
-              type="email"
-              id="email"
-              // onChange={onChange}
-              // value={email}
-              autoComplete="current-email"
-            />
-            <Button variant="contained" color='error' className='col-8'>Get Started</Button>
+            <Link to={'/login'} className='text-decoration-none'><Button variant="contained" color='error'>Get Started</Button></Link>
+
           </div>
         </div>
       </div>

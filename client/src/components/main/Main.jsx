@@ -27,11 +27,11 @@ export default function Home() {
     }
     if (data.permissions.viewSubscription === true) {
       setSubscriptions(true)
-      navigate('/main/subscriptionsnav/subscriptions')
+      // navigate('/main/subscriptionsnav/subscriptions')
     }
     if (data.permissions.viewMovie === true) {
       setMovies(true)
-      navigate('/main/moviesnav/movies')
+      // navigate('/main/moviesnav/movies')
     }
   }
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!user) {
-      navigate('/login')
+      navigate('')
     }
   }, [user, navigate]);
 
