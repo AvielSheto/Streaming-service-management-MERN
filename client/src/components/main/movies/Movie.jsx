@@ -51,6 +51,7 @@ function Movie(props) {
                                 <p className="text-gray-600">premiered: {props.movie.premiered}</p>
                                 <p className="text-gray-600">genres: {props.movie.genres.join()}</p>
                             </div>
+                        </div>
                             <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
                                 <SpeedDial
                                     ariaLabel="SpeedDial basic example"
@@ -66,7 +67,6 @@ function Movie(props) {
                                     ))}
                                 </SpeedDial>
                             </Box>
-                        </div>
                     </div>
                     {showHistory && <MovieSubscription subscriptions={props.subscriptions} />}
                 </div>
