@@ -5,9 +5,9 @@ const { getMovies, getMovie, createMovie, updateMovie, deleteMovie } = require('
 const { protect } = require('../middleware/authMiddleware');
 
 router.get('/', protect, getMovies);
-router.get('/:id', getMovie);
-router.post('/', createMovie);
-router.put('/:id', updateMovie);
-router.delete('/:id', deleteMovie);
+router.get('/:id', protect, getMovie);
+router.post('/', protect, createMovie);
+router.put('/:id', protect, updateMovie);
+router.delete('/:id', protect, deleteMovie);
 
 module.exports = router;

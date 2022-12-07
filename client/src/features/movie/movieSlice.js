@@ -28,8 +28,8 @@ export const getMovies = createAsyncThunk('movie/getAll', async (_, thunkAPI) =>
 // Create new movie
 export const createMovie = createAsyncThunk('movie/create', async (movieData, thunkAPI) => {
     try {
-        // const token = thunkAPI.getState().auth.user.token
-        return await movieService.createMovie(movieData)
+        const token = thunkAPI.getState().auth.user.token
+        return await movieService.createMovie(movieData, token)
     } catch (error) {
         const message =
             (error.response &&
@@ -46,7 +46,8 @@ export const updateMovie = createAsyncThunk('movie/update', async (movieData, th
     try {
         const id = movieData.id;
         const obj = movieData.obj;
-        return await movieService.updateMovie(id, obj);
+        const token = thunkAPI.getState().auth.user.token;
+        return await movieService.updateMovie(id, obj, token);
     } catch (error) {
         const message =
             (error.response &&
@@ -61,7 +62,8 @@ export const updateMovie = createAsyncThunk('movie/update', async (movieData, th
 // Delete Movie
 export const deleteMovie = createAsyncThunk('movie/delete', async (id, thunkAPI) => {
     try {
-        return await movieService.deleteMovie(id);
+        const token = thunkAPI.getState().auth.user.token;
+        return await movieService.deleteMovie(id, token);
     } catch (error) {
         const message =
             (error.response &&
@@ -84,7 +86,7 @@ export const movieSlice = createSlice({
             state.isSuccess = false
             state.isError = false
             state.message = ''
-          },
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -102,7 +104,7 @@ export const movieSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
             })
-            
+
             // Create movie
             .addCase(createMovie.pending, (state) => {
                 state.isLoading = true

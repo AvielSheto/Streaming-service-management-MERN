@@ -55,7 +55,7 @@ function EditMovie() {
         }
 
         if (isSuccess) {
-            navigate('/main/movies/allmovies')
+            navigate('/main/moviesnav/movies')
         }
 
         return () => {

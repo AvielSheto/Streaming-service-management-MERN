@@ -13,20 +13,35 @@ const getMovies = async (token) => {
 }
 
 // Create movie
-const createMovie = async (movieData) => {
-    const response = await axios.post(API_URL, movieData);
+const createMovie = async (movieData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    const response = await axios.post(API_URL, movieData, config);
     return response.data;
 }
 
 // Update movie 
-const updateMovie = async (id, obj) => {
-    const response = await axios.put(API_URL + id, obj);
+const updateMovie = async (id, obj, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    const response = await axios.put(API_URL + id, obj, config);
     return response.data;
 }
 
 // Delete Movie
-const deleteMovie = async (movieId) => {
-    const response = await axios.delete(API_URL + movieId);
+const deleteMovie = async (movieId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    const response = await axios.delete(API_URL + movieId, config);
     return response.data
 }
 
