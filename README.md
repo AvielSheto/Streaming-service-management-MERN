@@ -25,6 +25,6 @@ Streaming service management MERN-APP
 
 The services of auth created with jwt and guard decorator for our next protected routes actions.
 
-## link to app :
+## Link to app :
 
 
