@@ -6,6 +6,10 @@ const Subscription = require('../models/subscriptionModel');
 // @access  Privet
 const getSubscriptions = asyncHandler(async (req, res) => {
     const subscriptions = await Subscription.find({});
+    if (!subscriptions) {
+        res.status(400);
+        throw new Error('Subscriptions not found');
+    }
     res.status(200).json(subscriptions)
 });
 
