@@ -1,4 +1,4 @@
-﻿# NEXT 
+﻿# Netfilx
 Streaming service management MERN-APP
 
 ### Back end 🧱
