@@ -52,22 +52,22 @@ function Movie(props) {
                                 <p className="text-gray-600">genres: {props.movie.genres.join()}</p>
                             </div>
                         </div>
-                            <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
-                                <SpeedDial
-                                    ariaLabel="SpeedDial basic example"
-                                    sx={{ position: 'absolute', bottom: 5, right: 15 }}
-                                    icon={<SpeedDialIcon />}>
-                                    {actions.map((action) => (
-                                        <SpeedDialAction
-                                            onClick={() => { handleClick(props.movie._id, action.name) }}
-                                            key={action.name}
-                                            icon={action.icon}
-                                            tooltipTitle={action.name}
-                                            id={props.movie.id} />
-                                    ))}
-                                </SpeedDial>
-                            </Box>
                     </div>
+                    <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
+                        <SpeedDial
+                            ariaLabel="SpeedDial basic example"
+                            sx={{ position: 'absolute', bottom: 5, right: 15 }}
+                            icon={<SpeedDialIcon />}>
+                            {actions.map((action) => (
+                                <SpeedDialAction
+                                    onClick={() => { handleClick(props.movie._id, action.name) }}
+                                    key={action.name}
+                                    icon={action.icon}
+                                    tooltipTitle={action.name}
+                                    id={props.movie.id} />
+                            ))}
+                        </SpeedDial>
+                    </Box>
                     {showHistory && <MovieSubscription subscriptions={props.subscriptions} />}
                 </div>
             </div>
