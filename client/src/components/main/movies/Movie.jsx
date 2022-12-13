@@ -41,7 +41,7 @@ function Movie(props) {
 
     return (
         <>
-            <div className="py-2 from-green-50 to-cyan-100">
+            <div className="py-2 ">
                 <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
                     <div className="p-1 rounded-xl group d-flex space-x-6 bg-white bg-opacity-50 shadow-xl hover:rounded-2xl">
                         <img src={props.movie.image} alt="art cover" loading="lazy" className=" object-cover object-top rounded-lg transition duration-500 group-hover:rounded-xl" />

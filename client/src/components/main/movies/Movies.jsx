@@ -64,7 +64,7 @@ function Movies() {
 
   return (
     <div className='movies'>
-      <div className='d-flex justify-content-center'>
+      <div className='d-flex justify-content-center mt-1'>
         <Paper
           component="form"
           sx={{ p: '2px 5px', display: 'flex', alignItems: 'center', width: 400, marginY: '10px', borderRadius:"25px" }}>
