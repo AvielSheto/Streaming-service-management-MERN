@@ -1,6 +1,9 @@
 @import "../style/login";
 @import "../style/register";
-@import "../components/loading/loading";
+@import "../style/loading";
 @import "./main";
 @import "./error";
 
+::-webkit-scrollbar {
+  display: none;
+}
