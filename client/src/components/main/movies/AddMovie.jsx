@@ -114,13 +114,9 @@ function AddMovie() {
           />
           <Autocomplete
             multiple
-            id="size-small-standard-multi"
             options={allGenres}
             filterSelectedOptions
             getOptionLabel={(option) => option.title}
-            // isOptionEqualToValue={(option, value) =>
-            //   value === undefined || value === "" || option.id === value.id
-            // }
             renderInput={(params) => (
               <TextField
                 required
@@ -132,7 +128,6 @@ function AddMovie() {
                 label="Genres"
               />
             )}
-
           />
 
           <TextField

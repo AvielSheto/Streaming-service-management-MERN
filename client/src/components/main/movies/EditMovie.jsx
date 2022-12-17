@@ -83,13 +83,14 @@ function EditMovie() {
     }
 
     const addGenres = (value) => {
-        // {
-        //     value.InputProps.startAdornment?.map((genre) => {
-        //         return (
-        //             genres.push(genre.props.label)
-        //         )
-        //     })
-        // }
+        {
+            console.log(value.InputProps.startAdornment);
+            // value.InputProps.startAdornment?.map((genre) => {
+            //     return (
+            //         genres.push(genre.props.label)
+            //     )
+            // })
+        }
     }
 
     const allGenres = [
@@ -136,20 +137,38 @@ function EditMovie() {
                         />
                         <Autocomplete
                             multiple
-                            id="size-small-standard-multi"
-
                             options={allGenres}
-                            getOptionLabel={(genres) => genres}
+                            filterSelectedOptions
+                            // getOptionLabel={(option) => option.title}
+
+                            getOptionLabel={(option) => option.title}
                             value={genres}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined || value === "" || option.id === value.id
                             }
-                            filterSelectedOptions
                             renderInput={(params) => (
                                 <TextField
                                     onChange={addGenres({ ...params })}
                                     required
-                                    id="genres"
+                                    value={genres}
+                                    name="genres"
+                                    {...params}
+                                    label="Genres"
+                                />
+                            )}
+                        />
+
+                        <Autocomplete
+                            multiple
+                            options={allGenres}
+                            filterSelectedOptions
+                            getOptionLabel={(option) => option.title}
+
+
+                            renderInput={(params) => (
+                                <TextField
+                                    required
+                                    onChange={addGenres({ ...params })}
                                     value={genres}
                                     name="genres"
                                     {...params}
