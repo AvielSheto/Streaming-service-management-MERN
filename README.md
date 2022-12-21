@@ -23,7 +23,7 @@ Streaming service management MERN-APP
 - Login
 - Logout
 
-The services of auth created with jwt and guard decorator for our next protected routes actions.
+The services of auth created with JWT and guard decorator for our next protected routes actions.
 
 
 
