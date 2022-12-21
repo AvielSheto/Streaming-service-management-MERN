@@ -163,6 +163,6 @@ function AddMovie() {
   )
 }
 
-export default AddMovie
+export default AddMovie;
 
 
