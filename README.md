@@ -12,7 +12,7 @@ Streaming service management MERN-APP
 - CSS3
 - React
 - Redux-toolkit
-#### design and mobile responsiveness 🎨📱 
+#### Dsign and mobile responsiveness 🎨📱 
 - Tailwind 
 - Bootstrap
 - MUI
@@ -25,6 +25,5 @@ Streaming service management MERN-APP
 
 The services of auth created with jwt and guard decorator for our next protected routes actions.
 
-## Link to app :
 
 
