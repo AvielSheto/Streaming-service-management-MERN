@@ -37,7 +37,7 @@ function Member(props) {
 
     return (
         <Col>
-            <Card className='my-3'>
+            <Card className='my-3 '>
                 <CardContent sx={{ height: 80 }}>
                     <h1 className='display-6 fs-5 fw-normal'>{props.member.name}</h1>
                     <h1 className='display-6 fs-6 fw-light'><strong className='fs-6 fw-normal'>Email: </strong>{props.member.email}</h1>

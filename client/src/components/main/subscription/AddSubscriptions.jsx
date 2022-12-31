@@ -97,7 +97,7 @@ function EditSubscriptions(props) {
                         <h1 className='display-6 fs-5 fw-normal'>Movies watched</h1>
                         {subscriptions.filter((subscription) => subscription.memberId === props.member).map((subscription) => {
                             return (
-                                <List key={subscription?._id} sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                                <List key={subscription?._id} sx={{ width: '100%' }}>
                                     <ListItem>
                                         <ListItemAvatar>
                                             <Avatar>
