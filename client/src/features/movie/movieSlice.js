@@ -39,7 +39,7 @@ export const createMovie = createAsyncThunk('movie/create', async (movieData, th
             error.toString()
         return thunkAPI.rejectWithValue(message)
     }
-})
+});
 
 // Update movie
 export const updateMovie = createAsyncThunk('movie/update', async (movieData, thunkAPI) => {
