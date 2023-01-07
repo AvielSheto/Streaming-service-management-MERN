@@ -73,7 +73,7 @@ export const deleteMovie = createAsyncThunk('movie/delete', async (id, thunkAPI)
             error.toString();
         return thunkAPI.rejectWithValue(message)
     }
-})
+});
 
 // Movie slice 
 export const movieSlice = createSlice({
