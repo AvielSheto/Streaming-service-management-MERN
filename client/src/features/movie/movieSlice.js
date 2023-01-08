@@ -154,7 +154,7 @@ export const movieSlice = createSlice({
                 state.message = action.payload
             })
     }
-})
+});
 
 export const { reset } = movieSlice.actions
 export default movieSlice.reducer
