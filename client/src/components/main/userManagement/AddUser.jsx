@@ -1,12 +1,10 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUser, reset } from '../../../features/auth/authSlice';
 import Loading from '../../loading/Loading';
-
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -19,15 +17,16 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 function AddUser() {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [session, setSession] = useState();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     userName: '',
-  })
+  });
+
   const [state, setState] = useState({
     viewSubscription: false,
     createSubscription: false,
@@ -37,24 +36,23 @@ function AddUser() {
     createMovie: false,
     deleteMovie: false,
     updateMovie: false,
-  })
+  });
 
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
-  )
+  );
 
   useEffect(() => {
     if (isError) {
       toast.error(message)
-    }
+    };
 
     if (isSuccess) {
       navigate('/main/usermanagement/managementnav/users')
-    }
+    };
 
     dispatch(reset())
-  }, [isError, isSuccess, message, dispatch])
-
+  }, [isError, isSuccess, message, dispatch]);
 
   const handleChange = (event) => {
     setState({
@@ -70,7 +68,7 @@ function AddUser() {
       ...prevState,
       [e.target.name]: e.target.value,
     }))
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -84,25 +82,25 @@ function AddUser() {
       lastName,
       createdDate,
       sessionTimeOut: session
-    }
+    };
 
     if (id) {
       setUser(userData)
       createPermissions({ id: id, permissions: state })
     }
-  }
+  };
 
   const createPermissions = async (obj) => {
     await axios.post('http://localhost:5000/permissions/', obj)
-  }
+  };
 
   const setUser = async (obj) => {
     await axios.post('http://localhost:5000/users/', obj)
-  }
+  };
 
   if (isLoading) {
     return <Loading />
-  }
+  };
 
   return (
     <div>
@@ -150,7 +148,6 @@ function AddUser() {
               value={userName}
               autoComplete="userName"
             />
-
             <TextField
               className='col-12 mt-3'
               label="Session time"
@@ -161,7 +158,6 @@ function AddUser() {
                 shrink: true,
               }}
             />
-
             <h1 className='display-6 fs-2 mt-1'>Permissions</h1>
             <div>
               <FormControl component="fieldset" variant="standard">
@@ -193,7 +189,6 @@ function AddUser() {
                         label="Update Subscription"
                       />
                     </div>
-
                     <div className='d-flex flex-column'>
                       <FormControlLabel
                         control={
@@ -224,10 +219,8 @@ function AddUser() {
                 </FormGroup>
               </FormControl>
             </div>
-
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Add User</Button>
             <Grid container>
-
             </Grid>
           </Box>
         </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 // mui
 import Tabs from '@mui/material/Tabs';
@@ -6,7 +6,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
 function Subscriptions() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {

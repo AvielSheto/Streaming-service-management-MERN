@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { deleteMovie } from '../../../features/movie/movieSlice'
+import { deleteMovie } from '../../../features/movie/movieSlice';
 // Component
 import MovieSubscription from './MovieSubscription';
 // Mui 
@@ -22,14 +22,14 @@ function Movie(props) {
     const handleClick = (movieId, action) => {
         if (action === 'Edit') {
             navigate(`/main/editmovie/${movieId}`);
-        }
+        };
         if (action === 'Delete') {
             dispatch(deleteMovie(movieId));
             props.callback(search);
-        }
+        };
         if (action === 'History') {
             setShowHistory(!showHistory)
-        }
+        };
     };
 
     const actions = [

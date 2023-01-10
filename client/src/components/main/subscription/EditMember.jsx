@@ -16,18 +16,17 @@ import Loading from '../../loading/Loading';
 function EditMember() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams()
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     city: '',
-  })
+  });
 
   const { name, email, city, } = formData;
 
   const { memberEdit, isMovieEditLoading, isMovieEditError, isMovieEditSuccess, idEditMessage } = useSelector(
-    (state) => state.memberEdit
-  )
+    (state) => state.memberEdit);
 
   // Get member
   useEffect(() => {
@@ -47,7 +46,8 @@ function EditMember() {
   // Update member
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.member
-  )
+  );
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -68,7 +68,7 @@ function EditMember() {
       ...prevState,
       [e.target.name]: e.target.value,
     }))
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -78,11 +78,11 @@ function EditMember() {
       city,
     }
     dispatch(updateMember({ id: id, obj: memberData }))
-  }
+  };
 
   if (isMovieEditLoading || isLoading) {
     return <Loading />
-  }
+  };
 
   return (
     <div className='mb-2'>
@@ -95,7 +95,6 @@ function EditMember() {
             alignItems: 'center',
           }}>
           <h1 className='display-3'>Edit member</h1>
-
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

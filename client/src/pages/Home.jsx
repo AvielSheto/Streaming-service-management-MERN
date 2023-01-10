@@ -1,19 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 // mui 
 import Button from '@mui/material/Button';
 
 function Home() {
-  const navigate = useNavigate()
-  const { user } = useSelector((state) => state.auth)
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (user) {
       navigate('/main/moviesnav/movies')
-    }
-
+    };
   }, [user, navigate]);
 
   return (

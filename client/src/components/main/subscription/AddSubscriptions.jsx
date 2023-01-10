@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import Loading from '../../loading/Loading';
-import { toast } from 'react-toastify'
 // Reducer
 import { getMovies, reset } from '../../../features/movie/movieSlice';
-import { createSubscription, getSubscriptions, reset as subReset } from '../../../features/subscription/subscriptionSlice'
+import { createSubscription, getSubscriptions, reset as subReset } from '../../../features/subscription/subscriptionSlice';
 // mui
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -76,7 +76,7 @@ function EditSubscriptions(props) {
     const handleSubscription = () => {
         dispatch(createSubscription(subscriptionData));
         setViewNewSub(!viewNewSub);
-    }
+    };
 
     const handleChange = (e) => {
         setSubscriptionData({ ...subscriptionData, movie: e.target.value })
@@ -84,7 +84,7 @@ function EditSubscriptions(props) {
 
     if (isLoading || isSubscriptionLoading) {
         return <Loading />
-    }
+    };
 
     return (
         <>

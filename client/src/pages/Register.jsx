@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { register, reset } from '../features/auth/authSlice';
 import Loading from '../components/loading/Loading';
+import "../style/_register.scss";
 // mui
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -15,45 +16,42 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import "../style/_register.scss"
 
 function Register() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
     password2: '',
-  })
+  });
 
-  const { username, password, password2 } = formData
-
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { username, password, password2 } = formData;
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
-  )
+  );
 
   useEffect(() => {
     if (isError) {
       toast.error(message)
-    }
-
+    };
     if (isSuccess || user) {
       navigate('/login')
-    }
-
-    dispatch(reset())
-  }, [user, isError, isSuccess, message, navigate, dispatch])
+    };
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }))
-  }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (password !== password2) {
       toast.error('Passwords do not match')
@@ -63,13 +61,13 @@ function Register() {
         password,
       }
       dispatch(register(userData))
-    }
-  }
+    };
+  };
 
   if (isLoading) {
     return <Loading />
-  }
-  
+  };
+
   return (
     <div className='register'>
       <Container className='form p-5 mt-0 mt-md-3' maxWidth="xs">

@@ -8,32 +8,32 @@ import Member from '../components/main/subscription/Member';
 // bootstrap
 import Row from 'react-bootstrap/Row';
 // Scss
-import '../style/_subscriptions.scss'
+import '../style/_subscriptions.scss';
 
 function Subscriptions() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const { members, isLoading, isError, message } = useSelector(
     (state) => state.member
-    )
-    
-    useEffect(() => {
-      dispatch(getMembers());
-      
+  );
+
+  useEffect(() => {
+    dispatch(getMembers());
+
     if (isError) {
       toast.error(message);
-    }
+    };
 
     return () => {
       dispatch(reset())
-    }
+    };
 
   }, [isError, message, navigate, dispatch]);
 
   if (isLoading) {
     return <Loading />
-  }
+  };
 
   return (
     <>

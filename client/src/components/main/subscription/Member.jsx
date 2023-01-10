@@ -28,7 +28,7 @@ function Member(props) {
         if (action === 'Delete') {
             dispatch(deleteMember(id));
         }
-    }
+    };
 
     const actions = [
         { icon: <EditIcon />, name: 'Edit' },
@@ -50,7 +50,6 @@ function Member(props) {
                             ariaLabel="SpeedDial basic example"
                             sx={{ position: 'absolute', top: -80, right: 2 }}
                             icon={<SpeedDialIcon />}>
-
                             {actions.map((action) => (
                                 <SpeedDialAction
                                     onClick={() => { handleClick(props.member._id, action.name) }}

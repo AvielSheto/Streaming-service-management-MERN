@@ -1,10 +1,8 @@
-import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../loading/Loading';
-// import { getUser, reset as editReset } from '../../../features/user/userSlice';
 import { getUser, reset  } from '../../../features/editUser/editUserSlice';
 import { updateUser } from '../../../features/user/userSlice';
 
@@ -20,16 +18,16 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 function EditUser() {
-    const { id } = useParams()
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         userName: '',
         sessionTimeOut: 0,
         createdDate: '',
-    })
+    });
     const [state, setState] = useState({
         viewSubscription: false,
         createSubscription: false,
@@ -46,7 +44,8 @@ function EditUser() {
     // Get user data 
     const { userEdit, isEditError, isEditSuccess, isEditLoading, editMessage } = useSelector(
         (state) => state.userEdit
-    )
+    );
+
     useEffect(() => {
         dispatch(getUser(id))
         if (isEditError) {
@@ -64,7 +63,8 @@ function EditUser() {
     // Update user
     const { isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.user
-    )
+    );
+
     useEffect(() => {
         if (isError) {
             toast.error(message)
@@ -80,7 +80,6 @@ function EditUser() {
 
     }, [isError, isSuccess, message, dispatch, navigate]);
 
-
     const handleChange = (event) => {
         setState({
             ...state,
@@ -93,7 +92,7 @@ function EditUser() {
             ...prevState,
             [e.target.name]: e.target.value,
         }))
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -107,11 +106,11 @@ function EditUser() {
             permissions: state
         }
         dispatch(updateUser(userData))
-    }
+    };
 
     if (isLoading || isEditLoading) {
         return <Loading />
-    }
+    };
 
     return (
         <div>
@@ -124,7 +123,6 @@ function EditUser() {
                         alignItems: 'center',
                     }}>
                     <h1 className='display-3'>Edit user</h1>
-
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -169,7 +167,6 @@ function EditUser() {
                                 shrink: true,
                             }}
                         />
-
                         <h1 className='display-6 fs-2 mt-1'>Permissions</h1>
                         <div>
                             <FormControl component="fieldset" variant="standard">
@@ -201,7 +198,6 @@ function EditUser() {
                                                 label="Update Subscription"
                                             />
                                         </div>
-
                                         <div className='d-flex flex-column'>
                                             <FormControlLabel
                                                 control={
@@ -232,10 +228,8 @@ function EditUser() {
                                 </FormGroup>
                             </FormControl>
                         </div>
-
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Edit user</Button>
                         <Grid container>
-
                         </Grid>
                     </Box>
                 </Box>

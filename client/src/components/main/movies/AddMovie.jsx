@@ -38,7 +38,7 @@ function AddMovie() {
     }
 
     dispatch(reset())
-  }, [ isError, isSuccess, message, navigate, dispatch]);
+  }, [isError, isSuccess, message, navigate, dispatch]);
 
 
   const onChange = (e) => {
@@ -57,7 +57,7 @@ function AddMovie() {
       premiered
     }
     dispatch(createMovie(movieData));
-  }
+  };
 
   const addGenres = (value) => {
     genres.length = 0
@@ -68,7 +68,7 @@ function AddMovie() {
         )
       })
     }
-  }
+  };
 
   const allGenres = [
     { title: 'Drama' },
@@ -86,7 +86,7 @@ function AddMovie() {
 
   if (isLoading) {
     return <Loading />
-  }
+  };
 
   return (
     <Container maxWidth="xs">
@@ -98,7 +98,6 @@ function AddMovie() {
           alignItems: 'center',
         }}>
         <h1 className='display-3'>Add Movie</h1>
-
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
@@ -129,7 +128,6 @@ function AddMovie() {
               />
             )}
           />
-
           <TextField
             margin="normal"
             required

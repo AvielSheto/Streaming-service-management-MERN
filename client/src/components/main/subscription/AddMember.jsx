@@ -18,7 +18,7 @@ function AddMember() {
     name: '',
     email: '',
     city: '',
-  })
+  });
 
   const { name, email, city, } = formData;
 
@@ -38,7 +38,6 @@ function AddMember() {
     return () => {
       dispatch(reset())
     }
-
   }, [isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
@@ -46,7 +45,7 @@ function AddMember() {
       ...prevState,
       [e.target.name]: e.target.value,
     }))
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -56,11 +55,11 @@ function AddMember() {
       city,
     }
     dispatch(createMember(memberData))
-  }
+  };
 
   if (isLoading) {
     return <Loading />
-  }
+  };
 
   return (
     <div>
@@ -73,7 +72,6 @@ function AddMember() {
             alignItems: 'center',
           }}>
           <h1 className='display-3'>Add Member</h1>
-
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

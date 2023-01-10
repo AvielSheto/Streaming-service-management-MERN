@@ -8,15 +8,15 @@ import User from './User';
 // bootstrap
 import Row from 'react-bootstrap/Row';
 // scss
-import '../../../style/_usersManage.scss'
+import '../../../style/_usersManage.scss';
 
 function Users() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { users, isLoading, isError, message } = useSelector(
     (state) => state.user
-  )
+  );
 
   // Get users
   useEffect(() => {
@@ -29,12 +29,11 @@ function Users() {
     return () => {
       dispatch(reset())
     }
-
   }, [isError, message, navigate, dispatch]);
 
   if (isLoading) {
     <Loading />
-  }
+  };
 
   return (
     <>

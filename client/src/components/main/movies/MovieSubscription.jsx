@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getMember } from '../../../features/memberEdit/memberEditSlice'
+import { getMember } from '../../../features/memberEdit/memberEditSlice';
 
 function MovieSubscription(props) {
   const dispatch = useDispatch();
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     props.subscriptions.map((item) => {

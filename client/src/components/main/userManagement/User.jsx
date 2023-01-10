@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../../loading/Loading';
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 import { deleteUser, reset } from '../../../features/user/userSlice';
 // Mui 
 import Box from '@mui/material/Box';
@@ -14,14 +14,15 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function User(props) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [permissions, setPermissions] = useState();
 
   // Delete user
   const { isLoading, isError, message, isSuccess } = useSelector(
     (state) => state.user
-  )
+  );
+
   useEffect(() => {
     getPermissions()
     if (isError) {
@@ -32,23 +33,23 @@ function User(props) {
   const getPermissions = async () => {
     const { data } = await axios.get('http://localhost:5000/permissions/');
     setPermissions(data.filter((per) => per.id === props.user.id)[0].permissions)
-  }
+  };
 
   if (isLoading) {
     <Loading />
-  }
+  };
 
   const handleClick = (id, action) => {
     if (action === 'Edit') {
       navigate(`/main/usermanagement/edituser/${id}`);
       dispatch(reset())
-    }
+    };
 
     if (action === 'Delete') {
       dispatch(deleteUser(id));
       // console.log(id);
     }
-  }
+  };
 
   const actions = [
     { icon: <EditIcon />, name: 'Edit' },

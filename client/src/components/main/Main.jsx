@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import axios from 'axios';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import axios from 'axios'
-import '../../style/_main.scss'
+import '../../style/_main.scss';
 // mui
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -24,16 +24,15 @@ export default function Home() {
     const { data } = await axios.get('http://localhost:5000/permissions/' + user._id);
     if (data.permissions.userManagement === true) {
       setManagement(true)
-    }
+    };
     if (data.permissions.viewSubscription === true) {
       setSubscriptions(true)
-      // navigate('/main/subscriptionsnav/subscriptions')
-    }
+    };
     if (data.permissions.viewMovie === true) {
       setMovies(true)
-      // navigate('/main/moviesnav/movies')
-    }
-  }
+    };
+  };
+
   useEffect(() => {
     getPermissions()
 

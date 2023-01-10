@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { login, reset } from '../features/auth/authSlice'
-import Loading from '../components/loading/Loading'
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { login, reset } from '../features/auth/authSlice';
+import Loading from '../components/loading/Loading';
 // mui
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -16,22 +16,22 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import '../style/_login.scss'
+import '../style/_login.scss';
 
 function Login() {
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         username: '',
         password: ''
-    })
+    });
 
-    const { username, password } = formData
+    const { username, password } = formData;
 
     const { user, isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.auth
-    )
+    );
 
     useEffect(() => {
         if (isError) {
@@ -43,14 +43,14 @@ function Login() {
         }
 
         dispatch(reset())
-    }, [user, isError, isSuccess, message, dispatch])
+    }, [user, isError, isSuccess, message, dispatch]);
 
     const onChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
         }))
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -59,11 +59,11 @@ function Login() {
             password
         }
         dispatch(login(userData))
-    }
+    };
 
     if (isLoading) {
         return <Loading />
-    }
+    };
 
     return (
         <div className='logIn'>

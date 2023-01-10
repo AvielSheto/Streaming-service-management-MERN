@@ -22,13 +22,13 @@ function EditMovie() {
         genres: [],
         image: '',
         premiered: ''
-    })
-    const { name, genres, image, premiered } = formData;
+    });
 
+    const { name, genres, image, premiered } = formData;
 
     const { movieEdit, isMovieEditLoading, isMovieEditError, isMovieEditSuccess, editMessage } = useSelector(
         (state) => state.movieEdit
-    )
+    );
 
     // Get movie
     useEffect(() => {
@@ -42,13 +42,13 @@ function EditMovie() {
             setFormData(movieEdit)
         }
 
-    }, [isMovieEditError, editMessage, isMovieEditSuccess, dispatch])
-
+    }, [isMovieEditError, editMessage, isMovieEditSuccess, dispatch]);
 
     // Update movie
     const { isLoading, isError, message, isSuccess } = useSelector(
         (state) => state.movie
-    )
+    );
+
     useEffect(() => {
         if (isError) {
             toast.error(message)
@@ -68,8 +68,8 @@ function EditMovie() {
         setFormData((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
-        }))
-    }
+        }));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -79,17 +79,12 @@ function EditMovie() {
             image,
             premiered
         }
-        dispatch(updateMovie({ id: id, obj: movieData }))
-    }
+        dispatch(updateMovie({ id: id, obj: movieData }));
+    };
 
     const addGenres = (value) => {
         {
             console.log(value.InputProps.startAdornment);
-            // value.InputProps.startAdornment?.map((genre) => {
-            //     return (
-            //         genres.push(genre.props.label)
-            //     )
-            // })
         }
     }
 
@@ -122,7 +117,6 @@ function EditMovie() {
                         alignItems: 'center',
                     }}>
                     <h1 className='display-3'>Edit Movie</h1>
-
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -157,14 +151,11 @@ function EditMovie() {
                                 />
                             )}
                         />
-
                         <Autocomplete
                             multiple
                             options={allGenres}
                             filterSelectedOptions
                             getOptionLabel={(option) => option.title}
-
-
                             renderInput={(params) => (
                                 <TextField
                                     required
@@ -176,7 +167,6 @@ function EditMovie() {
                                 />
                             )}
                         />
-
                         <TextField
                             margin="normal"
                             required
@@ -201,7 +191,6 @@ function EditMovie() {
                         />
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>Edit Movie</Button>
                         <Grid container>
-
                         </Grid>
                     </Box>
                 </Box>
