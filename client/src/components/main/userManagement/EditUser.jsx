@@ -1,10 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Loading from '../../loading/Loading';
-import { getUser, reset  } from '../../../features/editUser/editUserSlice';
 import { updateUser } from '../../../features/user/userSlice';
+import Loading from '../../loading/Loading';
 
 // mui
 import Button from '@mui/material/Button';
@@ -18,13 +17,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 function EditUser() {
-    const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
-        userName: '',
         sessionTimeOut: 0,
         createdDate: '',
     });
@@ -39,26 +38,13 @@ function EditUser() {
         updateMovie: false,
     });
 
-    const { firstName, lastName, userName, sessionTimeOut, createdDate } = formData;
+    const { firstName, lastName, sessionTimeOut, createdDate } = formData;
 
-    // Get user data 
-    const { userEdit, isEditError, isEditSuccess, isEditLoading, editMessage } = useSelector(
-        (state) => state.userEdit
-    );
-
+    // Set user and permissions
     useEffect(() => {
-        dispatch(getUser(id))
-        if (isEditError) {
-            toast.error(editMessage)
-        }
-
-        if (isEditSuccess) {
-            setFormData(userEdit)
-            if (userEdit?.permissions) {
-                setState(userEdit?.permissions)
-            }
-        }
-    }, [isEditError, isEditSuccess, editMessage, dispatch]);
+        setFormData(location.state.user);
+        setState(location.state.permissions)
+    }, []);
     
     // Update user
     const { isLoading, isError, isSuccess, message } = useSelector(
@@ -73,11 +59,6 @@ function EditUser() {
         if (isSuccess) {
             navigate('/main/usermanagement/managementnav/users')
         }
-        
-        return () => {
-            dispatch(reset())
-        }
-
     }, [isError, isSuccess, message, dispatch, navigate]);
 
     const handleChange = (event) => {
@@ -97,10 +78,9 @@ function EditUser() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const userData = {
-            id,
+            id:location.state.user.id,
             firstName,
             lastName,
-            userName,
             createdDate,
             sessionTimeOut,
             permissions: state
@@ -108,7 +88,7 @@ function EditUser() {
         dispatch(updateUser(userData))
     };
 
-    if (isLoading || isEditLoading) {
+    if (isLoading) {
         return <Loading />
     };
 
@@ -145,17 +125,6 @@ function EditUser() {
                             onChange={onChange}
                             value={lastName}
                             autoComplete="lastName"
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="userName"
-                            label="User Name"
-                            type="text"
-                            onChange={onChange}
-                            value={userName}
-                            autoComplete="userName"
                         />
                         <TextField
                             className='col-12 mt-3'

@@ -20,11 +20,11 @@ function Users() {
 
   // Get users
   useEffect(() => {
-    dispatch(getUsers())
+    dispatch(getUsers());
 
     if (isError) {
       toast.error(message)
-    }
+    };
 
     return () => {
       dispatch(reset())

@@ -41,13 +41,17 @@ function User(props) {
 
   const handleClick = (id, action) => {
     if (action === 'Edit') {
-      navigate(`/main/usermanagement/edituser/${id}`);
+      navigate(`/main/usermanagement/edituser`, {
+        state: {
+          user: props.user,
+          permissions: permissions
+        },
+      });
       dispatch(reset())
     };
 
     if (action === 'Delete') {
       dispatch(deleteUser(id));
-      // console.log(id);
     }
   };
 
@@ -69,7 +73,6 @@ function User(props) {
               ariaLabel="SpeedDial basic example"
               sx={{ position: 'absolute', top: -190, right: 2 }}
               icon={<SpeedDialIcon />}>
-
               {actions.map((action) => (
                 <SpeedDialAction
                   onClick={() => { handleClick(props.user.id, action.name) }}

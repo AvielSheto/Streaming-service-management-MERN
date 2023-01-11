@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import { getMovie, reset } from '../../../features/movieEdit/movieEditSlice'
-import { updateMovie } from '../../../features/movie/movieSlice'
-import { toast } from 'react-toastify'
-import Loading from '../../loading/Loading'
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { updateMovie } from '../../../features/movie/movieSlice';
+import { toast } from 'react-toastify';
+import Loading from '../../loading/Loading';
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -16,7 +15,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 function EditMovie() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { id } = useParams()
+    const location = useLocation();
+
     const [formData, setFormData] = useState({
         name: '',
         genres: [],
@@ -26,23 +26,10 @@ function EditMovie() {
 
     const { name, genres, image, premiered } = formData;
 
-    const { movieEdit, isMovieEditLoading, isMovieEditError, isMovieEditSuccess, editMessage } = useSelector(
-        (state) => state.movieEdit
-    );
-
-    // Get movie
+    // Set movie
     useEffect(() => {
-        dispatch(getMovie(id))
-
-        if (isMovieEditError) {
-            toast.error(editMessage)
-        }
-
-        if (isMovieEditSuccess) {
-            setFormData(movieEdit)
-        }
-
-    }, [isMovieEditError, editMessage, isMovieEditSuccess, dispatch]);
+        setFormData(location.state.movie)
+    }, []);
 
     // Update movie
     const { isLoading, isError, message, isSuccess } = useSelector(
@@ -58,9 +45,6 @@ function EditMovie() {
             navigate('/main/moviesnav/movies')
         }
 
-        return () => {
-            dispatch(reset())
-        }
     }, [isError, message, isSuccess, navigate]);
 
 
@@ -79,12 +63,12 @@ function EditMovie() {
             image,
             premiered
         }
-        dispatch(updateMovie({ id: id, obj: movieData }));
+        dispatch(updateMovie({ id: location.state.movie._id, obj: movieData }));
     };
 
     const addGenres = (value) => {
         {
-            console.log(value.InputProps.startAdornment);
+            // console.log(value.InputProps.startAdornment);
         }
     }
 
@@ -102,7 +86,7 @@ function EditMovie() {
         { title: 'Mystery' },
     ];
 
-    if (isMovieEditLoading || isLoading) {
+    if (isLoading) {
         return <Loading />
     }
 

@@ -25,17 +25,16 @@ export default function Home() {
     if (data.permissions.userManagement === true) {
       setManagement(true)
     };
-    if (data.permissions.viewSubscription === true) {
+    if (data.permissions.updateSubscription === true) {
       setSubscriptions(true)
     };
-    if (data.permissions.viewMovie === true) {
+    if (data.permissions.updateMovie === true) {
       setMovies(true)
     };
   };
 
   useEffect(() => {
     getPermissions()
-
   }, []);
 
   useEffect(() => {

@@ -27,7 +27,9 @@ function Header() {
       <Navbar className='py-1' collapseOnSelect expand="md" bg="black" variant="dark">
         <Container>
           <Navbar.Brand className='border-0' >
-            <Link className='text-decoration-none display-6 text-danger' to='/'>Netflix</Link>
+            <Link className='text-decoration-none display-6 text-danger' to='/'>
+              <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="freepnglogos" width={100} />
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle className='border-0' aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

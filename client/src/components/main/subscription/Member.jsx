@@ -22,7 +22,11 @@ function Member(props) {
 
     const handleClick = (id, action) => {
         if (action === 'Edit') {
-            navigate(`/main/editmember/${id}`);
+            navigate('/main/editmember', {
+                state: {
+                    member: props.member,
+                },
+            });
         }
 
         if (action === 'Delete') {

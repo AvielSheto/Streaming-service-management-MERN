@@ -50,9 +50,9 @@ export default function App() {
                 <Route path="users" element={<Users />} />
                 <Route path="adduser" element={<AddUser />} />
               </Route>
-              <Route path="edituser/:id" element={<EditUser />} />
+              <Route path="edituser" element={<EditUser />} />
             </Route>
-            <Route path="editmember/:id" element={<EditMember />} />
+            <Route path="editmember" element={<EditMember />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

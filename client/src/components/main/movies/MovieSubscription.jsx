@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getMember } from '../../../features/memberEdit/memberEditSlice';
+// import { getMember } from '../../../features/memberEdit/memberEditSlice';
 
 function MovieSubscription(props) {
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    props.subscriptions.map((item) => {
-      getUser(item.memberId, item.createdAt)
-    })
+    // props.subscriptions.map((item) => {
+    //   getUser(item.memberId, item.createdAt)
+    // })
   }, []);
 
-  const getUser = async (id, createdAt) => {
-    const data = await dispatch(getMember(id));
-    const subscriptionData = { userName: data.payload[0].name, createdAt };
-    setUsers(current => [...current, subscriptionData]);
-  }
+  // const getUser = async (id, createdAt) => {
+  //   const data = await dispatch(getMember(id));
+  //   const subscriptionData = { userName: data.payload[0].name, createdAt };
+  //   setUsers(current => [...current, subscriptionData]);
+  // }
 
   return (
     <>

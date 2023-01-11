@@ -11,14 +11,14 @@ const registerUser = asyncHandler(async (req, res) => {
     if (!username || !password) {
         res.status(400);
         throw new Error('Please add all field');
-    }
+    };
 
     // check if user exists
     const user = await User.findOne({ username });
     if (!user) {
         res.status(400);
         throw new Error('User is not exists');
-    }
+    };
 
     // Hash password
     const salt = await bcrypt.genSalt(10);
@@ -38,7 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Invalid user data');
     }
-})
+});
 
 // @desc    Create user
 // @route   POST /api/users/create
@@ -64,7 +64,7 @@ const createUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Invalid user data');
     }
-})
+});
 
 // @desc    Authenticate a user
 // @route   POST /api/users/login
@@ -82,7 +82,7 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Invalid credentials');
     }
-})
+});
 
 // @desc    Get users data
 // @route   GET /api/users
@@ -90,7 +90,7 @@ const loginUser = asyncHandler(async (req, res) => {
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({});
     res.status(200).json(users);
-})
+});
 
 // @desc    Get user data
 // @route   GET /api/user
@@ -102,7 +102,7 @@ const getUser = asyncHandler(async (req, res) => {
         throw new Error('User not found');
     }
     res.status(200).json(user);
-})
+});
 
 // @desc    Update user
 // @route   PUT /api/users
@@ -133,4 +133,4 @@ const generateToken = (id) => {
     });
 };
 
-module.exports = { registerUser, loginUser, getUsers, getUser, createUser, updateUser, deleteUser }
+module.exports = { registerUser, loginUser, getUsers, getUser, createUser, updateUser, deleteUser };

@@ -1,5 +1,5 @@
 const jsonfile = require('jsonfile');
-const file = './data/users.json'
+const file = './data/users.json';
 
 // Get all users
 const getUsers = () => {

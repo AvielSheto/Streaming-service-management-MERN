@@ -21,7 +21,11 @@ function Movie(props) {
 
     const handleClick = (movieId, action) => {
         if (action === 'Edit') {
-            navigate(`/main/editmovie/${movieId}`);
+            navigate(`/main/editmovie/${movieId}`, {
+                state: {
+                    movie: props.movie,
+                },
+            });
         };
         if (action === 'Delete') {
             dispatch(deleteMovie(movieId));

@@ -20,7 +20,7 @@ const getMember = asyncHandler(async (req, res) => {
         throw new Error('Member not found');
     }
     res.status(200).json(member);
-})
+});
 
 // @desc    Create member
 // @route   POST /api/Members
@@ -83,6 +83,6 @@ const deleteMember = asyncHandler(async (req, res) => {
 
     await member.remove();
     res.status(200).json({ id: req.params.id });
-})
+});
 
-module.exports = { getMembers, getMember, createMember, updateMember, deleteMember }
+module.exports = { getMembers, getMember, createMember, updateMember, deleteMember };

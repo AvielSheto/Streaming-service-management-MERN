@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { getMember, reset } from '../../../features/memberEdit/memberEditSlice';
-import { updateMember } from '../../../features/member/memberSlice'
-
+import { useNavigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { updateMember } from '../../../features/member/memberSlice';
 // mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -16,7 +14,8 @@ import Loading from '../../loading/Loading';
 function EditMember() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const location = useLocation();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,22 +24,10 @@ function EditMember() {
 
   const { name, email, city, } = formData;
 
-  const { memberEdit, isMovieEditLoading, isMovieEditError, isMovieEditSuccess, idEditMessage } = useSelector(
-    (state) => state.memberEdit);
-
-  // Get member
+  // Set member
   useEffect(() => {
-    dispatch(getMember(id));
-
-    if (isMovieEditError) {
-      toast.error(idEditMessage)
-    }
-
-    if (isMovieEditSuccess) {
-      setFormData(memberEdit)
-    }
-
-  }, [isMovieEditError, isMovieEditSuccess, idEditMessage, dispatch]);
+    setFormData(location.state.member)
+  }, []);
 
 
   // Update member
@@ -54,12 +41,9 @@ function EditMember() {
     }
 
     if (isSuccess) {
-      navigate('/main/subscription/members')
+      navigate('/main/subscriptionsnav/subscriptions')
     }
 
-    return () => {
-      dispatch(reset())
-    }
   }, [isError, message, isSuccess, navigate]);
 
 
@@ -77,10 +61,10 @@ function EditMember() {
       email,
       city,
     }
-    dispatch(updateMember({ id: id, obj: memberData }))
+    dispatch(updateMember({ id: location.state.member._id, obj: memberData }))
   };
 
-  if (isMovieEditLoading || isLoading) {
+  if (isLoading) {
     return <Loading />
   };
 

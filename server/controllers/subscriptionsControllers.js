@@ -29,7 +29,6 @@ const getSubscription = asyncHandler(async (req, res) => {
 // @route   POST /subscriptions
 // @access  Privet
 const createSubscription = asyncHandler(async (req, res) => {
-
     // Create subscription
     const subscription = new Subscription(obj);
     if (subscription) {

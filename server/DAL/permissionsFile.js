@@ -1,5 +1,5 @@
 const jsonfile = require('jsonfile');
-const file = './data/permissions.json'
+const file = './data/permissions.json';
 
 // Get all permissions
 const getAllPermissions = () => {
@@ -10,6 +10,6 @@ const getAllPermissions = () => {
 const setPermission = async (obj)=>{
     await jsonfile.writeFile(file,obj)
     return 'Done'
-}
+};
 
 module.exports = { getAllPermissions, setPermission };

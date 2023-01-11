@@ -7,7 +7,7 @@ const Movie = require('../models/movieModel');
 const getMovies = asyncHandler(async (req, res) => {
     const movies = await Movie.find({});
     res.status(200).json(movies);
-})
+});
 
 // @desc    Get Movie
 // @route    /api/movies/id
@@ -19,7 +19,7 @@ const getMovie = asyncHandler(async (req, res) => {
         throw new Error('Movie not found');
     }
     res.status(200).json(movie);
-})
+});
 
 // @desc    Create Movie
 // @route   POSt /api/movies
@@ -54,7 +54,7 @@ const createMovie = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Invalid movie data');
     }
-})
+});
 
 // @desc    Update movie
 // @route   PUT /api/movies/:id
@@ -82,8 +82,8 @@ const deleteMovie = asyncHandler(async (req, res) => {
 
     await movie.remove();
     res.status(200).json({ id: req.params.id });
-})
+});
 
 
 
-module.exports = { getMovies, getMovie, createMovie, deleteMovie, updateMovie }
+module.exports = { getMovies, getMovie, createMovie, deleteMovie, updateMovie };
