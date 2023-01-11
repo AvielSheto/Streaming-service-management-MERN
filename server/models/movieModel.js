@@ -16,11 +16,11 @@ const MoveSchema = new mongoose.Schema(
             require: [true, 'Please add genres']
 
         },
-        premiered:{
+        premiered: {
             type: String,
             require: [true, 'Please add premiered']
-
-        } 
+        },
+        subscriptions: { type: [mongoose.Types.ObjectId], ref: "subscriptions" },
     },
     { versionKey: false }
 );

@@ -45,11 +45,10 @@ function Movies() {
 
   useEffect(() => {
     dispatch(getSubscriptions());
-
+    
     if (isSubscriptionError) {
       toast.error(subscriptionMessage);
     }
-
   }, [isSubscriptionError, subscriptionMessage]);
 
   const restSearch = (obj) => {

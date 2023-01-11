@@ -29,7 +29,6 @@ function EditMember() {
     setFormData(location.state.member)
   }, []);
 
-
   // Update member
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.member
@@ -45,7 +44,6 @@ function EditMember() {
     }
 
   }, [isError, message, isSuccess, navigate]);
-
 
   const onChange = (e) => {
     setFormData((prevState) => ({
