@@ -28,7 +28,6 @@ const createMovie = asyncHandler(async (req, res) => {
     const { name, genres, image, premiered } = req.body;
     if (!name || !genres || !image || !premiered) {
         res.status(400);
-        console.log(name);
         throw new Error('Please add all field');
     }
 

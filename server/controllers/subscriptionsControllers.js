@@ -29,14 +29,24 @@ const getSubscription = asyncHandler(async (req, res) => {
 // @route   POST /subscriptions
 // @access  Privet
 const createSubscription = asyncHandler(async (req, res) => {
-    // Create subscription
-    const subscription = new Subscription(obj);
-    if (subscription) {
-        res.status(201).json(subscription)
-    } else {
+    const { memberId, movie } = req.body
+    if (!memberId, !movie) {
         res.status(400)
-        throw new Error('Invalid movie data');
-    }
+        throw new Error('Please add all filed')
+    };
+
+    const subscription = await Subscription.create({
+        memberId,
+        movie
+    });
+
+    if (subscription) {
+        res.status(201).json({
+            _id: subscription.id,
+            memberId: subscription.memberId,
+            movie: subscription.movie
+        })
+    };
 });
 
 module.exports = { getSubscriptions, getSubscription, createSubscription };
