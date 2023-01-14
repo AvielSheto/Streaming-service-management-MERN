@@ -16,6 +16,7 @@ const getSubscription = async (id) => {
 // Create subscription
 const createSubscription = async (sub) => {
     const response = await axios.post(API_URL, sub);
+    console.log(sub);
     return response.data;
 }
 

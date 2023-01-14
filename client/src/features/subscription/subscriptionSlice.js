@@ -44,6 +44,7 @@ export const getSubscription = createAsyncThunk('subscriptions/getById', async (
 export const createSubscription = createAsyncThunk('subscriptions/create', async (subscriptionData, thunkAPI) => {
     try {
         // const token = thunkAPI.getState().auth.user.token
+        // console.log(subscriptionData);
         return await subscriptionService.createSubscription(subscriptionData)
     } catch (error) {
         const message =
