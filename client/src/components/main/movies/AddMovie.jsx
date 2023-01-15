@@ -15,6 +15,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 function AddMovie() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     name: '',
     genres: [],

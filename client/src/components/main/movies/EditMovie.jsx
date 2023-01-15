@@ -72,6 +72,7 @@ function EditMovie() {
         }
     }
 
+    
     const allGenres = [
         { title: 'Drama' },
         { title: 'Science-Fiction' },
@@ -117,34 +118,12 @@ function EditMovie() {
                             multiple
                             options={allGenres}
                             filterSelectedOptions
-                            // getOptionLabel={(option) => option.title}
-
                             getOptionLabel={(option) => option.title}
                             value={genres}
-                            isOptionEqualToValue={(option, value) =>
-                                value === undefined || value === "" || option.id === value.id
-                            }
                             renderInput={(params) => (
                                 <TextField
                                     onChange={addGenres({ ...params })}
                                     required
-                                    value={genres}
-                                    name="genres"
-                                    {...params}
-                                    label="Genres"
-                                />
-                            )}
-                        />
-                        <Autocomplete
-                            multiple
-                            options={allGenres}
-                            filterSelectedOptions
-                            getOptionLabel={(option) => option.title}
-                            renderInput={(params) => (
-                                <TextField
-                                    required
-                                    onChange={addGenres({ ...params })}
-                                    value={genres}
                                     name="genres"
                                     {...params}
                                     label="Genres"

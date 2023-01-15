@@ -5,8 +5,8 @@ const subscriptionSchema = new mongoose.Schema(
         memberId: String,
         movie: Object,
     },
-    { timestamps: true },
-    { versionKey: false }
+    { versionKey: false },
+    { timestamps: true }
 )
 
 const Subscription = mongoose.model('subscription', subscriptionSchema);
