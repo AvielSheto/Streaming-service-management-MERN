@@ -29,6 +29,7 @@ function EditMovie() {
     // Set movie
     useEffect(() => {
         setFormData(location.state.movie)
+        console.log(genres);
     }, []);
 
     // Update movie
@@ -46,7 +47,6 @@ function EditMovie() {
         }
 
     }, [isError, message, isSuccess, navigate]);
-
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -72,7 +72,6 @@ function EditMovie() {
         }
     }
 
-    
     const allGenres = [
         { title: 'Drama' },
         { title: 'Science-Fiction' },
@@ -114,22 +113,23 @@ function EditMovie() {
                             value={name}
                             autoComplete="name"
                         />
-                        <Autocomplete
+                        {/* <Autocomplete
                             multiple
                             options={allGenres}
                             filterSelectedOptions
-                            getOptionLabel={(option) => option.title}
                             value={genres}
+                            // getOptionLabel={(option) => option.title}
                             renderInput={(params) => (
                                 <TextField
-                                    onChange={addGenres({ ...params })}
+                                    // onChange={addGenres({ ...params })}
                                     required
                                     name="genres"
                                     {...params}
                                     label="Genres"
                                 />
                             )}
-                        />
+                        /> */}
+
                         <TextField
                             margin="normal"
                             required

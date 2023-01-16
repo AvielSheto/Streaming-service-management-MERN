@@ -91,11 +91,11 @@ function AddUser() {
   };
 
   const createPermissions = async (obj) => {
-    await axios.post('http://localhost:5000/permissions/', obj)
+    await axios.post("https://netflix-server.onrender.com"+"/permissions/", obj)
   };
 
   const setUser = async (obj) => {
-    await axios.post('http://localhost:5000/users/', obj)
+    await axios.post("https://netflix-server.onrender.com"+"/users/", obj)
   };
 
   if (isLoading) {

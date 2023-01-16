@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/api/members/';
+const API_URL = "https://netflix-server.onrender.com"+"/api/members/";
 
 // Get members
 const getMembers = async () => {

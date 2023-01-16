@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/subscriptions/';
+const API_URL = "https://netflix-server.onrender.com"+"/subscriptions/";
 
 // Get subscriptions
 const getSubscriptions = async () => {

@@ -31,7 +31,7 @@ function User(props) {
   }, [isError, message]);
 
   const getPermissions = async () => {
-    const { data } = await axios.get('http://localhost:5000/permissions/');
+    const { data } = await axios.get( "https://netflix-server.onrender.com+"+"/permissions/");
     setPermissions(data.filter((per) => per.id === props.user.id)[0].permissions)
   };
 

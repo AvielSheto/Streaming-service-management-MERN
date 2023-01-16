@@ -39,6 +39,7 @@ function Header() {
               <Nav >
                 {user ? (
                   <Nav>
+                    <Link></Link>
                     <Nav.Link href="/" onClick={onLogout}>
                       <div className='d-flex align-items-center'><LogoutIcon className='me-2' />Logout</div>
                     </Nav.Link>
@@ -47,11 +48,16 @@ function Header() {
                   </Nav>
                 ) : (
                   <Nav >
-                    <Nav.Link href="/login">
-                      <div className='d-flex align-items-center'><ExitToAppIcon className='me-2' />Login</div>
+                    <Nav.Link>
+                      <Link to={'/login'} className='text-decoration-none text-slate-300 hover:text-red-500'>
+                        <div className='d-flex align-items-center '><ExitToAppIcon className='me-2' />Login</div>
+                      </Link>
                     </Nav.Link>
-                    <Nav.Link href="/register">
-                      <div className='d-flex align-items-center'> <AccountCircleIcon className='me-2' />Register</div>
+
+                    <Nav.Link >
+                      <Link to={'/register'} className='text-decoration-none text-slate-300 hover:text-red-500'>
+                        <div className='d-flex align-items-center'> <AccountCircleIcon className='me-2' />Register</div>
+                      </Link>
                     </Nav.Link>
                   </Nav>
                 )}

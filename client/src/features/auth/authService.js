@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/api/users/';
+const API_URL = "https://netflix-server.onrender.com"+"/api/users/";
 
 // Register user
 const register = async (userData) => {
@@ -11,8 +11,8 @@ const register = async (userData) => {
 }
 
 // Create user
-const createUser = async(userData) =>{
-  const response = await axios.post('http://localhost:5000/api/users/create', userData);
+const createUser = async (userData) => {
+  const response = await axios.post(API_URL + 'create', userData);
   return response.data;
 }
 
@@ -26,12 +26,12 @@ const login = async (userData) => {
 }
 
 // Logout user
-const logout = ()=>{
+const logout = () => {
   localStorage.removeItem('user');
 }
 
 // Get User 
-const getUser = async (userId)=>{
+const getUser = async (userId) => {
   const response = await axios.get(API_URL + userId)
   return response.data;
 }

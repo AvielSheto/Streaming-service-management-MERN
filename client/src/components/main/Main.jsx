@@ -21,7 +21,7 @@ export default function Home() {
   const { user } = useSelector((state) => state.auth);
 
   const getPermissions = async () => {
-    const { data } = await axios.get('http://localhost:5000/permissions/' + user._id);
+    const { data } = await axios.get("https://netflix-server.onrender.com"+"/permissions/"+ user._id);
     if (data.permissions.userManagement === true) {
       setManagement(true)
     };
