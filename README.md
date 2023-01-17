@@ -1,4 +1,4 @@
-﻿# Netfilx
+﻿# Netfilx - clone
 Streaming service management MERN-APP
 
 ### Back end 🧱
