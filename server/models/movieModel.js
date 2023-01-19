@@ -20,7 +20,10 @@ const MoveSchema = new mongoose.Schema(
             type: String,
             require: [true, 'Please add premiered']
         },
-        subscriptions: { type: [mongoose.Types.ObjectId], ref: "subscriptions" },
+        subscriptions: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "subscriptions"
+        },
     },
     { versionKey: false }
 );

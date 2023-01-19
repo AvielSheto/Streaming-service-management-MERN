@@ -67,7 +67,7 @@ function Login() {
 
     return (
         <div className='logIn'>
-            <Container className='form p-5 mt-sm-3' maxWidth="xs">
+            <Container className='form p-5 mt-sm-3 mt-2' maxWidth="xs">
                 <Box
                     sx={{
                         paddingY: '3rem',
