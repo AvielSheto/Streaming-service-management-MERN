@@ -36,4 +36,4 @@ function MoviesNav() {
   )
 }
 
-export default MoviesNav
+export default MoviesNav;
