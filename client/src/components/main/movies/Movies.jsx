@@ -44,7 +44,6 @@ function Movies() {
   );
 
   useEffect(() => {
-    console.log(movies);
     dispatch(getSubscriptions());
     
     if (isSubscriptionError) {
