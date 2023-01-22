@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
 
-const subscriptionSchema = new mongoose.Schema(
+const SubscriptionSchema = new mongoose.Schema(
     {
-        memberId: String,
-        movie: Object,
+        memberId: {
+            type: String,
+            required: [true, 'Please add name']
+        },
+        movie: {
+            type: Object,
+            required: [true, "Please add movie"]
+        }
     },
-    { versionKey: false },
-    { timestamps: true }
-)
+    { timestamps: true },
+    { versionKey: false }
+);
 
-const Subscription = mongoose.model('subscription', subscriptionSchema);
+const model = mongoose.model('subscription', SubscriptionSchema);
 
-module.exports = Subscription;
+module.exports = model;

@@ -31,7 +31,7 @@ const MenuProps = {
     },
 };
 
-function EditSubscriptions(props) {
+function AddSubscription(props) {
     const dispatch = useDispatch();
     const [viewNewSub, setViewNewSub] = useState(false);
     const [subscription, setSubscription] = useState([])
@@ -117,7 +117,7 @@ function EditSubscriptions(props) {
                 <Button onClick={() => { setViewNewSub(!viewNewSub) }}>Subscribe to new movie</Button>
                 {viewNewSub &&
                     <>
-                        <h1 className='display-6 fs-2 fw-normal my-2'>Add new movie</h1>
+                        <h1 className='display-6 fs-2 fw-normal my-2 ms-2'>Add new movie</h1>
                         <div>
                             <FormControl sx={{ m: 1, width: 200 }}>
                                 <InputLabel >Movies</InputLabel>
@@ -150,4 +150,4 @@ function EditSubscriptions(props) {
     )
 }
 
-export default EditSubscriptions
+export default AddSubscription

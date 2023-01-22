@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = "https://netflix-server.onrender.com"+"/subscriptions/";
+const API_URL = "https://netflix-server.onrender.com"+"/subscriptions";
 
 // Get subscriptions
 const getSubscriptions = async () => {
@@ -15,8 +15,7 @@ const getSubscription = async (id) => {
 
 // Create subscription
 const createSubscription = async (sub) => {
-    const response = await axios.post(API_URL, sub);
-    console.log(sub);
+    const response = await axios.post("http://localhost:5000/subscriptions", sub);
     return response.data;
 }
 
