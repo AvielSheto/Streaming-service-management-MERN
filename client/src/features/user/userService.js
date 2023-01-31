@@ -1,7 +1,7 @@
 import axios from 'axios';
-const API_URL_USERS_JSON = "https://netflix-server.onrender.com" + "/users/";
-const API_URL_PERMISSIONS_JSON = "https://netflix-server.onrender.com" + "/permissions/";
-const API_URL_USERS_DB = "https://netflix-server.onrender.com" + "/api/users/";
+const API_URL_USERS_JSON = "http://localhost:5000" + "/users/";
+const API_URL_PERMISSIONS_JSON = "http://localhost:5000" + "/permissions/";
+const API_URL_USERS_DB = "http://localhost:5000" + "/api/users/";
 
 // Get users
 const getUsers = async () => {

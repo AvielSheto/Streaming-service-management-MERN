@@ -3,6 +3,7 @@ const cors = require('cors');
 const bp = require("body-parser");
 const dotenv = require('dotenv').config()
 const { errorHandler } = require('./middleware/errorMiddleware');
+const PORT = process.env.PORT || 5000
 
 // routers files
 const usersDB_Router = require('./router/usersDB_Router');
@@ -10,7 +11,7 @@ const usersJSON_Router = require('./router/usersJSON_Router');
 const membersRouter = require('./router/membersRouter');
 const moviesRouter = require('./router/moviesRouter')
 const subscriptionRouter = require('./router/subscriptionsRouter');
-const permissionsRouter = require('./router/permissionsRouter')
+const permissionsRouter = require('./router/permissionsRouter');
 
 const app = express();
 require('./config/database');
@@ -31,6 +32,6 @@ app.use('/subscriptions', subscriptionRouter);
 
 app.use(errorHandler);
 
-app.listen(5000, () => {
-    console.log('Server is listen to port 5000');
+app.listen(PORT, () => {
+    console.log('Server is listen to port', PORT );
 });
