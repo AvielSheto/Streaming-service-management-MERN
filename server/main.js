@@ -3,7 +3,7 @@ const cors = require('cors');
 const bp = require("body-parser");
 const dotenv = require('dotenv').config()
 const { errorHandler } = require('./middleware/errorMiddleware');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000 ;
 
 // routers files
 const usersDB_Router = require('./router/usersDB_Router');
