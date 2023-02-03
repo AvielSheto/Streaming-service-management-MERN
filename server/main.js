@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bp = require("body-parser");
-const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/errorMiddleware');
 const PORT = process.env.PORT || 5000 ;
 
