@@ -51,6 +51,6 @@ const updatePermission = async (obj) => {
         return result;
     }
     return "User wasn't found";
-}
+};
 
 module.exports = {getAllPermissions, getPermission, createPermission, deletePermission, updatePermission };
